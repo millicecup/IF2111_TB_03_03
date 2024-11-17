@@ -4,7 +4,7 @@
 #ifndef __MESINKATA_H__
 #define __MESINKATA_H__
 
-#include "boolean.h"
+#include "../boolean.h"
 #include "mesinkarakterv2.h"
 
 #define NMax 50
@@ -47,5 +47,38 @@ void CopyWord();
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
 boolean isEndWord();
+/* Mengembalikan true jika EndWord = true */
+
+boolean isKataEqual(const Word *w1, const Word *w2);
+/* Mengembalikan true jika w1 = w2; dua kata dikatakan sama jika panjangnya sama dan urutan karakter yang menyusun kata juga sama 
+   w1.Length = w2.Length dan untuk setiap i = 1, ..., w1.Length, w1.TabWord[i] = w2.TabWord[i] 
+*/
+void readLine(char *buffer, int maxLength);
+/* Membaca sebuah baris dari input user dan menyimpannya dalam buffer
+   I.S. : buffer sembarang, maxLength adalah panjang maksimal baris yang dapat dibaca
+   F.S. : buffer berisi baris input pengguna, tidak termasuk karakter newline '\n'
+          atau buffer kosong jika tidak ada input pengguna */
+
+void toWord(Word *w, const char *str);
+/* Mengubah string menjadi Word
+   I.S. : w sembarang, str adalah string yang valid
+   F.S. : w berisi string str */
+
+
+void printWord();
+/* Menampilkan currentWord 
+   I.S. : currentWord terdefinisi
+   F.S. : Menampilkan currentWord ke layar */
+
+
+boolean isWordEqualToString(const Word *w, const char *str);
+/* mengembalikan true jika w sama dengan str
+   I.S. : w dan str terdefinisi
+   F.S. : mengembalikan true jika w sama dengan str */
+
+static void wordToString(const Word *word, char *str);
+/* mengubah Word menjadi string
+   I.S. : word terdefinisi
+   F.S. : str berisi word */
 
 #endif
