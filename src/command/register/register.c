@@ -1,6 +1,5 @@
 #include "../../ADT/user/user.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
-#include "../../ADT/List/arrayuser.h"
 #include <stdio.h>
 
 
