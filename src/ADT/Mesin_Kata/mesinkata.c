@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include "mesinkata.h"
 #include "mesinkarakterv2.h"
-#include "../user/user.h"
-#include "../List/arrayuser.h"
+
+#define MAX_LEN 50
 
 boolean endWord;
 Word currentWord;
