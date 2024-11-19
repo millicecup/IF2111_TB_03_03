@@ -80,5 +80,5 @@ static void wordToString(const Word *word, char *str);
 /* mengubah Word menjadi string
    I.S. : word terdefinisi
    F.S. : str berisi word */
-
+int WordToInt(Word *w) ;
 #endif

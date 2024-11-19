@@ -47,7 +47,7 @@ void InsertAt(Arraybarang *array, Barang el, IdxType i) {
 
     // If the array is full, expand it
     if (length == capacity) {
-        int desiredCapacity = capacity + InitialSize; // Increase capacity by InitialSize
+        int desiredCapacity = capacity *2; // Increase capacity by InitialSize
         Barang *arr = (Barang *)malloc(desiredCapacity * sizeof(Barang)); // Allocate new array
         for (int a = 0; a < length; a++) {
             arr[a] = Get(*array, a); // Copy elements to the new array
@@ -148,4 +148,8 @@ IdxType SearchArrayDin(Arraybarang array, Word name) {
         }
     }
     return -1; // Return -1 if not found
+}
+
+void ClearArrayDin(Arraybarang *array) {
+    array->Neff = 0; // Reset the number of elements
 }

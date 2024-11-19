@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include "user.h"
 #include "../Mesin_Kata/mesinkata.h"
-
+#include "../Mesin_Kata/utils.h"
+#include "../../command/load/load.h"
 #define DATA_FILE "users.txt"
 
 // Global variable to store all users
-ArrayUser userArray;
+
 boolean isInitialized = false;
 
 ArrayUser MakeArrayUser() {
@@ -88,7 +89,15 @@ void DeleteFirstUser(ArrayUser *array) {
 
 void PrintArrayUser(ArrayUser array) {
     for (int i = 0; i < array.Neff; i++) {
-        printf("User %d: %s, Password: %s, Money: %d\n", i, array.A[i].name, array.A[i].password, array.A[i].money);
+        printf("User %d: ", i);
+        for (int j = 0; j < array.A[i].name.Length; j++) {
+            printf("%c", array.A[i].name.TabWord[j]);
+        }
+        printf(", Password: ");
+        for (int j = 0; j < array.A[i].password.Length; j++) {
+            printf("%c", array.A[i].password.TabWord[j]);
+        }
+        printf(", Money: %d\n", array.A[i].money);
     }
 }
 
@@ -125,6 +134,7 @@ void printUser(const User *user) {
 }
 
 void initializeUserArray() {
+    ArrayUser userArray;
     if (!isInitialized) {
         userArray = MakeArrayUser();
         loadUsersFromFile();
@@ -132,51 +142,73 @@ void initializeUserArray() {
     }
 }
 
-void addUser(const User *user) {
-    if (!isInitialized) {
-        initializeUserArray();
-    }
-    InsertLastUser(&userArray, *user);
-    saveUsersToFile();
+void addUser(ArrayUser *userArray, User *newUser) {
+    InsertLastUser(userArray, *newUser);  // Insert the new user to the in-memory array
+    saveUsersToFile(userArray);           // Save the updated list of users to the file
 }
+
+void saveUsersToFile(ArrayUser *userArray) {
+    FILE *file = fopen(DATA_FILE, "wb");  // Assuming you have a file to store user data
+    if (file != NULL) {
+        fwrite(&userArray->Neff, sizeof(int), 1, file);
+        for (int i = 0; i < userArray->Neff; i++) {
+            fwrite(&userArray->A[i], sizeof(User), 1, file);
+        }
+        fclose(file);
+    } else {
+        printf("Error: Unable to save users.\n");
+    }
+}
+
 
 boolean cariUser(const Word *name) {
     if (!isInitialized) {
         return false;
     }
+    ArrayUser userArray;
     IdxType idx = SearchArrayUser(userArray, *name);
     return (idx != -1);
 }
 
-void saveUsersToFile() {
-    FILE *file = fopen(DATA_FILE, "wb");
-    if (file != NULL) {
-        fwrite(&userArray.Neff, sizeof(int), 1, file);
-        fwrite(userArray.A, sizeof(User), userArray.Neff, file);
-        fclose(file);
-    }
-}
+// Save user data to the text file
 
+// Load user data from the text file
 void loadUsersFromFile() {
     FILE *file = fopen(DATA_FILE, "rb");
     if (file != NULL) {
-        int count;
-        fread(&count, sizeof(int), 1, file);
+        STARTFILE(file);
+
+        // Read number of users
+        int count = WordToInt(&currentWord);
+        ADVWORD();
+
         for (int i = 0; i < count; i++) {
             User user;
-            fread(&user, sizeof(User), 1, file);
+
+            // Read money
+            user.money = WordToInt(&currentWord);
+            ADVWORD();
+
+            // Read name
+            user.name = currentWord;
+            ADVWORD();
+
+            // Read password
+            user.password = currentWord;
+            ADVWORD();
+            ArrayUser userArray;
+            // Add to user array
             InsertLastUser(&userArray, user);
         }
         fclose(file);
     }
 }
 
-
 boolean validlogin(const Word *name, const Word *password) {
     if (!isInitialized) {
         initializeUserArray();
     }
-
+    ArrayUser userArray;
     // Search through the list of users to check if the credentials match
     for (int i = 0; i < userArray.Neff; i++) {
         if (isKataEqual(&userArray.A[i].name, name) && isKataEqual(&userArray.A[i].password, password)) {

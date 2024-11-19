@@ -139,3 +139,18 @@ static void wordToString(const Word *word, char *str) {
     }
     str[i] = '\0';
 }
+
+
+int WordToInt(Word *w) {
+    int num = 0;
+    for (int i = 0; i < w->Length; i++) {
+        if (w->TabWord[i] < '0' || w->TabWord[i] > '9') {
+            return -1;  // Return -1 for invalid input
+        }
+        num = num * 10 + (w->TabWord[i] - '0');
+    }
+    return num;
+}
+
+
+

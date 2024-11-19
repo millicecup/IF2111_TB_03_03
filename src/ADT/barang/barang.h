@@ -140,5 +140,6 @@ IdxType SearchArrayDin(Arraybarang array, Word name);
 { I.S. : Arraybarang terdefinisi, name diberikan }
 { F.S. : Mengembalikan indeks pertama elemen dengan name tersebut, -1 jika tidak ditemukan }
 */
+void ClearArrayDin(Arraybarang *array);
 
 #endif // BARANG_H

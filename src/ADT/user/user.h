@@ -127,7 +127,10 @@ void initializeUserArray();
 { F.S. : User array dinamis terinisialisasi }
 */
 
-void addUser(const User *user);
+void addUser(ArrayUser *userArray, User *newUser) ;
+
+void saveUsersToFile(ArrayUser *userArray) ;
+
 /*
 { I.S. : User array terdefinisi, name dan password diberikan }
 { F.S. : User baru dengan name dan password ditambahkan ke array }
@@ -140,7 +143,7 @@ boolean cariUser(const Word *name);
 */
 
 // File persistence functions
-void saveUsersToFile();
+//void saveUsersToFile();
 /*
 { I.S. : User array terdefinisi }
 { F.S. : User array disimpan ke file users.txt }
