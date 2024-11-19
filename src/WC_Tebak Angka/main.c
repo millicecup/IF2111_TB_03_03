@@ -1,3 +1,5 @@
+//ini baru base version ya kids
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
