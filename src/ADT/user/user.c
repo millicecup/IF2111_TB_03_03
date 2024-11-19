@@ -5,8 +5,8 @@
 #define DATA_FILE "users.txt"
 
 // Global variable to store all users
-static ArrayUser userArray;
-static boolean isInitialized = false;
+ArrayUser userArray;
+boolean isInitialized = false;
 
 ArrayUser MakeArrayUser() {
     ArrayUser array;
@@ -169,4 +169,19 @@ void loadUsersFromFile() {
         }
         fclose(file);
     }
+}
+
+
+boolean validlogin(const Word *name, const Word *password) {
+    if (!isInitialized) {
+        initializeUserArray();
+    }
+
+    // Search through the list of users to check if the credentials match
+    for (int i = 0; i < userArray.Neff; i++) {
+        if (isKataEqual(&userArray.A[i].name, name) && isKataEqual(&userArray.A[i].password, password)) {
+            return true; // Username and password matched
+        }
+    }
+    return false; // No match found
 }

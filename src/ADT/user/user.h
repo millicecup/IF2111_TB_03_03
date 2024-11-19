@@ -151,5 +151,7 @@ void loadUsersFromFile();
 { F.S. : User array diisi dengan data dari file users.txt }
 */
 
+boolean validlogin(const Word *name, const Word *password);
+
 
 #endif
