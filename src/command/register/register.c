@@ -1,44 +1,36 @@
 #include "../../ADT/user/user.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
-
+#include "../../ADT/Mesin_Kata/utils.h"
 #include <stdio.h>
 
 
-// Register a new user
-int registerUser() {
-    User user1;
-    Word name, password;
-    char input[MAX_LEN];
+// Function to register a new user
+#include "../save/save.h" // Ensure save function is included
 
-    // Initialize the user array
-    initializeUserArray();
+void registerUser(ArrayUser *userArray) {
+    User newUser;
 
-    while (true) {
-        // Get name input
-        printf("Enter Name: ");
-        readLine(input, MAX_LEN);
-        toWord(&name, input);
+    // Ask for username
+    printf("Enter username: ");
+    STARTWORD();
+    newUser.name = currentWord;
 
-        // Check if user already exists
-        if (cariUser(&name)) {
-            printf("User already exists. Try again.\n");
-            continue;  // Retry if the user exists
-        }
+    // Ask for password
+    printf("Enter password: ");
+    STARTWORD();
+    newUser.password = currentWord;
 
-        // Get password input
-        printf("Enter Password: ");
-        readLine(input, MAX_LEN);
-        toWord(&password, input);
+    // Ask for initial money (default 0)
+    printf("Enter initial money (default 0): ");
+    STARTWORD();
+    newUser.money = WordToInt(&currentWord);
 
-        // Initialize and add the new user
-        initUser(&user1, &name, &password);
-        addUser(&user1);
+    // Add new user to userArray
+    addUser(userArray, &newUser);
 
-        // Print user information
-        printf("\nUser successfully created!\n");
-        printUser(&user1);
-        break;  // Break the loop after successful registration
-    }
+    // Save to file
+    saveToFile("dummy.txt", NULL, userArray); // Assuming barangArray is NULL for registration
 
-    return 0;
+    printf("Registration successful!\n");
 }
+

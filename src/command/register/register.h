@@ -4,7 +4,7 @@
 #include "../../ADT/user/user.h"
 
 // Register a new user
-int registerUser();
+void registerUser();
 /*
 { I.S. : User array terdefinisi, username dan password diberikan }
 { F.S. : Menambahkan user baru ke array, menyimpan data ke file jika sukses }

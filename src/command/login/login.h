@@ -7,6 +7,6 @@
 #include "../../ADT/boolean.h"
 
 
-int login();
+void login();
 
 #endif
