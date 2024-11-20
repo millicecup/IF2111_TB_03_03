@@ -6,23 +6,27 @@
 #define DATA_FILE "users.txt"
 
 // Global variable to store all users
+ArrayUser userArray;  // Global array to store users
+boolean isInitialized = false;  // Flag to check if userArray has been initialized
 
-boolean isInitialized = false;
-
+// Initialize user array with zero users
 ArrayUser MakeArrayUser() {
     ArrayUser array;
     array.Neff = 0; // Start with an empty array
     return array;
 }
 
+// Check if user array is empty
 boolean IsEmptyUser(ArrayUser array) {
     return (array.Neff == 0);
 }
 
+// Get the length (number of users) in the array
 int LengthUser(ArrayUser array) {
     return array.Neff;
 }
 
+// Get a specific user from the array by index
 User GetUser(ArrayUser array, int i) {
     if (i >= 0 && i < array.Neff) {
         return array.A[i];
@@ -32,10 +36,12 @@ User GetUser(ArrayUser array, int i) {
     return errorUser;
 }
 
+// Get the maximum capacity of the user array
 int GetUserCapacity() {
     return MAX_USERS;
 }
 
+// Insert a user at a specific position in the array
 void InsertAtUser(ArrayUser *array, User el, int i) {
     if (i >= 0 && i <= array->Neff && array->Neff < MAX_USERS) {
         for (int j = array->Neff; j > i; j--) {
@@ -46,6 +52,7 @@ void InsertAtUser(ArrayUser *array, User el, int i) {
     }
 }
 
+// Insert a user at the end of the array
 void InsertLastUser(ArrayUser *array, User el) {
     if (array->Neff < MAX_USERS) {
         array->A[array->Neff] = el;
@@ -53,6 +60,7 @@ void InsertLastUser(ArrayUser *array, User el) {
     }
 }
 
+// Insert a user at the beginning of the array
 void InsertFirstUser(ArrayUser *array, User el) {
     if (array->Neff < MAX_USERS) {
         for (int i = array->Neff; i > 0; i--) {
@@ -63,6 +71,7 @@ void InsertFirstUser(ArrayUser *array, User el) {
     }
 }
 
+// Delete a user at a specific position in the array
 void DeleteAtUser(ArrayUser *array, int i) {
     if (i >= 0 && i < array->Neff) {
         for (int j = i; j < array->Neff - 1; j++) {
@@ -72,12 +81,14 @@ void DeleteAtUser(ArrayUser *array, int i) {
     }
 }
 
+// Delete the last user from the array
 void DeleteLastUser(ArrayUser *array) {
     if (array->Neff > 0) {
         array->Neff--;
     }
 }
 
+// Delete the first user from the array
 void DeleteFirstUser(ArrayUser *array) {
     if (array->Neff > 0) {
         for (int i = 0; i < array->Neff - 1; i++) {
@@ -87,6 +98,7 @@ void DeleteFirstUser(ArrayUser *array) {
     }
 }
 
+// Print all users in the array
 void PrintArrayUser(ArrayUser array) {
     for (int i = 0; i < array.Neff; i++) {
         printf("User %d: ", i);
@@ -101,6 +113,7 @@ void PrintArrayUser(ArrayUser array) {
     }
 }
 
+// Copy the array of users
 ArrayUser CopyArrayUser(ArrayUser array) {
     ArrayUser newArray;
     newArray.Neff = array.Neff;
@@ -110,6 +123,7 @@ ArrayUser CopyArrayUser(ArrayUser array) {
     return newArray;
 }
 
+// Search for a user in the array by name
 int SearchArrayUser(ArrayUser array, Word name) {
     for (int i = 0; i < array.Neff; i++) {
         if (isKataEqual(&array.A[i].name, &name)) {
@@ -119,12 +133,14 @@ int SearchArrayUser(ArrayUser array, Word name) {
     return -1;  // User not found
 }
 
+// Initialize a new user with the given name, password, and initial money
 void initUser(User *user, const Word *name, const Word *password) {
     user->name = *name;
     user->password = *password;
     user->money = 0;
 }
 
+// Print details of a specific user
 void printUser(const User *user) {
     printf("Name: ");
     for (int i = 0; i < user->name.Length; i++) {
@@ -133,26 +149,28 @@ void printUser(const User *user) {
     printf("\nMoney: %d\n", user->money);
 }
 
+// Initialize the user array by loading users from the file
 void initializeUserArray() {
-    ArrayUser userArray;
     if (!isInitialized) {
-        userArray = MakeArrayUser();
-        loadUsersFromFile();
+        userArray = MakeArrayUser();  // Create the user array only once
+        loadUsersFromFile();          // Load users from file
         isInitialized = true;
     }
 }
 
+// Add a new user to the user array and save to file
 void addUser(ArrayUser *userArray, User *newUser) {
-    InsertLastUser(userArray, *newUser);  // Insert the new user to the in-memory array
-    saveUsersToFile(userArray);           // Save the updated list of users to the file
+    InsertLastUser(userArray, *newUser);  // Insert new user to array
+    saveUsersToFile();                    // Save updated users list
 }
 
-void saveUsersToFile(ArrayUser *userArray) {
-    FILE *file = fopen(DATA_FILE, "wb");  // Assuming you have a file to store user data
+// Save users to file in append mode
+void saveUsersToFile() {
+    FILE *file = fopen(DATA_FILE, "ab");  // Open in append mode
     if (file != NULL) {
-        fwrite(&userArray->Neff, sizeof(int), 1, file);
-        for (int i = 0; i < userArray->Neff; i++) {
-            fwrite(&userArray->A[i], sizeof(User), 1, file);
+        fwrite(&userArray.Neff, sizeof(int), 1, file);  // Save the number of users
+        for (int i = 0; i < userArray.Neff; i++) {
+            fwrite(&userArray.A[i], sizeof(User), 1, file);  // Save each user
         }
         fclose(file);
     } else {
@@ -160,21 +178,18 @@ void saveUsersToFile(ArrayUser *userArray) {
     }
 }
 
-
+// Check if a user with the given name exists in the user array
 boolean cariUser(const Word *name) {
     if (!isInitialized) {
         return false;
     }
-    ArrayUser userArray;
-    IdxType idx = SearchArrayUser(userArray, *name);
-    return (idx != -1);
+    int idx = SearchArrayUser(userArray, *name);
+    return (idx != -1);  // Return true if user found
 }
 
-// Save user data to the text file
-
-// Load user data from the text file
+// Load users from the file
 void loadUsersFromFile() {
-    FILE *file = fopen(DATA_FILE, "rb");
+    FILE *file = fopen(DATA_FILE, "rb");  // Open in read binary mode
     if (file != NULL) {
         STARTFILE(file);
 
@@ -184,36 +199,35 @@ void loadUsersFromFile() {
 
         for (int i = 0; i < count; i++) {
             User user;
-
-            // Read money
             user.money = WordToInt(&currentWord);
             ADVWORD();
 
-            // Read name
             user.name = currentWord;
             ADVWORD();
 
-            // Read password
             user.password = currentWord;
             ADVWORD();
-            ArrayUser userArray;
-            // Add to user array
+
+            // Insert the loaded user into the global userArray
             InsertLastUser(&userArray, user);
         }
         fclose(file);
+    } else {
+        printf("Error: Unable to load users. File not found.\n");
     }
 }
 
+// Validate login credentials for a user
 boolean validlogin(const Word *name, const Word *password) {
     if (!isInitialized) {
-        initializeUserArray();
+        initializeUserArray(); // Initialize the array if it's not already done
     }
-    ArrayUser userArray;
-    // Search through the list of users to check if the credentials match
+
+    // Iterate over the global userArray
     for (int i = 0; i < userArray.Neff; i++) {
         if (isKataEqual(&userArray.A[i].name, name) && isKataEqual(&userArray.A[i].password, password)) {
-            return true; // Username and password matched
+            return true;  // Username and password matched
         }
     }
-    return false; // No match found
+    return false;  // No match found
 }

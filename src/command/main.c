@@ -63,20 +63,20 @@ int main() {
                 registerUser(&userArray);
                 break;
 
-            case 4: // Load
-            {
-                char filename[MAX_LEN];
-                printf("Enter the filename to load: ");
-                STARTWORD();
+            // case 4: // Load
+            // {
+            //     char filename[MAX_LEN];
+            //     printf("Enter the filename to load: ");
+            //     STARTWORD();
 
-                for (int i = 0; i < currentWord.Length; i++) {
-                    filename[i] = currentWord.TabWord[i];
-                }
-                //filename[currentWord.Length] = '\0';  // Null-terminate the string
+            //     for (int i = 0; i < currentWord.Length; i++) {
+            //         filename[i] = currentWord.TabWord[i];
+            //     }
+            //     //filename[currentWord.Length] = '\0';  // Null-terminate the string
 
-                loadFromFile(filename, &barangArray, &userArray);
-                break;
-            }
+            //     loadFromFile(filename, &barangArray, &userArray);
+            //     break;
+            // }
 
             case 5: // Exit
                 printf("Exiting PURRMART. Goodbye!\n");
@@ -99,5 +99,5 @@ int main() {
 
 
 /*
-gcc -IADT -I../command/register -I../command Mesin_Kata/mesinkata.c Mesin_Kata/utils.c Mesin_Kata/mesinkarakterv2.c user/user.c barang/barang.c ../command/register/register.c ../command/main.c ../command/login/login.c ../command/save/save.c ../command/start/start.c ../command/load/load.c -o program
+gcc -IADT -I../command/register -I../command Mesin_Kata/mesinkata.c Mesin_Kata/utils.c Mesin_Kata/mesinkarakterv2.c user/user.c barang/barang.c ../command/register/register.c ../command/main.c ../command/login/login.c ../command/save/save.c ../command/start/start.c  -o program
 */

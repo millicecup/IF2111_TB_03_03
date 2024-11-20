@@ -129,7 +129,7 @@ void initializeUserArray();
 
 void addUser(ArrayUser *userArray, User *newUser) ;
 
-void saveUsersToFile(ArrayUser *userArray) ;
+void saveUsersToFile() ;
 
 /*
 { I.S. : User array terdefinisi, name dan password diberikan }
