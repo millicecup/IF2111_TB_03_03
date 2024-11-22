@@ -1,0 +1,3 @@
+gcc work.c list.c mesinkata.c mesinkar.c -o work
+
+Choose job by numbers.
