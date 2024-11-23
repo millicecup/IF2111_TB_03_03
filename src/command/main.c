@@ -4,7 +4,6 @@
 #include "../ADT/Mesin_Kata/mesinkata.h"
 #include "../ADT/User_Barang/barang.h"
 #include "../ADT/queue/queue.h"
-
 #include "animasi/animasi.h"
 #include "start/start.h"
 #include "load/load.h"
@@ -18,17 +17,17 @@
 #include "Store_Request/Store_Request.h"
 #include "Store_Supply/Store_Supply.h"
 #include "Store_Remove/Store_Remove.h"
+#include "Help/help.h"
+#include "Logout/logout.h"
 
 #define COMMAND_MAX_LEN 50
 
 // Fungsi untuk menghandle store menu
-void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request) {
-    char command[COMMAND_MAX_LEN];
+void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) {
     boolean isInStoreMenu = true;
 
     while (isInStoreMenu) {
-        animasiStore(); 
-        //scanf("%s", command);
+        animasiStore();
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
@@ -46,6 +45,8 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request)
             removeItem(barangList);
         } else if (isWordEqualToString(&currentWord, "STORE SUPPLY")) {
             storeSupply(barangList, request);
+        } else if (isWordEqualToString(&currentWord, "HELP")) {
+            help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "MENU")) {
             isInStoreMenu = false;
             printf("Returning to Inside Menu...\n");
@@ -56,13 +57,11 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request)
 }
 
 // Fungsi untuk menghandle work menu
-void handleWorkMenu(UserList *userList, BarangList *barangList) {
-    char command[COMMAND_MAX_LEN];
+void handleWorkMenu(UserList *userList, BarangList *barangList, MenuState *currentMenu) {
     boolean isInWorkMenu = true;
 
     while (isInWorkMenu) {
         printWorkMenu();
-        //scanf("%s", command);
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
@@ -74,10 +73,7 @@ void handleWorkMenu(UserList *userList, BarangList *barangList) {
         } else if (isWordEqualToString(&currentWord, "WORK")) {
             work(userList);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
-            printf("Work Menu Commands:\n");
-            printf("- TEBAKANGKA : Play a number guessing game\n");
-            printf("- WORDL3     : Play a word guessing game\n");
-            printf("- MENU       : Return to Inside Menu\n");
+            help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "MENU")) {
             isInWorkMenu = false;
             printf("Returning to Inside Menu...\n");
@@ -88,27 +84,32 @@ void handleWorkMenu(UserList *userList, BarangList *barangList) {
 }
 
 // Fungsi untuk menghandle menu
-void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request) {
-    char command[COMMAND_MAX_LEN];
+void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) {
     boolean isInside = true;
 
     while (isInside) {
         printInsideMenu();
-        //scanf("%s", command);
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
         if (isWordEqualToString(&currentWord, "STORE")) {
-            handleStoreMenu(userList, barangList, request);
+            update_menu(currentMenu, menuutama);
+            handleStoreMenu(userList, barangList, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "WORK")) {
-            handleWorkMenu(userList, barangList);
+            update_menu(currentMenu, menuutama);
+            handleWorkMenu(userList, barangList, currentMenu);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
-            printf("Inside Menu Commands:\n");
-            printf("- STORE   : Access the store\n");
-            printf("- WORK    : Access work-related features\n");
-            printf("- LOGOUT  : Log out and return to Login Menu\n");
+            help(currentMenu);
+        } else if (isWordEqualToString(&currentWord, "SAVE")) {
+            printf("Enter the filename to save the current state: ");
+            char filename[COMMAND_MAX_LEN];
+            GetInput();
+            Word file;
+            chartoWord(&file, currentInput.TabWord);
+            WordToChar(&file, filename);
+            SaveToFile(filename, barangList, userList);
         } else if (isWordEqualToString(&currentWord, "LOGOUT")) {
-            isInside = false;
+            logout(&isInside, *userList); // Call logout
             printf("Logging out...\n");
         } else {
             printf("Invalid command. Please try again.\n");
@@ -117,45 +118,30 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
 }
 
 // Fungsi untuk menghandle login menu
-void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request) {
-    char command[COMMAND_MAX_LEN];
+void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) {
     boolean isInLoginMenu = true;
 
     while (isInLoginMenu) {
         printLoginMenu();
-        //scanf("%s", command);
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
         if (isWordEqualToString(&currentWord, "LOGIN")) {
             login(userList);
-            if (loggedIn) { 
-                handleInsideMenu(userList, barangList, request);
+            if (loggedIn) {
+                update_menu(currentMenu, menuutama);
+                handleInsideMenu(userList, barangList, request, currentMenu);
             }
         } else if (isWordEqualToString(&currentWord, "REGISTER")) {
             registerUser(userList);
-        } else if (isWordEqualToString(&currentWord, "SAVE")) {
-            printf("Enter the filename to save the current state: ");
-            char filename[COMMAND_MAX_LEN];
-            //scanf("%s", filename);
-            Word file;
-            GetInput();
-            chartoWord(&file, currentInput.TabWord);
-            WordToChar(&file, filename); 
-            SaveToFile(filename, barangList, userList);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
-            printf("Login Menu Commands:\n");
-            printf("- LOGIN    : Log in to your account\n");
-            printf("- REGISTER : Register a new account\n");
-            printf("- SAVE     : Save the current state\n");
-            printf("- QUIT     : Exit the application\n");
-            printf("- MAIN     : Return to Main Menu\n");
-        } else if (isWordEqualToString(&currentWord, "QUIT")) {
-            printf("Exiting PURRMART. Goodbye!\n");
-            exit(0);
+            help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "MAIN")) {
             isInLoginMenu = false;
             printf("Returning to Main Menu...\n");
+        } else if (isWordEqualToString(&currentWord, "QUIT")) {
+            printf("Exiting PURRMART. Goodbye!\n");
+            exit(0);
         } else {
             printf("Invalid command. Please try again.\n");
         }
@@ -163,31 +149,26 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request)
 }
 
 // Fungsi untuk menghandle main menu
-void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request) {
-    char command[COMMAND_MAX_LEN];
-
+void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request, MenuState *currentMenu) {
     while (*running) {
         animasiMainMenu();
-        //scanf("%s", command);
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
         if (isWordEqualToString(&currentWord, "START")) {
+            update_menu(currentMenu, menuforlogin);
             if (start(userList, barangList) == 0) {
                 printf("Configuration loaded successfully!\n");
-                handleLoginMenu(userList, barangList, request);
+                handleLoginMenu(userList, barangList, request, currentMenu);
             } else {
                 printf("Failed to load configuration.\n");
             }
         } else if (isWordEqualToString(&currentWord, "LOAD")) {
+            update_menu(currentMenu, menuforlogin);
             Load(userList, barangList);
-            handleLoginMenu(userList, barangList, request);
+            handleLoginMenu(userList, barangList, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
-            printf("Main Menu Commands:\n");
-            printf("- START  : Load default configuration\n");
-            printf("- LOAD   : Load from a saved file\n");
-            printf("- HELP   : Show available commands\n");
-            printf("- QUIT   : Exit the application\n");
+            help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "QUIT")) {
             *running = false;
             printf("Exiting PURRMART. Goodbye!\n");
@@ -209,8 +190,10 @@ int main() {
     CreateBarangList(&barangList, 2);
     CreateEmptyRequest(&request);
 
+    MenuState currentMenu = menuforwelcome;
+
     while (running) {
-        handleMainMenu(&userList, &barangList, &running, &request);
+        handleMainMenu(&userList, &barangList, &running, &request, &currentMenu);
     }
 
     FreeBarangList(&barangList);
@@ -222,5 +205,5 @@ gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Ka
 */
 
 /*
-gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Karakter/mesinkarakter.c ../ADT/Mesin_Kata/mesinkata.c ../ADT/Mesin_Baris/mesinbaris.c Start/start.c login/login.c register/register.c save/save.c load/load.c animasi/animasi.c Store_List/Store_List.c ../ADT/List/list.c ../ADT/queue/queue.c Store_Request/Store_Request.c Store_Remove/Store_Remove.c Store_Supply/Store_Supply.c workchallenge/wordl3/wordl3.c workchallenge/tebakangka/tebakangka.c work/work.c -o program
+gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Karakter/mesinkarakter.c ../ADT/Mesin_Kata/mesinkata.c ../ADT/Mesin_Baris/mesinbaris.c Start/start.c login/login.c register/register.c save/save.c load/load.c animasi/animasi.c Store_List/Store_List.c ../ADT/List/list.c ../ADT/queue/queue.c Store_Request/Store_Request.c Store_Remove/Store_Remove.c Store_Supply/Store_Supply.c workchallenge/wordl3/wordl3.c workchallenge/tebakangka/tebakangka.c work/work.c Help/help.c Logout/logout.c -o program
 */

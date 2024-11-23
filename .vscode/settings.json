@@ -61,6 +61,7 @@
     "store_remove.h": "c",
     "store_request.h": "c",
     "store_supply.h": "c",
-    "start.h": "c"
+    "start.h": "c",
+    "store_list.h": "c"
   }
 }
