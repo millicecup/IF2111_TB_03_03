@@ -12,6 +12,8 @@ void perrystop();
 
 void animasiMainMenu();
 
+void animasiStore();
+
 void printMainMenu() ;
 
 void printLoginMenu() ;

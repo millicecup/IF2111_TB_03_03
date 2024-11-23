@@ -29,6 +29,25 @@ void animasiMainMenu()
     printf("Enter your command: ");
 }
 
+void animasiStore()
+{
+    FILE *fascii;
+    system("cls || clear");
+    fascii = NULL;
+    fascii = fopen("animasi/store.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        system("cls || clear");
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("Enter your command: ");
+}
+
 void perrystop()
 {
     FILE *fascii;
