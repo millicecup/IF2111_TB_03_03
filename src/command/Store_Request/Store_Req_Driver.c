@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../ADT/Queue/queue.h"
-#include "../../ADT/List Barang/listdin_barang.h"
+#include "../../ADT/User_Barang/barang.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
-#include "../Store List/Store_List.h"
-#include "store_request.h"
+#include "../Store_List/Store_List.h"
+#include "Store_Request.h"
 
 
 int main() 
@@ -12,7 +12,7 @@ int main()
     Queue q;
     CreateEmptyRequest(&q);
 
-    Arraybarang store = MakeArrayDin(); 
+    BarangList store = MakeArrayDin(); 
 
     Barang item1, item2;
     Word namaBarang1, namaBarang2;
@@ -27,9 +27,9 @@ int main()
     DisplayStore(store);
 
 
-    StoreRequest(&q, item1, store); 
+    StoreRequest(&q, item1, &store); 
     printf("\n");
-    StoreRequest(&q, item2, store); 
+    StoreRequest(&q, item2, &store); 
 
     printf("\nAntrian Barang:\n");
     DisplayQueue(&q);
