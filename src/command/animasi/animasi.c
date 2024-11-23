@@ -1,5 +1,32 @@
 #include "animasi.h"
 #include <stdio.h>
+#include <stdlib.h>
+
+void printImage(FILE *fascii)
+{
+    char read[MAX_LENGTH];
+    while(fgets(read,sizeof(read),fascii) != NULL)
+    printf("%s",read);
+    printf("\n");   
+}
+
+void animasiMainMenu()
+{
+    FILE *fascii;
+    system("cls || clear");
+    fascii = NULL;
+    fascii = fopen("run.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        system("cls || clear");
+        printImage(fascii);
+        fclose(fascii);
+    }
+}
 
 void printMainMenu() {
     printf("=========================================\n");
