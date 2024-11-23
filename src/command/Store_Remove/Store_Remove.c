@@ -11,10 +11,11 @@
 
 #include "Store_Remove.h"
 
-void removeItem(BarangList *store, Barang item)
+void removeItem(BarangList *store)
 {
     if(!IsEmpty(*store))
     {
+        Barang item;
         printf("Nama barang yang akan dihapus: ");
         STARTINPUT(stdin);
 

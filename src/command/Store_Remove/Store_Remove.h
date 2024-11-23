@@ -10,4 +10,4 @@
 
 //#include "Store_Remove.h"
 
-void removeItem(BarangList *store, Barang item);
+void removeItem(BarangList *store);

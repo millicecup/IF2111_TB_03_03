@@ -29,7 +29,7 @@ int main() {
 
     while (true) {
         printf("\n>> STORE REMOVE\n");
-        removeItem(&store, itemToRemove);
+        removeItem(&store);
 
         printf("\nDaftar barang di toko:\n");
         DisplayStore(store);
