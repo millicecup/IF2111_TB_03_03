@@ -8,6 +8,8 @@
 
 void printImage(FILE *fascii);
 
+void perrystop();
+
 void animasiMainMenu();
 
 void animasiStore();
