@@ -2,14 +2,14 @@
 #include <stdlib.h>
 
 #include "../../ADT/boolean.h"
-#include "../../ADT/List Barang/listdin_barang.h"
+#include "../../ADT/User_Barang/barang.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../ADT/Queue/queue.h"
-#include "../Store List/Store_List.h"
-#include "../Store Request/Store_Request.h"
+#include "../Store_List/Store_List.h"
+#include "../Store_Request/Store_Request.h"
 #include "Store_Supply.h"
 
-void storeSupply(Arraybarang *store, Queue *request)
+void storeSupply(BarangList *store, Queue *request)
 {
     if(IsEmptyRequest(*request))
     {
@@ -22,7 +22,7 @@ void storeSupply(Arraybarang *store, Queue *request)
         STARTINPUT(stdin);
 
         char input[50];
-        wordToString(&currentWord, input);
+        WordToChar(&currentInput, input);
 
         if (isEqualString(input, "Terima") || isEqualString(input, "Tunda") || isEqualString(input, "Tolak"))
         {
@@ -34,7 +34,7 @@ void storeSupply(Arraybarang *store, Queue *request)
             {
                 printf("Harga barang: ");
                 STARTINPUT(stdin);
-                int price = WordToInt(&currentWord);
+                int price = WordToInt(&currentInput);
 
                 if (price > 0)
                 {

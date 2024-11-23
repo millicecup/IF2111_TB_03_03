@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "../../ADT/Queue/queue.h"
-#include "../../ADT/List Barang/listdin_barang.h"
-#include "../Store Supply/Store_Supply.h"
+#include "../../ADT/User_Barang/barang.h"
+#include "Store_Supply.h"
 
 int main() 
 {
-    Arraybarang store = MakeArrayDin();
+    BarangList store = MakeArrayDin();
     Queue request;
     CreateEmptyRequest(&request);
 
@@ -13,9 +13,9 @@ int main()
     EnqueueItem(&request, "Barang Y");
     EnqueueItem(&request, "Barang Z");
 
-    printf("Store List:\n");
     DisplayStore(store);
-    printf("Store Request:\n");
+    printf("\n");
+    printf("\nStore Request:\n");
     DisplayQueue(&request);
 
     storeSupply(&store, &request); 
