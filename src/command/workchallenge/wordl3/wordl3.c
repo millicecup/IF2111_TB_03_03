@@ -13,29 +13,53 @@
 #define WORD_LENGTH 5
 
 void displayResult(List *guess, char *word) {
+    boolean usedTarget[WORD_LENGTH] = {false}; // Tracks used letters in the target word
+    boolean usedGuess[WORD_LENGTH] = {false};  // Tracks used letters in the guess
+
+    // First Pass: Mark exact matches
     for (int i = 0; i < WORD_LENGTH; i++) {
-        boolean found = false;
-        // Periksa apakah huruf ada di kata target
-        for (int j = 0; j < WORD_LENGTH; j++) {
-            if (GetList(*guess, i) == word[j]) {
-                found = true;
-                break;
+        char guessChar = GetList(*guess, i);
+        char targetChar = word[i];
+
+        if (compareStringsManual(&guessChar, &targetChar)) {
+            usedTarget[i] = true; // Mark exact match as used
+            usedGuess[i] = true;  // Mark guess letter as used
+        }
+    }
+
+    // Second Pass: Mark misplaced matches
+    for (int i = 0; i < WORD_LENGTH; i++) {
+        if (!usedGuess[i]) { // Only process unused guess letters
+            char guessChar = GetList(*guess, i);
+            for (int j = 0; j < WORD_LENGTH; j++) {
+                if (!usedTarget[j] && compareStringsManual(&guessChar, &word[j])) {
+                    usedTarget[j] = true; // Mark this target letter as used
+                    usedGuess[i] = true;  // Mark this guess letter as used
+                    break;
+                }
             }
         }
-        // Tentukan output berdasarkan kondisi
-        if (GetList(*guess, i) == word[i]) {
-            // Huruf benar dan posisi tepat
-            printf("%c", GetList(*guess, i));
-        } else if (found) {
-            // Huruf benar tapi posisi salah
-            printf("%c*", GetList(*guess, i));
+    }
+
+    // Display results
+    for (int i = 0; i < WORD_LENGTH; i++) {
+        char guessChar = GetList(*guess, i);
+
+        if (compareStringsManual(&guessChar, &word[i])) {
+            // Exact match: Correct letter and position
+            printf("%c ", guessChar);
+        } else if (usedGuess[i]) {
+            // Correct letter but wrong position
+            printf("%c* ", guessChar);
         } else {
-            // Huruf tidak ada sama sekali
-            printf("%c%%", GetList(*guess, i));
+            // Incorrect letter
+            printf("%c%% ", guessChar);
         }
     }
     printf("\n");
 }
+
+
 
 boolean isWordCorrect(List *guess, char *word) {
     for (int i = 0; i < WORD_LENGTH; i++) {
@@ -50,7 +74,8 @@ boolean isValidInput(Word *input, int requiredLength) {
     return input->Length == requiredLength;
 }
 
-void wordl3(User *currentUser) {
+void wordl3(UserList *userList) {
+    User *currentUser = &userList->users[userList->currentUserIndex];
     // Deduct coins to play the game
     if (currentUser->money < 1500) {
         printf("Uang Anda tidak cukup untuk memainkan permainan ini.\n");
@@ -58,6 +83,11 @@ void wordl3(User *currentUser) {
     }
     currentUser->money -= 1500;
     printf("1500 koin telah dikurangi. Sisa uang Anda: %d.\n", currentUser->money);
+    printf("Selamat datang di permainan W0RDL3!\n");
+    printf("ATTENTION! : \n");
+    printf("Apabila huruf yang ditebak benar dan posisinya benar, maka akan ditandai dengan huruf tersebut.\n");
+    printf("Apabila huruf yang ditebak benar, tapi posisinya salah, maka akan ditandai dengan huruf tersebut diikuti dengan tanda '*'.\n");
+    printf("Apabila huruf yang ditebak salah, maka akan ditandai dengan huruf tersebut diikuti dengan tanda '%%'.\n");
 
     // Target word setup
     char *wordBank[] = {
@@ -103,7 +133,7 @@ void wordl3(User *currentUser) {
                 validInput = true;
                 CreateList(&guess, WORD_LENGTH);
                 for (int i = 0; i < WORD_LENGTH; i++) {
-                    SetList(&guess, i, currentWord.TabWord[i]);
+                    SetList(&guess, i, currentInput.TabWord[i]);
                 }
             } else {
                 printf("Inputan harus %d huruf!\n", WORD_LENGTH);
@@ -111,7 +141,7 @@ void wordl3(User *currentUser) {
         }
 
         displayResult(&guess, targetWord);
-
+        
         if (isWordCorrect(&guess, targetWord)) {
             guessed = true;
         } else {
@@ -127,5 +157,5 @@ void wordl3(User *currentUser) {
         printf("\nKesempatan habis. Kata yang benar adalah: %s\n", targetWord);
     }
 
-    printf("Sisa uang Anda: %d.\n", currentUser->money);
+    printf("Uang Anda saat ini: %d.\n", currentUser->money);
 }

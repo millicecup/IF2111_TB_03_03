@@ -7,6 +7,6 @@
 #include "../../ADT/boolean.h"
 
 extern boolean loggedIn;
-User* login(UserList *userArray) ;
+void login(UserList *userArray);
 
 #endif

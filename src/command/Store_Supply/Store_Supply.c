@@ -18,6 +18,10 @@ void storeSupply(BarangList *store, Queue *request)
     }
     else
     {
+        printf("Jika ingin menambahkan barang, silahkan ketik 'Terima'.\n");
+        printf("Jika ingin menolak, silahkan ketik 'Tolak'.\n");
+        printf("Jika ingin menunda, silahkan ketik 'Tunda'.\n");
+        printf("Pastikan Anda memasukkan jawaban dengan benar!\n");
         printf("Apakah kamu ingin menambahkan barang %s ?: ", HEADitem(*request));
         STARTINPUT(stdin);
 
