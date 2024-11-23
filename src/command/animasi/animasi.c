@@ -48,12 +48,20 @@ void animasiStore()
     printf("Enter your command: ");
 }
 
+<<<<<<< HEAD
+void animasiMenu()
+=======
 void perrystop()
+>>>>>>> 722c33b52de87ee923a204db3821e4921c962fe4
 {
     FILE *fascii;
     system("cls || clear");
     fascii = NULL;
+<<<<<<< HEAD
+    fascii = fopen("animasi/menu.txt","r");
+=======
     fascii = fopen("perrystop.txt","r");
+>>>>>>> 722c33b52de87ee923a204db3821e4921c962fe4
     if(fascii  == NULL)
     {
         printf("error opening file\n");
@@ -67,6 +75,27 @@ void perrystop()
     printf("Enter your command: ");
 }
 
+<<<<<<< HEAD
+void animasiLogin()
+{
+    FILE *fascii;
+    system("cls || clear");
+    fascii = NULL;
+    fascii = fopen("animasi/login.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        system("cls || clear");
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("Enter your command: ");
+}
+=======
+>>>>>>> 722c33b52de87ee923a204db3821e4921c962fe4
 
 void printMainMenu() {
     printf("=========================================\n");

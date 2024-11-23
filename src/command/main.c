@@ -88,7 +88,8 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
     boolean isInside = true;
 
     while (isInside) {
-        printInsideMenu();
+        animasiMenu();
+        //scanf("%s", command);
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
@@ -122,7 +123,8 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
     boolean isInLoginMenu = true;
 
     while (isInLoginMenu) {
-        printLoginMenu();
+        animasiLogin();
+        //scanf("%s", command);
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
