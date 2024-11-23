@@ -15,7 +15,25 @@ void animasiMainMenu()
     FILE *fascii;
     system("cls || clear");
     fascii = NULL;
-    fascii = fopen("run.txt","r");
+    fascii = fopen("animasi/run.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        system("cls || clear");
+        printImage(fascii);
+        fclose(fascii);
+    }
+}
+
+void animasiStore()
+{
+    FILE *fascii;
+    system("cls || clear");
+    fascii = NULL;
+    fascii = fopen("animasi/store.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
