@@ -25,11 +25,14 @@
 void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request) {
     char command[COMMAND_MAX_LEN];
     boolean isInStoreMenu = true;
+    animasiStore(); 
 
     while (isInStoreMenu) {
-        animasiStore(); 
+        printf("\n\n");
+        printf("Enter your command: ");
         //scanf("%s", command);
         GetInput();
+        printf("\n\n");
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
 
@@ -59,11 +62,14 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request)
 void handleWorkMenu(UserList *userList, BarangList *barangList) {
     char command[COMMAND_MAX_LEN];
     boolean isInWorkMenu = true;
+    printWorkMenu();
 
     while (isInWorkMenu) {
-        printWorkMenu();
+        printf("\n\n");
+        printf("Enter your command: ");
         //scanf("%s", command);
         GetInput();
+        printf("\n\n");
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
 
@@ -91,11 +97,14 @@ void handleWorkMenu(UserList *userList, BarangList *barangList) {
 void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request) {
     char command[COMMAND_MAX_LEN];
     boolean isInside = true;
+    animasiMenu();
 
     while (isInside) {
-        animasiMenu();
+        printf("\n\n");
+        printf("Enter your command: ");
         //scanf("%s", command);
         GetInput();
+        printf("\n\n");
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
         if (isWordEqualToString(&currentWord, "STORE")) {
@@ -120,11 +129,14 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
 void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request) {
     char command[COMMAND_MAX_LEN];
     boolean isInLoginMenu = true;
+    animasiLogin();
 
     while (isInLoginMenu) {
-        animasiLogin();
+        printf("\n\n");
+        printf("Enter your command: ");
         //scanf("%s", command);
         GetInput();
+        printf("\n\n");
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
         if (isWordEqualToString(&currentWord, "LOGIN")) {
@@ -165,11 +177,14 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request)
 // Fungsi untuk menghandle main menu
 void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request) {
     char command[COMMAND_MAX_LEN];
+    animasiMainMenu();
 
     while (*running) {
-        animasiMainMenu();
+        printf("\n\n");
+        printf("Enter your command: ");
         //scanf("%s", command);
         GetInput();
+        printf("\n\n");
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
         if (isWordEqualToString(&currentWord, "START")) {
@@ -189,8 +204,9 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
             printf("- HELP   : Show available commands\n");
             printf("- QUIT   : Exit the application\n");
         } else if (isWordEqualToString(&currentWord, "QUIT")) {
-            *running = false;
             printf("Exiting PURRMART. Goodbye!\n");
+            animasiQuit();
+            *running = false;
             exit(0);
         } else {
             printf("Invalid command. Please try again.\n");

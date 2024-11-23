@@ -26,13 +26,12 @@ void animasiMainMenu()
         printImage(fascii);
         fclose(fascii);
     }
-    printf("Enter your command: ");
+    printf("\n\n\n"); 
 }
 
 void animasiStore()
 {
     FILE *fascii;
-    system("cls || clear");
     fascii = NULL;
     fascii = fopen("animasi/store.txt","r");
     if(fascii  == NULL)
@@ -41,45 +40,32 @@ void animasiStore()
     } 
     else 
     {
-        system("cls || clear");
         printImage(fascii);
         fclose(fascii);
     }
-    printf("Enter your command: ");
+    printf("\n\n\n"); 
 }
 
-<<<<<<< HEAD
 void animasiMenu()
-=======
-void perrystop()
->>>>>>> 722c33b52de87ee923a204db3821e4921c962fe4
 {
     FILE *fascii;
-    system("cls || clear");
     fascii = NULL;
-<<<<<<< HEAD
     fascii = fopen("animasi/menu.txt","r");
-=======
-    fascii = fopen("perrystop.txt","r");
->>>>>>> 722c33b52de87ee923a204db3821e4921c962fe4
     if(fascii  == NULL)
     {
         printf("error opening file\n");
     } 
     else 
     {
-        system("cls || clear");
         printImage(fascii);
         fclose(fascii);
     }
-    printf("Enter your command: ");
+    printf("\n\n\n"); 
 }
 
-<<<<<<< HEAD
 void animasiLogin()
 {
     FILE *fascii;
-    system("cls || clear");
     fascii = NULL;
     fascii = fopen("animasi/login.txt","r");
     if(fascii  == NULL)
@@ -88,14 +74,29 @@ void animasiLogin()
     } 
     else 
     {
-        system("cls || clear");
         printImage(fascii);
         fclose(fascii);
     }
-    printf("Enter your command: ");
+    printf("\n\n\n"); 
 }
-=======
->>>>>>> 722c33b52de87ee923a204db3821e4921c962fe4
+
+void animasiQuit()
+{
+    FILE *fascii;
+    system("cls || clear");
+    fascii = NULL;
+    fascii = fopen("animasi/perrystop.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        system("cls || clear");
+        printImage(fascii);
+        fclose(fascii);
+    } 
+}
 
 void printMainMenu() {
     printf("=========================================\n");
@@ -137,20 +138,18 @@ void printInsideMenu() {
 
 void printWorkMenu(){
     FILE *fascii;
-    system("cls || clear");
     fascii = NULL;
-    fascii = fopen("work.txt","r");
+    fascii = fopen("animasi/work.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
     } 
     else 
     {
-        system("cls || clear");
         printImage(fascii);
         fclose(fascii);
     }
-    printf("Enter your command: ");
+    printf("\n\n\n"); 
 }
 
 void printStoreMenu(){
