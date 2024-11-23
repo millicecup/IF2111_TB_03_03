@@ -1,10 +1,9 @@
-//ini baru base version ya kids
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "mesinkar.h"
+#include "mesinkarakter.h"
 #include "mesinkata.h"
+#include "mesinbaris.h"
 
 int main() {
     // Inisialisasi random number generator
@@ -13,11 +12,12 @@ int main() {
     int tebakan;
     int kesempatan = 10;
 
+    printf("Selamat datang di permainan tebak angka!\n");
 
     while (kesempatan > 0) {
-        printf("Tebak angka: ");
-        STARTKATA();
-        tebakan = atoi(CKata.TabKata);
+        printf("\nTebak angka: ");
+        STARTWORD(stdin); // Membaca input menggunakan mesin kata
+        tebakan = WordtoNum(currentWord); // Konversi kata ke integer
 
         if (tebakan < target) {
             printf("Tebakanmu lebih kecil!\n");
@@ -25,10 +25,13 @@ int main() {
             printf("Tebakanmu lebih besar!\n");
         } else {
             printf("Tebakanmu benar! Selamat!\n");
-            break; 
+            break;
         }
 
         kesempatan--;
+        if (kesempatan > 0) {
+            printf("Kesempatan tersisa: %d\n", kesempatan);
+        }
     }
 
     if (kesempatan == 0) {
