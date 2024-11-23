@@ -21,13 +21,13 @@
 
 #define COMMAND_MAX_LEN 50
 
-// Function to handle the Store Menu
+// Fungsi untuk menghandle store menu
 void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request) {
     char command[COMMAND_MAX_LEN];
     boolean isInStoreMenu = true;
 
     while (isInStoreMenu) {
-        printStoreMenu(); // Display available commands for the store
+        animasiStore(); 
         //scanf("%s", command);
         GetInput();
         Word currentWord;
@@ -55,7 +55,7 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request)
     }
 }
 
-// Function to handle the Work Menu
+// Fungsi untuk menghandle work menu
 void handleWorkMenu(UserList *userList, BarangList *barangList) {
     char command[COMMAND_MAX_LEN];
     boolean isInWorkMenu = true;
@@ -87,7 +87,7 @@ void handleWorkMenu(UserList *userList, BarangList *barangList) {
     }
 }
 
-// Function to handle the Inside Menu
+// Fungsi untuk menghandle menu
 void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request) {
     char command[COMMAND_MAX_LEN];
     boolean isInside = true;
@@ -116,7 +116,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
     }
 }
 
-// Function to handle the Login Menu
+// Fungsi untuk menghandle login menu
 void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request) {
     char command[COMMAND_MAX_LEN];
     boolean isInLoginMenu = true;
@@ -129,7 +129,7 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request)
         chartoWord(&currentWord, currentInput.TabWord);
         if (isWordEqualToString(&currentWord, "LOGIN")) {
             login(userList);
-            if (loggedIn) { // Assume loggedIn is set in login()
+            if (loggedIn) { 
                 handleInsideMenu(userList, barangList, request);
             }
         } else if (isWordEqualToString(&currentWord, "REGISTER")) {
@@ -162,7 +162,7 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request)
     }
 }
 
-// Function to handle the Main Menu
+// Fungsi untuk menghandle main menu
 void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request) {
     char command[COMMAND_MAX_LEN];
 
@@ -202,7 +202,6 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
 int main() {
     boolean running = true;
 
-    // Initialize user and barang lists
     UserList userList;
     BarangList barangList;
     Queue request;
@@ -210,12 +209,10 @@ int main() {
     CreateBarangList(&barangList, 2);
     CreateEmptyRequest(&request);
 
-    // Main loop
     while (running) {
         handleMainMenu(&userList, &barangList, &running, &request);
     }
 
-    // Clean up resources
     FreeBarangList(&barangList);
     return 0;
 }
