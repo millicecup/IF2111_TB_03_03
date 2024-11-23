@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "boolean.h"
-#include "list.h"
-#include "mesinkar.h"
-#include "mesinkata.h"
+#include "../../../ADT/boolean.h"
+#include "../../../ADT/Mesin_Kata/mesinkata.h"
+#include "../../../ADT/Mesin_Karakter/mesinkarakter.h"
+#include "../../../ADT/List/list.h"
+#include "wordl3.h"
+
 
 #define MAX_CHANCES 6
 #define WORD_LENGTH 5
@@ -14,21 +16,21 @@ void displayResult(List *guess, char *word) {
         boolean found = false;
         // Periksa apakah huruf ada di kata target
         for (int j = 0; j < WORD_LENGTH; j++) {
-            if (ELMT(*guess, i) == word[j]) {
+            if (GetList(*guess, i) == word[j]) {
                 found = true;
                 break;
             }
         }
         // Tentukan output berdasarkan kondisi
-        if (ELMT(*guess, i) == word[i]) {
+        if (GetList(*guess, i) == word[i]) {
             // Huruf benar dan posisi tepat
-            printf("%c", ELMT(*guess, i));
+            printf("%c", GetList(*guess, i));
         } else if (found) {
             // Huruf benar tapi posisi salah
-            printf("%c*", ELMT(*guess, i));
+            printf("%c*", GetList(*guess, i));
         } else {
             // Huruf tidak ada sama sekali
-            printf("%c%%", ELMT(*guess, i));
+            printf("%c%%", GetList(*guess, i));
         }
     }
     printf("\n");
@@ -36,18 +38,18 @@ void displayResult(List *guess, char *word) {
 
 boolean isWordCorrect(List *guess, char *word) {
     for (int i = 0; i < WORD_LENGTH; i++) {
-        if (ELMT(*guess, i) != word[i]) {
+        if (GetList(*guess, i) != word[i]) {
             return false;
         }
     }
     return true;
 }
 
-boolean isValidInput(Kata *input, int requiredLength) {
+boolean isValidInput(Word *input, int requiredLength) {
     return input->Length == requiredLength;
 }
 
-int main() {
+void wordl3() {
     // Daftar kata target
     char *wordBank[] = {
         "APPLE", "GRAPE", "PEACH", "MANGO", "LEMON",
@@ -92,13 +94,13 @@ int main() {
         boolean validInput = false;
         while (!validInput) {
             // Baca input kata
-            MULAIKATA();
+            STARTINPUT(stdin);
 
-            if (isValidInput(&CKata, WORD_LENGTH)) {
+            if (isValidInput(&currentInput, WORD_LENGTH)) {
                 validInput = true;
                 CreateList(&guess, WORD_LENGTH);
                 for (int i = 0; i < WORD_LENGTH; i++) {
-                    SetELMT(&guess, i, CKata.TabKata[i]);
+                    SetList(&guess, i, currentWord.TabWord[i]);
                 }
             } else {
                 printf("Inputan harus %d huruf!\n"); 
@@ -121,8 +123,8 @@ int main() {
     if (guessed) {
         printf("\nSelamat! Anda berhasil menebak kata: %s\n", targetWord);
     } else {
-        printf("\nKesempatan habis. Kata yang benar adalah: %s\n", targetWord);
+        printf("\nKesempatan habis. Word yang benar adalah: %s\n", targetWord);
     }
 
-    return 0;
+    //return 0;
 }

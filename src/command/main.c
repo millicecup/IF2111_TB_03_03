@@ -11,7 +11,8 @@
 #include "login/login.h"
 #include "register/register.h"
 #include "save/save.h"
-#include "work/tebakangka/tebakangka.h"
+#include "workchallenge/tebakangka/tebakangka.h"
+#include "workchallenge/wordl3/wordl3.h"
 #include "Store_List/Store_List.h"
 #include "Store_Request/Store_Request.h"
 #include "Store_Supply/Store_Supply.h"
@@ -67,12 +68,12 @@ void handleWorkMenu(UserList *userList, BarangList *barangList) {
 
         if (isWordEqualToString(&currentWord, "TEBAKANGKA")) {
             tebakangka();
-        } else if (isWordEqualToString(&currentWord, "WORLD3")) {
-            printf("Feature: World 3 is under construction.\n");
+        } else if (isWordEqualToString(&currentWord, "WORDL3")) {
+            wordl3();
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             printf("Work Menu Commands:\n");
             printf("- TEBAKANGKA : Play a number guessing game\n");
-            printf("- WORLD3     : (Coming Soon)\n");
+            printf("- WORDL3     : Play a word guessing game\n");
             printf("- MENU       : Return to Inside Menu\n");
         } else if (isWordEqualToString(&currentWord, "MENU")) {
             isInWorkMenu = false;
@@ -221,5 +222,5 @@ gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Ka
 */
 
 /*
-gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Karakter/mesinkarakter.c ../ADT/Mesin_Kata/mesinkata.c ../ADT/Mesin_Baris/mesinbaris.c ../ADT/work/mesinword.c ../ADT/work/mesinkar.c Start/start.c login/login.c register/register.c save/save.c load/load.c work/tebakangka/tebakangka.c animasi/animasi.c Store_List/Store_List.c ../ADT/queue/queue.c Store_Request/Store_Request.c Store_Remove/Store_Remove.c Store_Supply/Store_Supply.c -o program
+gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Karakter/mesinkarakter.c ../ADT/Mesin_Kata/mesinkata.c ../ADT/Mesin_Baris/mesinbaris.c ../ADT/work/mesinword.c ../ADT/work/mesinkar.c Start/start.c login/login.c register/register.c save/save.c load/load.c animasi/animasi.c Store_List/Store_List.c ../ADT/List/list.c ../ADT/queue/queue.c Store_Request/Store_Request.c Store_Remove/Store_Remove.c Store_Supply/Store_Supply.c workchallenge/wordl3/wordl3.c workchallenge/tebakangka/tebakangka.c -o program
 */

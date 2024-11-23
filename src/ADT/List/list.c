@@ -12,11 +12,11 @@ List MakeList() {
 	return L;
 }
 
-boolean IsEmpty(List L) {
+boolean IsEmptyList(List L) {
 	return (L.A[0] == Mark);
 }
 
-int Length(List L) {
+int LengthList(List L) {
 	int i = 0;
 	while (L.A[i] != Mark) {
 		i += 1;
@@ -24,37 +24,37 @@ int Length(List L) {
 	return i;
 }
 
-ElType Get(List L, IdxType i) {
+ElType GetList(List L, IdxType i) {
 	return L.A[i];
 }
 
-void Set(List *L, IdxType i, ElType v) {
+void SetList(List *L, IdxType i, ElType v) {
 	(*L).A[i] = v;
 }
 
-IdxType FirstIdx(List L) {
+IdxType FirstIdxL(List L) {
     return 0;
 }
 
-IdxType LastIdx(List L) {
-	int i = FirstIdx(L);
+IdxType LastIdxL(List L) {
+	int i = FirstIdxL(L);
 	while ((i < MaxEl) && (L.A[i+1] != Mark)) {
 		i += 1;
 	}
 	return i;
 }
 
-boolean IsIdxValid (List L, IdxType i) {
+boolean IsIdxValidL (List L, IdxType i) {
 	return (0 <= i) && (MaxEl >= i);
 }
 
-boolean IsIdxEff (List L, IdxType i) {
-	return (FirstIdx(L) <= i) && (LastIdx(L) >= i);
+boolean IsIdxEffL (List L, IdxType i) {
+	return (FirstIdxL(L) <= i) && (LastIdxL(L) >= i);
 }
 
-boolean Search(List L, ElType X) {
-	int i = FirstIdx(L);
-	int j = LastIdx(L);
+boolean SearchL(List L, ElType X) {
+	int i = FirstIdxL(L);
+	int j = LastIdxL(L);
 	boolean found = false;
 	while ((i <= j) && !found) {
 		i += 1;
@@ -65,44 +65,44 @@ boolean Search(List L, ElType X) {
     return found;
 }
 
-void InsertFirst(List *L, ElType X) {
-	IdxType i = LastIdx(*L);
-	IdxType j = FirstIdx(*L);
+void InsertFirstL(List *L, ElType X) {
+	IdxType i = LastIdxL(*L);
+	IdxType j = FirstIdxL(*L);
 	while (i > j) {
-		Set(L, i+1, Get(*L, i));
+		SetList(L, i+1, GetList(*L, i));
 		i--;
 	}
-	Set(L, j, X);
+	SetList(L, j, X);
 }
 
-void InsertAt(List *L, ElType X, IdxType i) {
-    IdxType j = LastIdx(*L);
+void InsertAtL(List *L, ElType X, IdxType i) {
+    IdxType j = LastIdxL(*L);
 	while (i <= j) {
-		Set(L, j+1, Get(*L, j));
+		SetList(L, j+1, GetList(*L, j));
         j--;
 	}
-	Set(L, i, X);
+	SetList(L, i, X);
 }
 
-void InsertLast(List *L, ElType X) {
-    if (IsEmpty(*L)) {
-        InsertFirst(L, X);
+void InsertLastL(List *L, ElType X) {
+    if (IsEmptyList(*L)) {
+        InsertFirstL(L, X);
     } else {
-        (*L).A[LastIdx(*L) + 1] = X;
+        (*L).A[LastIdxL(*L) + 1] = X;
     }
 }
 
-void DeleteFirst(List *L) {
-	int i = FirstIdx(*L);
-	while (i < LastIdx(*L)) {
+void DeleteFirstL(List *L) {
+	int i = FirstIdxL(*L);
+	while (i < LastIdxL(*L)) {
 		(*L).A[i] = (*L).A[i+1];
         i++;
 	}
     (*L).A[i] = Mark;
 }
 
-void DeleteAt(List *L, IdxType i) {
-	int j = LastIdx(*L);
+void DeleteAtL(List *L, IdxType i) {
+	int j = LastIdxL(*L);
 	// while (i <= j) {
 	// 	(*L).A[j] = (*L).A[j+1];
     //     j--;
@@ -113,25 +113,29 @@ void DeleteAt(List *L, IdxType i) {
 	}
 }
 
-void DeleteLast(List *L) {
-	(*L).A[LastIdx(*L)] = Mark;
+void DeleteLastL(List *L) {
+	(*L).A[LastIdxL(*L)] = Mark;
 }
 
-List Concat(List L1, List L2) {
+List ConcatL(List L1, List L2) {
 	List L3 = MakeList();
-	int i = FirstIdx(L1);
-	int j = FirstIdx(L2);
+	int i = FirstIdxL(L1);
+	int j = FirstIdxL(L2);
 	int idx = 0;
-	while (i <= LastIdx(L1)) {
+	while (i <= LastIdxL(L1)) {
 		L3.A[idx] = L1.A[i];
         idx++;
         i++;
 	}
-	while (j <= LastIdx(L2)) {
+	while (j <= LastIdxL(L2)) {
 		L3.A[idx] = L2.A[j];
         idx++;
         j++;
 	}
 
     return L3;
+}
+
+void CreateList(List *l, int size) {
+    l->size = size;
 }
