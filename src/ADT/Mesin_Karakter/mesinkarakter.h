@@ -33,4 +33,7 @@ char GetCC();
 boolean IsEOP();
 /* Mengirimkan true jika currentChar = MARK */
 
+boolean IsWhitespace();
+
+
 #endif

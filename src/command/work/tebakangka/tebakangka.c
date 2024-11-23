@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../../../ADT/work/mesinkar.h"
-#include "../../../ADT/work/mesinword.h"
+#include "../../../ADT/boolean.h"
+#include "../../../ADT/Mesin_Kata/mesinkata.h"
+#include "../../../ADT/Mesin_Karakter/mesinkarakter.h"
+// #include "../../../ADT/work/mesinkar.h"
+// #include "../../../ADT/work/mesinword.h"
 
 void tebakangka() {
     // Inisialisasi random number generator
@@ -13,9 +16,9 @@ void tebakangka() {
 
     while (kesempatan > 0) {
         printf("Tebak angka: ");
-        TASTARTKATA();
-        tebakan = atoi(CKata.TabKata);
-
+        STARTINPUT(stdin);
+        tebakan = atoi(currentInput.TabWord);
+        
         if (tebakan < target) {
             printf("Tebakanmu lebih kecil!\n");
         } else if (tebakan > target) {
@@ -34,6 +37,11 @@ void tebakangka() {
 
 }
 
+int main(){
+    tebakangka();
+    return 0;
+}
+
 /*
- gcc tebakangka.c ../../../ADT/work/mesinkar.c ../../../ADT/work/mesinword.c -o tebakangka
+ gcc tebakangka.c ../../../ADT/Mesin_Karakter/mesinkarakter.c ../../../ADT/Mesin_Kata/mesinkata.c ../../../ADT/Mesin_Baris/mesinbaris.c -o tebakangka
  */

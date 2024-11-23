@@ -34,3 +34,7 @@ boolean IsEOP() {
     /* Algoritma */
     return EOP;
 }
+
+boolean IsWhitespace() {
+    return (currentChar == ' ') || (currentChar == '\t') || (currentChar == '\n') || (currentChar == '\r');
+}
