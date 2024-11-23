@@ -44,6 +44,7 @@ void animasiStore()
         printImage(fascii);
         fclose(fascii);
     }
+    printf("Enter your command: ");
 }
 
 void printMainMenu() {
