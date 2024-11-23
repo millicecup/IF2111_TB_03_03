@@ -56,12 +56,20 @@ int main() {
         "BANJO", "CHILI", "DONUT", "FERAL", "GUAVA",
         "HOTEL", "IGLOO", "JUMPY", "KNEAD", "LLAMA",
         "MORPH", "NOBLE", "OCEAN", "PENNY", "QUILT",
-        "RAVEN", "SNAKE", "TULIP", "URBAN", "VIOLE",
+        "RAVEN", "SNAKE", "TULIP", "URBAN", "START",
         "WHIRL", "BEAST", "YEARN", "ZEBRA", "VIPER",
         "CLOVE", "DEATH", "ALIVE", "CRAZY", "QUAKE",
-        "DAZED", "FACTS", "MYTHS", "EQUIP", "CHEWY"
+        "DAZED", "FACTS", "MYTHS", "EQUIP", "CHEWY",
+        "BRAVE", "SHINE", "DREAM", "FLARE", "BLISS",
+        "TRAIL", "BLINK", "FLOUR", "SPICE", "GLIDE",
+        "TABLE", "CHAIR", "CLOSE", "DINER", "PANTS",
+        "YUMMY", "FRESH", "INPUT", "NOMAD", "QUICK",
+        "STAMP", "PLANE", "CRANE", "DRIFT", "FLEET",
+        "GRACE", "PRIDE", "SHORE", "SCALE", "VIVID",
+        "FIELD", "ZESTY", "JOKER", "PEACE", "PRIZE",
+        "TOPAZ", "YACHT", "TIGER", "GREEN", "FUNKY"
     };
-    int wordBankSize = 40;
+    int wordBankSize = 80;
 
     // Pilih kata secara acak
     srand(time(NULL));
