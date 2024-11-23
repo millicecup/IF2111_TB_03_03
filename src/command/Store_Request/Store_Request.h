@@ -7,6 +7,6 @@
 #include "../Store_List/Store_List.h"
 
 
-void StoreRequest(Queue *q, Barang item, BarangList *store);
+void StoreRequest(Queue *q, BarangList *store);
 
 #endif 

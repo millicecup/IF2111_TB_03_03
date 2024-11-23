@@ -27,9 +27,9 @@ int main()
     DisplayStore(store);
 
 
-    StoreRequest(&q, item1, &store); 
+    StoreRequest(&q, &store); 
     printf("\n");
-    StoreRequest(&q, item2, &store); 
+    StoreRequest(&q, &store); 
 
     printf("\nAntrian Barang:\n");
     DisplayQueue(&q);

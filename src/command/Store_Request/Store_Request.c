@@ -8,10 +8,11 @@
 #include "../Store_List/Store_List.h"
 #include "Store_Request.h"
 
-void StoreRequest(Queue *q, Barang item, BarangList *store)  
+void StoreRequest(Queue *q, BarangList *store)  
 {
     if (!IsFullRequest(*q))
     {
+        Barang item;
         printf("Nama barang yang diminta: ");
         STARTINPUT(stdin);
 
