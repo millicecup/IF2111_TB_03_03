@@ -17,7 +17,7 @@ void tebakangka(UserList *userList) {
         return;
     }
     currentUser->money -= 200;
-    printf("1500 koin telah dikurangi. Sisa uang Anda: %d.\n", currentUser->money);
+    printf("200 koin telah dikurangi. Sisa uang Anda: %d.\n", currentUser->money);
     printf("Selamat datang di permainan W0RDL3!\n");
     printf("ATTENTION! : \n");
     printf("Apabila angka yang ditebak lebih kecil akan ada pemberitahuan.\n");
