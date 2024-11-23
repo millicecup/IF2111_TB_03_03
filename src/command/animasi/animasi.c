@@ -46,11 +46,20 @@ void animasiStore()
     printf("\n\n\n"); 
 }
 
+<<<<<<< HEAD
 void animasiMenu()
+=======
+// void animasiMenu();
+void perrystop()
+>>>>>>> 66d36852cf88ad54a3e18975d760d8379087fb0f
 {
     FILE *fascii;
     fascii = NULL;
     fascii = fopen("animasi/menu.txt","r");
+<<<<<<< HEAD
+=======
+    fascii = fopen("perrystop.txt","r");
+>>>>>>> 66d36852cf88ad54a3e18975d760d8379087fb0f
     if(fascii  == NULL)
     {
         printf("error opening file\n");
@@ -63,6 +72,10 @@ void animasiMenu()
     printf("\n\n\n"); 
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 66d36852cf88ad54a3e18975d760d8379087fb0f
 void animasiLogin()
 {
     FILE *fascii;
@@ -97,7 +110,10 @@ void animasiQuit()
         fclose(fascii);
     } 
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 66d36852cf88ad54a3e18975d760d8379087fb0f
 void printMainMenu() {
     printf("=========================================\n");
     printf("Welcome to PURRMART Main Menu!\n");
