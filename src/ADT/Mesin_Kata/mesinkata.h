@@ -1,10 +1,10 @@
 /* File: mesinkata.h */
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
 
-#ifndef __MESINKATA_H__
-#define __MESINKATA_H__
+#ifndef _MESINKATA_H_
+#define _MESINKATA_H_
 
-#include "boolean.h"
+#include "../boolean.h"
 #include "mesinkarakterv2.h"
 
 #define NMax 50
@@ -17,13 +17,15 @@ typedef struct
 } Word;
 
 /* State Mesin Kata */
-extern boolean EndWord;
-extern Word currentWord;
+boolean EndWord;
+Word currentWord;
 
 void IgnoreBlanks();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
+
+void IgnoreNewLine();
 
 void STARTWORD();
 /* I.S. : currentChar sembarang
@@ -46,6 +48,54 @@ void CopyWord();
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
+void ResetWord();
+
 boolean isEndWord();
+
+
+boolean IsWordEqual(Word word1, Word word2);
+
+
+void toWord(Word *w, const char *str);
+
+
+void printWord();
+
+boolean isEqualString(char *str1, char *str2);
+
+void assignString(char *str1, char *str2);
+
+boolean isWordEqualToString(Word *w, char *str);
+
+
+void wordToString(Word *word, char *str);
+
+
+void stringToWord(char *str, Word *word);
+
+
+int WordToInt(Word *w);
+
+
+Word intToWord(int n);
+
+
+void CopyWordToVar(Word *w1, Word w2);
+
+
+void TulisWord(Word w);
+
+
+void STARTINPUT(FILE* input);
+
+
+void CopyInput();
+
+
+void GetInput();
+
+
+void ResetInput();
+
 
 #endif
