@@ -41,8 +41,8 @@ void tebakangka(UserList *userList) {
             printf("Tebakanmu lebih besar!\n");
         } else {
             printf("Tebakanmu benar! Selamat!\n");
-            printf("Anda mendapatkan 1500 koin!\n");
-            currentUser->money += 1500;
+            printf("Anda mendapatkan 350 koin!\n");
+            currentUser->money += 350;
             break; 
         }
 
