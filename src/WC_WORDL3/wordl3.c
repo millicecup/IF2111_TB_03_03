@@ -67,9 +67,14 @@ int main() {
         "STAMP", "PLANE", "CRANE", "DRIFT", "FLEET",
         "GRACE", "PRIDE", "SHORE", "SCALE", "VIVID",
         "FIELD", "ZESTY", "JOKER", "PEACE", "PRIZE",
-        "TOPAZ", "YACHT", "TIGER", "GREEN", "FUNKY"
+        "TOPAZ", "YACHT", "TIGER", "GREEN", "FUNKY",
+        "STONE", "SMILE", "NIGHT", "BRICK", "WATER",
+        "CLOUD", "EARTH", "BREAD", "FLUID", "QUEST",
+        "SHAPE", "SHINY", "CLEAN", "THINK", "POWER",
+        "ROUND", "MAGIC", "GRASP", "NOISE", "VOICE"
     };
-    int wordBankSize = 80;
+    int wordBankSize = 100;
+
 
     // Pilih kata secara acak
     srand(time(NULL));
