@@ -1,66 +1,90 @@
-#include "start.h"
+
 #include <stdio.h>
-#include "../../ADT/barang/barang.h"
-#include "../../ADT/user/user.h"
+
+#include <stdlib.h>
+#include "../../ADT/user/user.h"  // ADT User
+#include "../../ADT/barang/barang.h"  // ADT Barang
+#include "../../ADT/Mesin_Karakter/mesinkarakter.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
-#include "../../ADT/Mesin_Kata/utils.h"
-#include "../../ADT/boolean.h"
+#include "../../ADT/Mesin_Baris/mesinbaris.h"
 
-void startCommand(Arraybarang *barangArray, ArrayUser *userArray) {
-    ClearArrayDin(barangArray);
+static FILE *pita;
 
-    FILE *configFile = fopen("dummy.txt", "r");
-    if (configFile == NULL) {
-        printf("Default configuration file not found. PURRMART failed to start.\n");
-        return;
+int start() {
+    pita = fopen("../../../save/config.txt", "r");
+
+    if (pita == NULL) {
+        printf("Gagal membuka file\n");
+        //return 1;
     }
 
-    STARTFILE(configFile);  // Initialize reading from file
+    // Inisialisasi UserList dan BarangList
+    ArrayUser userList;
+    CreateUserList(&userList);
 
-    // Read number of items (N)
-    int N = WordToInt(&currentWord);
-    ADVWORD();
+    Arraybarang barangList;
+    CreateBarangList(&barangList, 2); // Kapasitas awal 2 untuk Barang
 
-    // Read N items
-    for (int i = 0; i < N; i++) {
-        Barang newBarang;
+    // Memulai mesin karakter
+    STARTFILE(pita);
+    //printf("Isi baris pertama: %s\n", currentLine.kalimat);  // Debugging untuk melihat isi baris pertama
 
-        // Read price
-        newBarang.price = WordToInt(&currentWord);
+    int num_items = atoi(currentLine.kalimat);
+    printf("Jumlah barang: %d\n", num_items);
+
+    for (int i = 0; i < num_items; i++) {
         ADVWORD();
-
-        // Read name
-        newBarang.name = currentWord;  // CurrentWord contains the name
-        ADVWORD();
-
-        // Insert the item into the array
-        InsertLast(barangArray, newBarang);
+        int price = WordtoNum(currentWord);
+        ADVSENTENCE();
+        AddBarang(&barangList, currentLine.kalimat, price);
+        //printf("Barang %d - Harga: %d\n", i + 1, price);
     }
 
-    // Read number of users (M)
-    int M = WordToInt(&currentWord);
-    ADVWORD();
+    ADVSENTENCE();
+    int num_users = atoi(currentLine.kalimat);
+    printf("Jumlah pengguna: %d\n", num_users);
 
-    // Read M users
-    for (int i = 0; i < M; i++) {
-        User newUser;
-
-        // Read money
-        newUser.money = WordToInt(&currentWord);
+    for (int i = 0; i < num_users; i++) {
+        // Ambil uang pengguna
         ADVWORD();
+        int money = WordtoNum(currentWord); 
 
-        // Read name
-        newUser.name = currentWord;
+        // Salin username secara manual
         ADVWORD();
+        char username[MAX_LEN];
+        for (int j = 0; j < currentWord.Length && j < MAX_LEN - 1; j++) {
+            username[j] = currentWord.TabWord[j];
+        }
+        username[currentWord.Length] = '\0'; // Tambahkan null terminator
 
-        // Read password
-        newUser.password = currentWord;
+        // Salin password secara manual
         ADVWORD();
+        char password[MAX_LEN];
+        for (int j = 0; j < currentWord.Length && j < MAX_LEN - 1; j++) {
+            password[j] = currentWord.TabWord[j];
+        }
+        password[currentWord.Length] = '\0'; // Tambahkan null terminator
 
-        // Insert the user into the array (corrected function call)
-        addUser(userArray, &newUser);  // Pass both the userArray and newUser
+        // Tambahkan user ke UserList
+        AddUser(&userList, username, password, money);
     }
 
-    fclose(configFile);
-    printf("Default configuration file loaded. PURRMART successfully started.\n");
+    fclose(pita);
+
+    // Print daftar barang
+    printf("\nDaftar Barang:\n");
+    PrintBarang(&barangList);
+
+    // Print daftar pengguna
+    printf("\nDaftar Pengguna:\n");
+    PrintUsers(&userList);
+
+    // Bebaskan memori untuk BarangList (dinamis)
+    FreeBarangList(&barangList);
+
+    printf("\nFile File konfigurasi aplikasi berhasil dibaca. PURRMART berhasil dijalankan.\n");
+
+    return 0;
 }
+
+// gcc start.c ../../ADT/User_Barang/user.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Baris/mesinbaris.c -o program

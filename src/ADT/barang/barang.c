@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "barang.h"
+#include "../Mesin_Kata/mesinkata.h"
 
 /**
  * Konstruktor
@@ -96,30 +97,13 @@ void DeleteFirst(Arraybarang *array) {
 
 // Initialize a Barang with name and price
 void initBarang(Barang *barang, Word *name, int price) {
-    barang->name = *name;  // Initialize the name field
+    CopyWord(&barang->name, name); // Copy the name
     barang->price = price; // Initialize the price field
 }
 
 
 /* Print the array */
-void PrintArrayDin(Arraybarang array) {
-    if (IsEmpty(array)) {
-        printf("[]\n"); // Print empty array
-    } else {
-        printf("[\n");
-        for (int i = 0; i < array.Neff; i++) {
-            printf("  {name: ");
-            for (int j = 0; j < array.A[i].name.Length; j++) {
-                printf("%c", array.A[i].name.TabWord[j]); // Print each character of the barang's name
-            }
-            printf(", money: %d}", array.A[i].price); // Print barang's money
-            if (i < array.Neff - 1) {
-                printf(",\n"); // Print comma between items
-            }
-        }
-        printf("\n]\n");
-    }
-}
+
 
 /* Reverse the array */
 void ReverseArrayDin(Arraybarang *array) {
@@ -143,7 +127,7 @@ Arraybarang CopyArrayDin(Arraybarang array) {
 /* Search for a barang by name */
 IdxType SearchArrayDin(Arraybarang array, Word name) {
     for (int i = 0; i < array.Neff; i++) {
-        if (isKataEqual(&array.A[i].name, &name)) {
+        if (IsWordEq(&array.A[i].name, &name)) {
             return i; // Return index if found
         }
     }

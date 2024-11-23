@@ -11,8 +11,8 @@
 
 /* User definition */
 typedef struct {
-    Word name;
-    Word password;
+    char name[MAX_LEN];
+    char password[MAX_LEN];
     int money;
 } User;
 
@@ -90,7 +90,17 @@ void DeleteFirstUser(ArrayUser *array);
 { F.S. : Menghapus elemen pertama dari array }
 */
 
-void PrintArrayUser(ArrayUser array);
+void CreateUserList(ArrayUser *list);
+
+int IsUserListFull(ArrayUser *list);
+
+int IsUserListEmpty(ArrayUser *list);
+
+void ManualStringCopy(char *dest, const char *src);
+
+void AddUser(ArrayUser *list, char *name, char *password, int money);
+
+void PrintUsers(ArrayUser *list);
 /*
 { I.S. : ArrayUser terdefinisi }
 { F.S. : Menampilkan isi array ke layar }
@@ -115,19 +125,13 @@ void initUser(User *user, const Word *name, const Word *password);
 { F.S. : user terdefinisi dengan name = name dan password = password }
 */
 
-void printUser(const User *user);
-/*
-{ I.S. : user terdefinisi }
-{ F.S. : Menampilkan informasi user ke layar }
-*/
+
 
 void initializeUserArray();
 /*
 { I.S. : User array belum terdefinisi }
 { F.S. : User array dinamis terinisialisasi }
 */
-
-void addUser(ArrayUser *userArray, User *newUser) ;
 
 void saveUsersToFile() ;
 
@@ -156,5 +160,6 @@ void loadUsersFromFile();
 
 boolean validlogin(const Word *name, const Word *password);
 
+int WordToInt(Word *w) ;
 
 #endif

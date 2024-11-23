@@ -10,8 +10,8 @@
 
 // Define the Barang structure with a name and price
 typedef struct {
-    Word name;   // Name of the barang (use Word type for names)
-    int price;   // Price of the barang
+    char name[MAX_LEN];
+    int price;
 } Barang;
 
 /* Array structure for dynamic array of Barang */
@@ -114,7 +114,7 @@ void initBarang(Barang *Barang, Word *name, int price);
 */
 
 /* Print the dynamic array of Barang */
-void PrintArrayDin(Arraybarang array);
+
 /*
 { I.S. : Arraybarang terdefinisi }
 { F.S. : Menampilkan isi array ke layar }
@@ -141,5 +141,14 @@ IdxType SearchArrayDin(Arraybarang array, Word name);
 { F.S. : Mengembalikan indeks pertama elemen dengan name tersebut, -1 jika tidak ditemukan }
 */
 void ClearArrayDin(Arraybarang *array);
+
+void CreateBarangList(Arraybarang *list, int capacity);
+
+void AddBarang(Arraybarang *list, char *name, int price);
+
+void PrintBarang(Arraybarang *list);
+
+void FreeBarangList(Arraybarang *list);
+
 
 #endif // BARANG_H

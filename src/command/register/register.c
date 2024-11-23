@@ -1,6 +1,5 @@
 #include "../../ADT/user/user.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
-#include "../../ADT/Mesin_Kata/utils.h"
 #include <stdio.h>
 
 
@@ -12,17 +11,17 @@ void registerUser(ArrayUser *userArray) {
 
     // Ask for username
     printf("Enter username: ");
-    STARTWORD();
+    ADVWORD();
     newUser.name = currentWord;
 
     // Ask for password
     printf("Enter password: ");
-    STARTWORD();
+    ADVWORD();
     newUser.password = currentWord;
 
     // Ask for initial money (default 0)
     printf("Enter initial money (default 0): ");
-    STARTWORD();
+    ADVWORD();
     newUser.money = WordToInt(&currentWord);
 
     // Add new user to userArray

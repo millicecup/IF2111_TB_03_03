@@ -2,7 +2,6 @@
 #include "../../ADT/barang/barang.h"
 #include "../../ADT/user/user.h"
 #include "../../ADT/boolean.h"
-#include "../../ADT/Mesin_Kata/utils.h"
 
 // Save function to write the data to a file
 boolean saveToFile(const char *filename, Arraybarang *barangArray, ArrayUser *userArray) {
@@ -17,7 +16,7 @@ boolean saveToFile(const char *filename, Arraybarang *barangArray, ArrayUser *us
         fprintf(file, "%d\n", barangArray->Neff);
         for (int i = 0; i < barangArray->Neff; i++) {
             Barang currentBarang = barangArray->A[i];
-            fprintf(file, "%d %s\n", currentBarang.price, currentBarang.name.TabWord);
+            fprintf(file, "%d %s\n", currentBarang.price, currentBarang.name);
         }
     } else {
         fprintf(file, "0\n");
@@ -28,7 +27,7 @@ boolean saveToFile(const char *filename, Arraybarang *barangArray, ArrayUser *us
         fprintf(file, "%d\n", userArray->Neff);
         for (int i = 0; i < userArray->Neff; i++) {
             User currentUser = userArray->A[i];
-            fprintf(file, "%d %s %s\n", currentUser.money, currentUser.name.TabWord, currentUser.password.TabWord);
+            fprintf(file, "%d %s %s\n", currentUser.money, currentUser.name, currentUser.password);
         }
     }
 

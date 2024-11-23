@@ -1,7 +1,6 @@
 #include "../../ADT/user/user.h"
 #include <stdio.h>
 #include "../../ADT/Mesin_Kata/mesinkata.h"
-#include "../../ADT/Mesin_Kata/utils.h"
 #include "../../ADT/boolean.h"
 #include "../../ADT/barang/barang.h"
 
@@ -34,7 +33,7 @@ int main() {
         printMenu();
 
         // Read user input using mesinkata
-        STARTWORD();  // Read a single line of input
+        ADVWORD();  // Read a single line of input
 
         if (isEndWord()) {
             printf("No input detected. Please try again.\n");
@@ -52,7 +51,7 @@ int main() {
 
         switch (choice) {
             case 1: // Start
-                startCommand(&barangArray, &userArray);
+                start(&barangArray, &userArray);
                 break;
 
             case 2: // Login
@@ -99,5 +98,5 @@ int main() {
 
 
 /*
-gcc -IADT -I../command/register -I../command Mesin_Kata/mesinkata.c Mesin_Kata/utils.c Mesin_Kata/mesinkarakterv2.c user/user.c barang/barang.c ../command/register/register.c ../command/main.c ../command/login/login.c ../command/save/save.c ../command/start/start.c  -o program
+gcc -IADT -I../command/register -I../command Mesin_Kata/mesinkata.c Mesin_Kata/mesinkarakterv2.c user/user.c barang/barang.c ../command/register/register.c ../command/main.c ../command/login/login.c ../command/save/save.c ../command/start/start.c  -o program
 */
