@@ -1,0 +1,65 @@
+#include "animasi.h"
+#include <stdio.h>
+
+void printMainMenu() {
+    printf("=========================================\n");
+    printf("Welcome to PURRMART Main Menu!\n");
+    printf("Available Commands:\n");
+    printf("- START  : Load default configuration\n");
+    printf("- LOAD   : Load from a saved file\n");
+    printf("- HELP   : Show available commands\n");
+    printf("- QUIT   : Exit the program\n");
+    printf("=========================================\n");
+    printf("Enter your command: ");
+}
+
+void printLoginMenu() {
+    printf("=========================================\n");
+    printf("Welcome to PURRMART Login Menu!\n");
+    printf("Available Commands:\n");
+    printf("- LOGIN    : Log in to your account\n");
+    printf("- REGISTER : Register a new account\n");
+    printf("- HELP     : Show available commands\n");
+    printf("- SAVE     : Save current state to a specific file\n");
+    printf("- QUIT     : Quit the application\n");
+    printf("- MAIN     : Return to Main Menu\n");
+    printf("=========================================\n");
+    printf("Enter your command: ");
+}
+
+void printInsideMenu() {
+    printf("=========================================\n");
+    printf("Welcome to PURRMART!\n");
+    printf("Available Commands:\n");
+    printf("- STORE    : Seeing store\n");
+    printf("- WORK     : Gain money\n");
+    printf("- HELP     : Show available commands\n");
+    printf("- LOGOUT   : Log out from your account\n");
+    printf("=========================================\n");
+    printf("Enter your command: ");
+}
+
+void printWorkMenu(){
+    printf("=========================================\n");
+    printf("Welcome to PURRMART!\n");
+    printf("Available Commands:\n");
+    printf("- TEBAKANGKA     : Tebak angka\n");
+    printf("- WORLD3         : World 3\n");
+    printf("- HELP           : Show available commands\n");
+    printf("- MENU           : Return to Inside Menu\n");
+    printf("=========================================\n");
+    printf("Enter your command: ");
+}
+
+void printStoreMenu(){
+    printf("=========================================\n");
+    printf("Welcome to PURRMART!\n");
+    printf("Available Commands:\n");
+    printf("- STORE LIST        : list barang\n");
+    printf("- STORE REQUEST     : request barang\n");
+    printf("- STORE REMOVE      : remove store\n");
+    printf("- STORE SUPPLY      : tba\n");
+    printf("- MENU              : Return to Inside Menu\n");
+    printf("=========================================\n");
+    printf("Enter your command: ");
+}
