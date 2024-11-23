@@ -1,4 +1,4 @@
-//gcc -o wordl3.exe wordl3.c list.c mesinkar.c mesinkata.c -mconsole 
+//gcc -o wordl3.exe wordl3.c list.c mesinkar.c mesinkata.c
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,7 +57,7 @@ int main() {
         "HOTEL", "IGLOO", "JUMPY", "KNEAD", "LLAMA",
         "MORPH", "NOBLE", "OCEAN", "PENNY", "QUILT",
         "RAVEN", "SNAKE", "TULIP", "URBAN", "VIOLE",
-        "WHIRL", "XYLEM", "YEARN", "ZEBRA", "VIPER",
+        "WHIRL", "BEAST", "YEARN", "ZEBRA", "VIPER",
         "CLOVE", "DEATH", "ALIVE", "CRAZY", "QUAKE",
         "DAZED", "FACTS", "MYTHS", "EQUIP", "CHEWY"
     };
