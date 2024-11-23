@@ -4,7 +4,7 @@
 #include "boolean.h"
 #include "list.h"
 #include "mesinkata.h"
-#include "mesinkar.h"
+#include "mesinkarakter.h"
 
 // Struktur untuk menyimpan informasi pekerjaan
 typedef struct {
