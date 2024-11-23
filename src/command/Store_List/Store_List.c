@@ -32,7 +32,6 @@ void DisplayStore (BarangList store)
             {
                 printf("- ");
                 TulisWord(toKata(store.items[i].name));
-                printf("\n");
             }
         }
     }

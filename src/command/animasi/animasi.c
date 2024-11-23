@@ -55,10 +55,10 @@ void printStoreMenu(){
     printf("=========================================\n");
     printf("Welcome to PURRMART!\n");
     printf("Available Commands:\n");
-    printf("- STORE LIST        : list barang\n");
-    printf("- STORE REQUEST     : request barang\n");
-    printf("- STORE REMOVE      : remove store\n");
-    printf("- STORE SUPPLY      : tba\n");
+    printf("- STORE LIST        : Display store\n");
+    printf("- STORE REQUEST     : Request item\n");
+    printf("- STORE REMOVE      : Remove item from store\n");
+    printf("- STORE SUPPLY      : Add barang from request to store\n");
     printf("- MENU              : Return to Inside Menu\n");
     printf("=========================================\n");
     printf("Enter your command: ");

@@ -37,10 +37,10 @@ void tebakangka() {
 
 }
 
-int main(){
-    tebakangka();
-    return 0;
-}
+// int main(){
+//     tebakangka();
+//     return 0;
+// }
 
 /*
  gcc tebakangka.c ../../../ADT/Mesin_Karakter/mesinkarakter.c ../../../ADT/Mesin_Kata/mesinkata.c ../../../ADT/Mesin_Baris/mesinbaris.c -o tebakangka
