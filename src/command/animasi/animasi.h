@@ -12,6 +12,10 @@ void animasiMainMenu();
 
 void animasiStore();
 
+void animasiMenu();
+
+void animasiLogin();
+
 void printMainMenu() ;
 
 void printLoginMenu() ;
