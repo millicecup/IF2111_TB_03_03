@@ -60,6 +60,7 @@
     "mesinkata.h": "c",
     "store_remove.h": "c",
     "store_request.h": "c",
-    "store_supply.h": "c"
+    "store_supply.h": "c",
+    "start.h": "c"
   }
 }

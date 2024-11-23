@@ -7,21 +7,16 @@
 #include "../load/load.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include <stdio.h>
-boolean loggedIn = false;
 
-void login(UserList *userArray) {
-    // Load users from configuration file kalo ga di main
-    // LoadConfig("../save/dummy.txt", userArray, NULL); 
-    if (userArray->count == 0) {
+User *loggedInUser = NULL; // Pointer to track the logged-in user
+
+User* login(UserList *userList) {
+    if (userList->count == 0) {
         printf("No users found in the system. Please register first.\n");
-        return;
-    }
-    else {
-        printf("Users loaded successfully.\n");
+        return NULL;
     }
 
     Word username, password;
-
 
     // Get username from the user
     printf("Enter Username: ");
@@ -34,23 +29,15 @@ void login(UserList *userArray) {
     chartoWord(&password, currentInput.TabWord);
 
     // Check credentials
-    for (int i = 0; i < userArray->count; i++) {
-        User currentUser = userArray->users[i];
-
-        // Debugging: Print user being compared
-        //printf("Debug: Comparing with Username: %s, Password: %s\n", currentUser.name, currentUser.password);
-
-        if (isWordEqualToString(&username, currentUser.name) &&
-            isWordEqualToString(&password, currentUser.password)) {
-            loggedIn = true;
-            printf("Login successful! Welcome, %s.\n", currentUser.name);
-            break;
+    for (int i = 0; i < userList->count; i++) {
+        User *currentUser = &userList->users[i];
+        if (isWordEqualToString(&username, currentUser->name) &&
+            isWordEqualToString(&password, currentUser->password)) {
+            printf("Login successful! Welcome, %s.\n", currentUser->name);
+            return currentUser; // Return the logged-in user
         }
     }
 
-    // If no match is found
-    if (!loggedIn) {
-        printf("Invalid username or password. Please try again.\n");
-    }
+    printf("Invalid username or password. Please try again.\n");
+    return NULL;
 }
-

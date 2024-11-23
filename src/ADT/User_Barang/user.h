@@ -32,4 +32,5 @@ void InsertLastUser(UserList *array, User el) ;
 
 void addUser(UserList *userArray, User *newUser);
 
+void ModifyUserMoney(UserList *list, char *name, int newMoney);
 #endif

@@ -5,6 +5,7 @@
 #include "../../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../../ADT/Mesin_Karakter/mesinkarakter.h"
 #include "../../../ADT/List/list.h"
+#include "../../../ADT/User_Barang/user.h"
 #include "wordl3.h"
 
 
@@ -49,8 +50,16 @@ boolean isValidInput(Word *input, int requiredLength) {
     return input->Length == requiredLength;
 }
 
-void wordl3() {
-    // Daftar kata target
+void wordl3(User *currentUser) {
+    // Deduct coins to play the game
+    if (currentUser->money < 1500) {
+        printf("Uang Anda tidak cukup untuk memainkan permainan ini.\n");
+        return;
+    }
+    currentUser->money -= 1500;
+    printf("1500 koin telah dikurangi. Sisa uang Anda: %d.\n", currentUser->money);
+
+    // Target word setup
     char *wordBank[] = {
         "APPLE", "GRAPE", "PEACH", "MANGO", "LEMON",
         "BANJO", "CHILI", "DONUT", "FERAL", "GUAVA",
@@ -74,13 +83,9 @@ void wordl3() {
         "ROUND", "MAGIC", "GRASP", "NOISE", "VOICE"
     };
     int wordBankSize = 100;
-
-
-    // Pilih kata secara acak
     srand(time(NULL));
     char *targetWord = wordBank[rand() % wordBankSize];
 
-    // Inisialisasi permainan
     printf("Selamat datang di permainan W0RDL3!\n");
     printf("Tebak kata berjumlah %d huruf dalam %d kesempatan.\n", WORD_LENGTH, MAX_CHANCES);
 
@@ -93,9 +98,7 @@ void wordl3() {
 
         boolean validInput = false;
         while (!validInput) {
-            // Baca input kata
             STARTINPUT(stdin);
-
             if (isValidInput(&currentInput, WORD_LENGTH)) {
                 validInput = true;
                 CreateList(&guess, WORD_LENGTH);
@@ -103,15 +106,12 @@ void wordl3() {
                     SetList(&guess, i, currentWord.TabWord[i]);
                 }
             } else {
-                printf("Inputan harus %d huruf!\n"); 
-                printf("Silakan masukkan lagi: ", WORD_LENGTH);
+                printf("Inputan harus %d huruf!\n", WORD_LENGTH);
             }
         }
 
-        // Tampilkan hasil tebakan
         displayResult(&guess, targetWord);
 
-        // Cek apakah benar
         if (isWordCorrect(&guess, targetWord)) {
             guessed = true;
         } else {
@@ -119,12 +119,13 @@ void wordl3() {
         }
     }
 
-    // Hasil akhir
     if (guessed) {
         printf("\nSelamat! Anda berhasil menebak kata: %s\n", targetWord);
+        printf("Anda mendapatkan 1500 koin!\n");
+        currentUser->money += 1500;
     } else {
-        printf("\nKesempatan habis. Word yang benar adalah: %s\n", targetWord);
+        printf("\nKesempatan habis. Kata yang benar adalah: %s\n", targetWord);
     }
 
-    //return 0;
+    printf("Sisa uang Anda: %d.\n", currentUser->money);
 }

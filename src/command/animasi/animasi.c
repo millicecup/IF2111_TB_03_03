@@ -44,7 +44,7 @@ void printWorkMenu(){
     printf("Welcome to PURRMART!\n");
     printf("Available Commands:\n");
     printf("- TEBAKANGKA     : Tebak angka\n");
-    printf("- WORLD3         : World 3\n");
+    printf("- WORDL3         : World 3\n");
     printf("- HELP           : Show available commands\n");
     printf("- MENU           : Return to Inside Menu\n");
     printf("=========================================\n");

@@ -13,6 +13,6 @@ boolean isWordCorrect(List *guess, char *word) ;
 
 boolean isValidInput(Word *input, int requiredLength) ;
 
-void wordl3();
+void wordl3(User *currentUser);
 
 #endif
