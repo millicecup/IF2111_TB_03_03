@@ -17,18 +17,29 @@ void help(MenuState *current_menu) {
         printf("1. REGISTER -> Untuk melakukan pendaftaran akun baru\n");
         printf("2. LOGIN -> Untuk masuk ke dalam akun dan memulai sesi\n");
         printf("3. QUIT -> Untuk keluar dari program\n");
+        printf("4. MENU -> Untuk kembali ke menu awal\n");
     } else if (*current_menu == menuutama) {
         printf("=====[ Menu Help PURRMART ]=====\n");
         printf("1. WORK -> Untuk bekerja\n");
-        printf("2. WORK CHALLENGE -> Untuk mengerjakan challenge\n");
-        printf("3. STORE LIST -> Untuk melihat barang-barang di toko\n");
-        printf("4. STORE REQUEST -> Untuk meminta penambahan barang\n");
-        printf("5. STORE SUPPLY -> Untuk menambahkan barang dari permintaan\n");
-        printf("6. STORE REMOVE -> Untuk menghapus barang\n");
+        printf("2. STORE -> Untuk ke menu store\n");
         printf("7. LOGOUT -> Untuk keluar dari sesi\n");
         printf("8. SAVE -> Untuk menyimpan state ke dalam file\n");
         printf("9. QUIT -> Untuk keluar dari program\n");
-    }
+    } else if (*current_menu == menustore) {
+        printf("=====[ Menu Help PURRMART ]=====\n");
+        printf("1. STORE LIST -> Untuk melihat barang-barang di toko\n");
+        printf("2. STORE REQUEST -> Untuk meminta penambahan barang\n");
+        printf("3. STORE SUPPLY -> Untuk menambahkan barang dari permintaan\n");
+        printf("4. STORE REMOVE -> Untuk menghapus barang\n");
+        printf("5. MENU -> Untuk kembali ke menu sebelumnya\n");
+    } else if (*current_menu == menuworkchallenge) {
+        printf("=====[ Menu Help PURRMART ]=====\n");
+        printf("1. TEBAK ANGKA ->  Tebak kata dengan biaya bermain 200 dan kesempatan memenangkan 350\n");
+        printf("2. WORDL3 -> Tebak kata dengan biaya bermain 500 dan kesempatan memenangkan 1500\n");
+        printf("3. STORE SUPPLY -> Untuk menambahkan barang dari permintaan\n");
+        printf("4. STORE REMOVE -> Untuk menghapus barang\n");
+        printf("5. MENU -> Untuk kembali ke menu sebelumnya\n");
+    } 
 }
 
 //fungsi ganti menu

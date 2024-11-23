@@ -3,11 +3,27 @@
 #include <time.h>
 #include "../../../ADT/boolean.h"
 #include "../../../ADT/Mesin_Kata/mesinkata.h"
+#include "../../../ADT/User_Barang/user.h"
+
 #include "../../../ADT/Mesin_Karakter/mesinkarakter.h"
 // #include "../../../ADT/work/mesinkar.h"
 // #include "../../../ADT/work/mesinword.h"
 
-void tebakangka() {
+void tebakangka(UserList *userList) {
+    User *currentUser = &userList->users[userList->currentUserIndex];
+    // Deduct coins to play the game
+    if (currentUser->money < 200) {
+        printf("Uang Anda tidak cukup untuk memainkan permainan ini.\n");
+        return;
+    }
+    currentUser->money -= 200;
+    printf("1500 koin telah dikurangi. Sisa uang Anda: %d.\n", currentUser->money);
+    printf("Selamat datang di permainan W0RDL3!\n");
+    printf("ATTENTION! : \n");
+    printf("Apabila angka yang ditebak lebih kecil akan ada pemberitahuan.\n");
+    printf("Apabila angka yang ditebak lebih besar akan ada pemberitahuan.\n");
+    printf("Apabila angka yang ditebak benar akan ada pemberitahuan dan otomatis keluar dari permainan.\n");
+
     // Inisialisasi random number generator
     srand(time(NULL));
     int target = rand() % 100 + 1; // Angka random antara 1-100
@@ -25,6 +41,8 @@ void tebakangka() {
             printf("Tebakanmu lebih besar!\n");
         } else {
             printf("Tebakanmu benar! Selamat!\n");
+            printf("Anda mendapatkan 1500 koin!\n");
+            currentUser->money += 1500;
             break; 
         }
 
@@ -33,6 +51,7 @@ void tebakangka() {
 
     if (kesempatan == 0) {
         printf("Kesempatanmu sudah habis! Angka yang benar adalah %d\n", target);
+        printf("Uang Anda saat ini: %d.\n", currentUser->money);
     }
 
 }

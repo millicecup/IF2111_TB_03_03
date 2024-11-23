@@ -77,11 +77,11 @@ boolean isValidInput(Word *input, int requiredLength) {
 void wordl3(UserList *userList) {
     User *currentUser = &userList->users[userList->currentUserIndex];
     // Deduct coins to play the game
-    if (currentUser->money < 1500) {
+    if (currentUser->money < 500) {
         printf("Uang Anda tidak cukup untuk memainkan permainan ini.\n");
         return;
     }
-    currentUser->money -= 1500;
+    currentUser->money -= 500;
     printf("1500 koin telah dikurangi. Sisa uang Anda: %d.\n", currentUser->money);
     printf("Selamat datang di permainan W0RDL3!\n");
     printf("ATTENTION! : \n");

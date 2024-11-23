@@ -7,7 +7,10 @@
 typedef enum {
     menuforwelcome,
     menuforlogin,
-    menuutama
+    menuutama,
+    menustore,
+    menuwork,
+    menuworkchallenge,
 } MenuState;
 
 

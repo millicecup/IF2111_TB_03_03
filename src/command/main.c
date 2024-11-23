@@ -66,8 +66,8 @@ void handleWorkMenu(UserList *userList, BarangList *barangList, MenuState *curre
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
 
-        if (isWordEqualToString(&currentWord, "TEBAKANGKA")) {
-            tebakangka();
+        if (isWordEqualToString(&currentWord, "TEBAK ANGKA")) {
+            tebakangka(userList);
         } else if (isWordEqualToString(&currentWord, "WORDL3")) {
             wordl3(userList);
         } else if (isWordEqualToString(&currentWord, "WORK")) {
@@ -77,6 +77,7 @@ void handleWorkMenu(UserList *userList, BarangList *barangList, MenuState *curre
         } else if (isWordEqualToString(&currentWord, "MENU")) {
             isInWorkMenu = false;
             printf("Returning to Inside Menu...\n");
+            isInWorkMenu = false;
         } else {
             printf("Invalid command. Please try again.\n");
         }
@@ -88,7 +89,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
     boolean isInside = true;
 
     while (isInside) {
-        animasiMenu();
+        //animasiMenu();
         //scanf("%s", command);
         GetInput();
         Word currentWord;
