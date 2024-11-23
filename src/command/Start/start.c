@@ -24,7 +24,7 @@ int start(UserList *userList, BarangList *barangList) {
 
     // Read the number of items (Barang)
     int num_items = atoi(currentLine.kalimat);
-    printf("Jumlah barang: %d\n", num_items);
+    //printf("Jumlah barang: %d\n", num_items);
 
     for (int i = 0; i < num_items; i++) {
         ADVWORD();
@@ -36,7 +36,7 @@ int start(UserList *userList, BarangList *barangList) {
     // Read the number of users
     ADVSENTENCE();
     int num_users = atoi(currentLine.kalimat);
-    printf("Jumlah pengguna: %d\n", num_users);
+    //printf("Jumlah pengguna: %d\n", num_users);
 
     for (int i = 0; i < num_users; i++) {
         // Read user money
@@ -66,11 +66,11 @@ int start(UserList *userList, BarangList *barangList) {
     fclose(pita);
 
     // Print loaded items for verification
-    printf("\nDaftar Barang:\n");
-    PrintBarang(barangList);
+    // printf("\nDaftar Barang:\n");
+    // PrintBarang(barangList);
 
-    printf("\nDaftar Pengguna:\n");
-    PrintUsers(userList);
+    // printf("\nDaftar Pengguna:\n");
+    // PrintUsers(userList);
 
     printf("\nDefault configuration successfully loaded. PURRMART is ready.\n");
     return 0; // Success
