@@ -43,6 +43,7 @@ void login(UserList *userArray) {
         if (isWordEqualToString(&username, currentUser.name) &&
             isWordEqualToString(&password, currentUser.password)) {
             loggedIn = true;
+            userArray->currentUserIndex = i;
             printf("Login successful! Welcome, %s.\n", currentUser.name);
             break;
         }

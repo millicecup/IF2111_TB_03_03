@@ -1,17 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "boolean.h"
-#include "list.h"
-#include "mesinkata.h"
-#include "mesinkarakter.h"
-
-// Struktur untuk menyimpan informasi pekerjaan
-typedef struct {
-    char nama[50];
-    int pendapatan;
-    int durasi;
-} Pekerjaan;
+#include "../../ADT/boolean.h"
+#include "../../ADT/List/list.h"
+#include "../../ADT/Mesin_Kata/mesinkata.h"
+#include "../../ADT/Mesin_Baris/mesinbaris.h"
+#include "../../ADT/Mesin_Karakter/mesinkarakter.h"
+#include "../../ADT/User_Barang/user.h"
+#include "work.h"
 
 // Fungsi untuk menunggu selama durasi tertentu
 void tunggu(int durasi) {
@@ -32,16 +28,17 @@ void tampilkanPekerjaan(List *daftarPekerjaan, Pekerjaan *pekerjaan, int jumlahP
 }
 
 // Fungsi untuk membaca input pengguna
-int bacaInput() {
-    STARTKATA();
-    int pilihan = 0;
-    for (int i = 0; i < CKata.Length; i++) {
-        pilihan = pilihan * 10 + (CKata.TabKata[i] - '0');
-    }
-    return pilihan;
-}
+// int bacaInput() {
+//     STARTINPUT(stdin);
+//     WordToInt(&currentInput);
+//     int pilihan = 0;
+//     for (int i = 0; i < currentWord.Length; i++) {
+//         pilihan = pilihan * 10 + (currentWord.TabWord[i] - '0');
+//     }
+//     return pilihan;
+// }
 
-int main() {
+void work(UserList *userList) {
     // Inisialisasi daftar pekerjaan
     Pekerjaan pekerjaan[] = {
         {"Evil Lab Assistant", 100, 14},
@@ -51,17 +48,18 @@ int main() {
         {"Inator Connoisseur", 997, 15}
     };
     int jumlahPekerjaan = 5;
-
+    User *currentUser = &userList->users[userList->currentUserIndex];
     // Inisialisasi list untuk menyimpan pekerjaan
     List daftarPekerjaan;
-    CreateList(&daftarPekerjaan);
+    MakeList(&daftarPekerjaan);
     
     // Tampilkan daftar pekerjaan
     tampilkanPekerjaan(&daftarPekerjaan, pekerjaan, jumlahPekerjaan);
 
     // Minta input pengguna
     printf("\nMasukkan pekerjaan yang dipilih: ");
-    int pilihan = bacaInput();
+    STARTINPUT(stdin);
+    int pilihan = WordToInt(&currentInput);
 
     // Validasi pilihan
     if (pilihan >= 1 && pilihan <= jumlahPekerjaan) {
@@ -71,12 +69,12 @@ int main() {
         
         // Tunggu sesuai durasi pekerjaan
         tunggu(pekerjaanDipilih.durasi);
+        currentUser->money += pekerjaanDipilih.pendapatan;
         
         printf("Pekerjaan selesai, +%d rupiah telah ditambahkan ke akun Anda.\n", 
                pekerjaanDipilih.pendapatan);
+        printf("Jumlah uang anda sekarang adalah %d.\n", currentUser->money);
     } else {
         printf("Pilihan pekerjaan tidak valid!\n");
     }
-
-    return 0;
 }

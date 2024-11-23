@@ -11,6 +11,7 @@
 #include "login/login.h"
 #include "register/register.h"
 #include "save/save.h"
+#include "work/work.h"
 #include "workchallenge/tebakangka/tebakangka.h"
 #include "workchallenge/wordl3/wordl3.h"
 #include "Store_List/Store_List.h"
@@ -70,6 +71,8 @@ void handleWorkMenu(UserList *userList, BarangList *barangList) {
             tebakangka();
         } else if (isWordEqualToString(&currentWord, "WORDL3")) {
             wordl3();
+        } else if (isWordEqualToString(&currentWord, "WORK")) {
+            work(userList);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             printf("Work Menu Commands:\n");
             printf("- TEBAKANGKA : Play a number guessing game\n");
