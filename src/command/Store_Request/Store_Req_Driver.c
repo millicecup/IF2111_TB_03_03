@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "../../ADT/Queue/queue.h"
+#include "../../ADT/List Barang/listdin_barang.h"
+#include "../../ADT/Mesin_Kata/mesinkata.h"
+#include "../Store List/Store_List.h"
+#include "store_request.h"
+
+
+int main() 
+{
+    Queue q;
+    CreateEmptyRequest(&q);
+
+    Arraybarang store = MakeArrayDin(); 
+
+    Barang item1, item2;
+    Word namaBarang1, namaBarang2;
+
+    assignString(item1.name, "Adaditoko");
+    item1.price = 100;
+    assignString(item2.name, "Barang Purry");
+    item2.price = 200;
+
+    InsertLast(&store, item1); 
+    InsertLast(&store, item2); 
+    DisplayStore(store);
+
+
+    StoreRequest(&q, item1, store); 
+    printf("\n");
+    StoreRequest(&q, item2, store); 
+
+    printf("\nAntrian Barang:\n");
+    DisplayQueue(&q);
+
+    return 0;
+}

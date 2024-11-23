@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include "../boolean.h"
 #include "../Mesin_Karakter/mesinkarakter.h"
-#include "mesinkarakterv2.h"
 #include "../Mesin_Baris/mesinbaris.h"
 
 
@@ -30,9 +29,13 @@ void IgnoreBlanks();
 
 void STARTWORD(FILE* input);
 
+void assignString(char *str1, char *str2) ;
+
 void ADVWORD();
 
 void CopyWord();
+
+boolean isEqualString(char *str1, char *str2) ;
 
 boolean isEndWord();
 

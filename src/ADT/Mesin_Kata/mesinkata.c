@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "mesinkata.h"
+#include "../Mesin_Karakter/mesinkarakter.h"
+#include "../Mesin_Baris/mesinbaris.h"
 #include <stdlib.h>
 
 boolean endWord;
@@ -222,7 +224,7 @@ void STARTINPUT(FILE* input)
 {
     START(input);
     IgnoreNewLine();
-    if (currentChar == ';')
+    if (currentChar == '\n')
     {
         endWord = true;
     }
@@ -326,6 +328,17 @@ int stringLength(char *str) {
     return len;
 }
 
+void assignString(char *str1, char *str2) 
+{
+    int i = 0;
+    while (str2[i] != '\0')  
+    {
+        str1[i] = str2[i];
+        i++;
+    }
+    str1[i] = '\0'; 
+}
+
 
 void chartoWord(Word *w, char *str) {
     int i = 0;
@@ -387,4 +400,19 @@ boolean compareStringsManual(const char *str1, const char *str2) {
     }
     // Ensure both strings end at the same length
     return (str1[i] == '\0' && str2[i] == '\0');
+}
+
+
+boolean isEqualString(char *str1, char *str2) 
+{
+    int i = 0;
+    while (str1[i] != '\0' && str2[i] != '\0')
+    {
+        if (str1[i] != str2[i]) 
+        {
+            return false;
+        }
+        i++;
+    }
+    return str1[i] == '\0' && str2[i] == '\0';
 }

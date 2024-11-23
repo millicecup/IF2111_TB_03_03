@@ -98,7 +98,7 @@ int main() {
 
     BarangList barangArray;
     CreateBarangList(&barangArray, 2);
-    LoadConfig("../save/dummy.txt", &userArray, &barangArray);
+    LoadConfig("../../../save/config.txt", &userArray, &barangArray);
 
     // Print loaded items and users for verification
     printf("\nDaftar Barang:\n");
@@ -111,5 +111,5 @@ int main() {
 }
 */
 /*
-gcc load.c ../../ADT/User_Barang/user.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Kata/mesinkarakterv2.c ../../ADT/Mesin_Baris/mesinbaris.c
+gcc load.c ../../ADT/User_Barang/user.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Baris/mesinbaris.c
 */
