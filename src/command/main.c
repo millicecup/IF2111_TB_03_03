@@ -11,6 +11,7 @@
 #include "login/login.h"
 #include "register/register.h"
 #include "save/save.h"
+#include "work/work.h"
 #include "workchallenge/tebakangka/tebakangka.h"
 #include "workchallenge/wordl3/wordl3.h"
 #include "Store_List/Store_List.h"
@@ -55,12 +56,13 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request)
 }
 
 // Function to handle the Work Menu
-void handleWorkMenu(User *loggedInUser) {
+void handleWorkMenu(UserList *userList, BarangList *barangList) {
     char command[COMMAND_MAX_LEN];
     boolean isInWorkMenu = true;
 
     while (isInWorkMenu) {
         printWorkMenu();
+        //scanf("%s", command);
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
@@ -68,7 +70,9 @@ void handleWorkMenu(User *loggedInUser) {
         if (isWordEqualToString(&currentWord, "TEBAKANGKA")) {
             tebakangka();
         } else if (isWordEqualToString(&currentWord, "WORDL3")) {
-            wordl3(loggedInUser);
+            wordl3(userList);
+        } else if (isWordEqualToString(&currentWord, "WORK")) {
+            work(userList);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             printf("Work Menu Commands:\n");
             printf("- TEBAKANGKA : Play a number guessing game\n");
@@ -83,22 +87,21 @@ void handleWorkMenu(User *loggedInUser) {
     }
 }
 
-
 // Function to handle the Inside Menu
-void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request, User *loggedInUser) {
+void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request) {
     char command[COMMAND_MAX_LEN];
     boolean isInside = true;
 
     while (isInside) {
         printInsideMenu();
+        //scanf("%s", command);
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
-
         if (isWordEqualToString(&currentWord, "STORE")) {
             handleStoreMenu(userList, barangList, request);
         } else if (isWordEqualToString(&currentWord, "WORK")) {
-            handleWorkMenu(loggedInUser);
+            handleWorkMenu(userList, barangList);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             printf("Inside Menu Commands:\n");
             printf("- STORE   : Access the store\n");
@@ -113,7 +116,6 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
     }
 }
 
-
 // Function to handle the Login Menu
 void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request) {
     char command[COMMAND_MAX_LEN];
@@ -126,9 +128,9 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request)
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
         if (isWordEqualToString(&currentWord, "LOGIN")) {
-            loggedInUser = login(userList);
-            if (loggedInUser != NULL) { // Assume loggedIn is set in login()
-                handleInsideMenu(userList, barangList, request, loggedInUser);
+            login(userList);
+            if (loggedIn) { // Assume loggedIn is set in login()
+                handleInsideMenu(userList, barangList, request);
             }
         } else if (isWordEqualToString(&currentWord, "REGISTER")) {
             registerUser(userList);

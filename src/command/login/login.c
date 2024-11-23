@@ -7,16 +7,21 @@
 #include "../load/load.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include <stdio.h>
+boolean loggedIn = false;
 
-User *loggedInUser = NULL; // Pointer to track the logged-in user
-
-User* login(UserList *userList) {
-    if (userList->count == 0) {
+void login(UserList *userArray) {
+    // Load users from configuration file kalo ga di main
+    // LoadConfig("../save/dummy.txt", userArray, NULL); 
+    if (userArray->count == 0) {
         printf("No users found in the system. Please register first.\n");
-        return NULL;
+        return;
+    }
+    else {
+        printf("Users loaded successfully.\n");
     }
 
     Word username, password;
+
 
     // Get username from the user
     printf("Enter Username: ");
@@ -29,15 +34,24 @@ User* login(UserList *userList) {
     chartoWord(&password, currentInput.TabWord);
 
     // Check credentials
-    for (int i = 0; i < userList->count; i++) {
-        User *currentUser = &userList->users[i];
-        if (isWordEqualToString(&username, currentUser->name) &&
-            isWordEqualToString(&password, currentUser->password)) {
-            printf("Login successful! Welcome, %s.\n", currentUser->name);
-            return currentUser; // Return the logged-in user
+    for (int i = 0; i < userArray->count; i++) {
+        User currentUser = userArray->users[i];
+
+        // Debugging: Print user being compared
+        //printf("Debug: Comparing with Username: %s, Password: %s\n", currentUser.name, currentUser.password);
+
+        if (isWordEqualToString(&username, currentUser.name) &&
+            isWordEqualToString(&password, currentUser.password)) {
+            loggedIn = true;
+            userArray->currentUserIndex = i;
+            printf("Login successful! Welcome, %s.\n", currentUser.name);
+            break;
         }
     }
 
-    printf("Invalid username or password. Please try again.\n");
-    return NULL;
+    // If no match is found
+    if (!loggedIn) {
+        printf("Invalid username or password. Please try again.\n");
+    }
 }
+

@@ -7,9 +7,11 @@
 #include "../../../ADT/Mesin_Karakter/mesinkarakter.h"
 #include "../../../ADT/List/list.h"
 #include "wordl3.h"
+#include "../../../ADT/User_Barang/user.h"
 
 int main(){
-    wordl3();
+    User user;
+    wordl3(user);
     return 0;
 }
 
