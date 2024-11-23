@@ -29,6 +29,26 @@ void animasiMainMenu()
     printf("Enter your command: ");
 }
 
+void perrystop()
+{
+    FILE *fascii;
+    system("cls || clear");
+    fascii = NULL;
+    fascii = fopen("perrystop.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        system("cls || clear");
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("Enter your command: ");
+}
+
+
 void printMainMenu() {
     printf("=========================================\n");
     printf("Welcome to PURRMART Main Menu!\n");
@@ -68,14 +88,20 @@ void printInsideMenu() {
 }
 
 void printWorkMenu(){
-    printf("=========================================\n");
-    printf("Welcome to PURRMART!\n");
-    printf("Available Commands:\n");
-    printf("- TEBAKANGKA     : Tebak angka\n");
-    printf("- WORDL3         : World 3\n");
-    printf("- HELP           : Show available commands\n");
-    printf("- MENU           : Return to Inside Menu\n");
-    printf("=========================================\n");
+    FILE *fascii;
+    system("cls || clear");
+    fascii = NULL;
+    fascii = fopen("work.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        system("cls || clear");
+        printImage(fascii);
+        fclose(fascii);
+    }
     printf("Enter your command: ");
 }
 
