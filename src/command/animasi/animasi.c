@@ -15,7 +15,7 @@ void animasiMainMenu()
     FILE *fascii;
     system("cls || clear");
     fascii = NULL;
-    fascii = fopen("run.txt","r");
+    fascii = fopen("animasi/run.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
@@ -26,6 +26,7 @@ void animasiMainMenu()
         printImage(fascii);
         fclose(fascii);
     }
+    printf("Enter your command: ");
 }
 
 void printMainMenu() {
