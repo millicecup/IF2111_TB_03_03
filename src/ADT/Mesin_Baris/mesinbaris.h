@@ -15,6 +15,7 @@ typedef struct
 
 extern Sentence currentLine;
 extern boolean endLine; 
+extern boolean EndSentence;
 
 /*  Kebanyakan fungsi mesinbaris digunakan atau diimplementasikan untuk
     bagian masukan dari pengguna atau pada terminal */

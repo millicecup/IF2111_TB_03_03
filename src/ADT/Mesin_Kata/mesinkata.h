@@ -82,7 +82,7 @@ int stringLength(char *str);
 boolean isWordEqualToString(const Word *w, const char *str);
 void READWORD();
 boolean compareStringsManual(const char *str1, const char *str2);
-
+void RemoveNewLineWord(Word kata);
 void stringToWord(char *str, Word *word);
 boolean IsWordEqual(Word w1, Word w2) ;
 

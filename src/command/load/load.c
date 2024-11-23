@@ -91,25 +91,24 @@ void Load(UserList *userList, BarangList *barangList) {
     PrintUsers(userList);
 }
 
-/*
-int main() {
-    UserList userArray;
-    CreateUserList(&userArray);
 
-    BarangList barangArray;
-    CreateBarangList(&barangArray, 2);
-    LoadConfig("../../../save/config.txt", &userArray, &barangArray);
+// int main() {
+//     UserList userArray;
+//     CreateUserList(&userArray);
 
-    // Print loaded items and users for verification
-    printf("\nDaftar Barang:\n");
-    PrintBarang(&barangArray);
+//     BarangList barangArray;
+//     CreateBarangList(&barangArray, 10);
+//     Load(&userArray, &barangArray);
+//     // Print loaded items and users for verification
+//     // printf("\nDaftar Barang:\n");
+//     // PrintBarang(&barangArray);
 
-    printf("\nDaftar Pengguna:\n");
-    PrintUsers(&userArray);
+//     // printf("\nDaftar Pengguna:\n");
+//     // PrintUsers(&userArray);
 
-    return 0;
-}
-*/
+//     return 0;
+// }
+
 /*
 gcc load.c ../../ADT/User_Barang/user.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Baris/mesinbaris.c
 */

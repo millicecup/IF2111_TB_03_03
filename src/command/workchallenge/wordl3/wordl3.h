@@ -5,6 +5,7 @@
 #include "../../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../../ADT/Mesin_Karakter/mesinkarakter.h"
 #include "../../../ADT/List/list.h"
+#include "../../../ADT/User_Barang/user.h"
 #include "wordl3.h"
 
 
@@ -13,6 +14,6 @@ boolean isWordCorrect(List *guess, char *word) ;
 
 boolean isValidInput(Word *input, int requiredLength) ;
 
-void wordl3();
+void wordl3(UserList *userList) ;
 
 #endif

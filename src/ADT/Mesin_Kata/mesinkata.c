@@ -59,25 +59,6 @@ void RemoveNewLineWord(Word kata)
     }
 }
 
-// void READWORD()
-// {
-//     /* I.S. : currentChar sembarang
-//        F.S. : endWord = true, dan currentChar = MARK;
-//               atau endWord = false, currentWord adalah kata yang sudah diakuisisi,
-//               currentChar karakter pertama sesudah karakter terakhir kata */
-//     STARTV2();
-//     IgnoreBlanks();
-//     if (currentChar == MARK)
-//     {
-//         endWord = true;
-//     }
-//     else
-//     {
-//         endWord = false;
-//         CopyWord();
-//     }
-// }
-
 void ADVWORD()
 {
     IgnoreBlanks();
@@ -92,19 +73,6 @@ void ADVWORD()
         CopyWord();
     }
 }
-
-
-
-// void ADVLine(){
-//     IgnoreBlanks();
-//     if (currentChar == BLANK){
-//         endWord = true;
-//     } else{
-//         endWord = false;
-//         CopyWord();
-//         IgnoreBlanks();
-//     }
-// }
 
 void CopyWord()
 {
@@ -134,32 +102,6 @@ boolean isEndWord() {
     return endWord;
 }
 
-// void GetCommand() {
-//     currentWord.Length = 0;
-//     STARTWORD(stdin);
-// }
-
-// Word AccessCommand(Word comm, int Idx) {
-//     int count = 0, i = 0;
-//     Word out;
-//     out.Length = 0;
-
-//     while (i < comm.Length && count <= Idx) {
-//         out.TabWord[out.Length] = comm.TabWord[i];
-//         if (comm.TabWord[i] != ' ') {
-//             out.Length++;
-//         }
-//         if (comm.TabWord[i] == ' ') {
-//             if (count < Idx) {
-//                 out.Length = 0;
-//             }
-//             count++;
-//         }
-//         i++;
-//     }
-//     return out;
-// }
-    
 void CopyWordToVar(Word *kata1, Word kata2)
 {
     (*kata1).Length = kata2.Length; 
@@ -194,7 +136,6 @@ void stringToWord(char *str, Word *word)
     word->Length = i;         // Menyimpan panjang string
 }
 
-// MASIH SALAH
 boolean IsWordEq (Word kata1, Word kata2) {
     if (kata1.Length == kata2.Length) {
         for (int i = 0; i < kata1.Length; i++) {
@@ -266,14 +207,6 @@ void ResetInput(){
         currentInput.Length = 0;
     }
 }
-
-
-// boolean IsWordNumber (Word kata) {
-//     for (int i = 0; i < kata.Length; i++) {
-//         if (kata.TabWord[i] - '0' < 0 || kata.TabWord[i] - '0' > 9) return false;
-//     }
-//     return kata.Length > 0;
-// }
 
 int WordtoNum(const Word currentWord) {
     int result = 0;
@@ -353,7 +286,7 @@ int WordToInt(Word *w) {
     int num = 0;
     for (int i = 0; i < w->Length; i++) {
         if (w->TabWord[i] < '0' || w->TabWord[i] > '9') {
-            return -1;  // Return -1 for invalid input
+            return -1;  // Return -1 buat invalid
         }
         num = num * 10 + (w->TabWord[i] - '0');
     }
@@ -362,45 +295,55 @@ int WordToInt(Word *w) {
 
 boolean isWordEqualToString(const Word *w, const char *str) {
     int i = 0;
+
+    // Loop sampe selese dua2nya
     while (i < w->Length && str[i] != '\0') {
-        if (w->TabWord[i] != str[i]) {
+        char wordChar = w->TabWord[i];
+        char strChar = str[i];
+
+        // Normalize sendiri
+        if (wordChar >= 'A' && wordChar <= 'Z') {
+            wordChar += ('a' - 'A'); // Convert uppercase to lowercase
+        }
+        if (strChar >= 'A' && strChar <= 'Z') {
+            strChar += ('a' - 'A'); // Convert uppercase to lowercase
+        }
+
+        // Compare karakter
+        if (wordChar != strChar) {
             return false;
         }
+
         i++;
     }
+
+    // cek
     return i == w->Length && str[i] == '\0';
 }
+
 
 void WordToChar(const Word *word, char *output) {
     for (int i = 0; i < word->Length; i++) {
         output[i] = word->TabWord[i]; // Copy each character
     }
-    output[word->Length] = '\0'; // Add null terminator at the end
+    output[word->Length] = '\0'; 
 }
 
 boolean compareStringsManual(const char *str1, const char *str2) {
-    int i = 0;
-    while (str1[i] != '\0' && str2[i] != '\0') {
-        char ch1 = str1[i];
-        char ch2 = str2[i];
+    char ch1 = *str1;
+    char ch2 = *str2;
 
-        // Normalize characters to the same case manually
-        if (ch1 >= 'A' && ch1 <= 'Z') {
-            ch1 += ('a' - 'A'); // Convert uppercase to lowercase
-        }
-        if (ch2 >= 'A' && ch2 <= 'Z') {
-            ch2 += ('a' - 'A'); // Convert uppercase to lowercase
-        }
-
-        if (ch1 != ch2) {
-            return false; // Characters are different
-        }
-
-        i++;
+    // Normalize characters
+    if (ch1 >= 'A' && ch1 <= 'Z') {
+        ch1 += ('a' - 'A'); // Convert uppercase to lowercase
     }
-    // Ensure both strings end at the same length
-    return (str1[i] == '\0' && str2[i] == '\0');
+    if (ch2 >= 'A' && ch2 <= 'Z') {
+        ch2 += ('a' - 'A'); // Convert uppercase to lowercase
+    }
+
+    return ch1 == ch2;
 }
+
 
 
 boolean isEqualString(char *str1, char *str2) 
