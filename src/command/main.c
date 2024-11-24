@@ -28,9 +28,10 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request,
     update_menu(currentMenu, menustore);
     boolean isInStoreMenu = true;
     system("cls || clear");
-    animasiStore(); 
+    // animasiStore(); 
 
     while (isInStoreMenu) {
+        animasiStore();
         //scanf("%s", command);
         printf("\n\n");
         printf("Enter command: ");
@@ -95,9 +96,10 @@ void handleWorkChallenge(UserList *userList, MenuState *currentMenu) {
     update_menu(currentMenu, menuworkchallenge);
     boolean isInWorkChallengeMenu = true;
     system("cls || clear");
-    animasiChallenge();
+    //animasiChallenge();
 
     while (isInWorkChallengeMenu) {
+        animasiChallenge();
         printf("\n\n");
         printf("Enter command: ");
         //scanf("%s", command);
@@ -182,9 +184,10 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
     update_menu(currentMenu, menuforlogin);
     boolean isInLoginMenu = true;
     system("cls || clear");
-    animasiLogin();
+    //animasiLogin();
 
     while (isInLoginMenu) {
+        animasiLogin();
         //scanf("%s", command);
         printf("\n\n");
         printf("Enter command: ");
