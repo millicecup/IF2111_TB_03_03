@@ -26,7 +26,8 @@ SRC = main.c \
     work/work.c \
     help/help.c \
     logout/logout.c \
-    quit/quit.c
+    quit/quit.c \
+    handler/handler.c
 
 # Output Binary
 OUTPUT = program.exe
