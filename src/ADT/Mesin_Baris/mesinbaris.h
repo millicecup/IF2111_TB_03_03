@@ -58,7 +58,6 @@ void CopyLine();
 
 // boolean isInputEqual(Sentence Input, Word Kata);
 
-void GetInput();
 
 void ResetKalimat();
 

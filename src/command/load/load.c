@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "load.h"
 #include "../../ADT/User_Barang/user.h"
 #include "../../ADT/User_Barang/barang.h"

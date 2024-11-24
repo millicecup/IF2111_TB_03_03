@@ -79,6 +79,7 @@ void handleWorkChallengeMenu(UserList *userList, MenuState *currentMenu) {
             wordl3(userList);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
+            GetInput();
         } else if (isWordEqualToString(&currentWord, "MENU")) {
             isInWorkChallengeMenu = false;
             printf("Returning to Work Menu...\n");
@@ -131,6 +132,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             handleWorkChallengeMenu(userList, currentMenu);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
+            GetInput();
         } else if (isWordEqualToString(&currentWord, "SAVE")) {
             printf("Enter the filename to save the current state: ");
             char filename[50];
@@ -173,6 +175,7 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
             registerUser(userList);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
+            GetInput();
         } else if (isWordEqualToString(&currentWord, "MAIN")) {
             isInLoginMenu = false;
             printf("Returning to Main Menu...\n");
@@ -194,7 +197,7 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
 
         if (isWordEqualToString(&currentWord, "START")) {
             update_menu(currentMenu, menuforlogin); // Update menu state to login
-            if (start(userList, barangList) == 0) {
+            if (startfunc(userList, barangList) == 0) {
                 printf("Configuration loaded successfully!\n");
                 handleLoginMenu(userList, barangList, request, currentMenu);
             } else {
