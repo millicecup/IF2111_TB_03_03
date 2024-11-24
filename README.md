@@ -5,8 +5,9 @@
 - [Writer](#writer)
 - [Cara Menjalankan](#how-to-run)
 
-![Application Screenshot](src/command/Data/start.png)
 
+![Application Screenshot](src/command/Data/start.png)
+***
 ## Deskripsi
 Buatlah sebuah aplikasi simulasi berbasis CLI (command-line interface). Sistem ini dibuat dalam bahasa C dengan menggunakan struktur data yang sudah kalian pelajari di mata kuliah ini. Kalian boleh menggunakan (atau memodifikasi) struktur data yang sudah kalian buat untuk praktikum pada tugas besar ini. **Daftar ADT yang wajib digunakan** dapat dilihat pada bagian *Daftar ADT*. Library yang boleh digunakan hanya:
 - `stdio.h`
@@ -22,7 +23,7 @@ Buatlah sebuah aplikasi simulasi berbasis CLI (command-line interface). Sistem i
 - Menampilkan barang yang sudah dibeli
 - Membuat dan menghapus wishlist
 - Bekerja untuk menghasilkan uang
-
+***
 ## Writer
 | **NIM**       | **Nama**                         |
 |---------------|----------------------------------|
