@@ -10,21 +10,27 @@
 
 // Function to load both BarangList and UserList from a file
 void LoadConfig(const char *filename, UserList *userList, BarangList *barangList) {
-    FILE *pita = fopen(filename, "r");
-    if (pita == NULL) {
+    const char *parent_dir = "../../save";
+    
+    char path[255];
+    snprintf(path, sizeof(path), "%s/%s.txt", parent_dir, filename);
+    
+    FILE *file = fopen(path, "r");
+    
+    if (file == NULL) {
         printf("Error: Unable to open file %s.\n", filename);
         return;
     }
 
-    if (userList != NULL) {
+    if (userList == NULL) {
         CreateUserList(userList); // Initialize user list ga NULL
     }
-    if (barangList != NULL) {
+    if (barangList == NULL) {
         CreateBarangList(barangList, 2); // Initialize barang list ga NULL
     }
 
     // baca
-    STARTFILE(pita);
+    STARTFILE(file);
 
     // Read Barang
     if (barangList != NULL) {
@@ -77,7 +83,7 @@ void LoadConfig(const char *filename, UserList *userList, BarangList *barangList
         }
     }
 
-    fclose(pita);
+    fclose(file);
     printf("\nConfig file %s successfully loaded.\n", filename);
 }
 
