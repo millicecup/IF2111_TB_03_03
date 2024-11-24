@@ -113,7 +113,6 @@ void handleWorkChallenge(UserList *userList, MenuState *currentMenu) {
             wordl3(userList);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
-            GetInput();
         } else if (isWordEqualToString(&currentWord, "MENU")) {
             isInWorkChallengeMenu = false;
             printf("Returning to Work Menu...\n");
