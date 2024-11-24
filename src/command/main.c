@@ -43,12 +43,12 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request,
         } else if (isWordEqualToString(&currentWord, "STORE REQUEST")) {
             StoreRequest(request, barangList);
         } else if (isWordEqualToString(&currentWord, "STORE REMOVE")) {
+            DisplayStore(*barangList);
             removeItem(barangList);
         } else if (isWordEqualToString(&currentWord, "STORE SUPPLY")) {
             storeSupply(barangList, request);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
-            GetInput();
         } else if (isWordEqualToString(&currentWord, "MENU")) {
             isInStoreMenu = false;
             printf("Returning to Inside Menu...\n");
@@ -58,9 +58,10 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request,
     }
 }
 
+// mending dipisah apa engga work challenge nya?????
 // // Fungsi untuk handle work menu
 // void handleWorkMenu(UserList *userList, BarangList *barangList, MenuState *currentMenu) {
-//     update_menu(currentMenu, menustore);
+//     update_menu(currentMenu, menuwork);
 //     boolean isInWorkMenu = true;
 //     system("cls || clear");
 //     printWorkMenu();
@@ -94,7 +95,7 @@ void handleWorkChallenge(UserList *userList, MenuState *currentMenu) {
     update_menu(currentMenu, menuworkchallenge);
     boolean isInWorkChallengeMenu = true;
     system("cls || clear");
-    printWorkMenu();
+    animasiChallenge();
 
     while (isInWorkChallengeMenu) {
         printf("\n\n");
@@ -142,6 +143,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             clear = true;
             handleStoreMenu(userList, barangList, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "WORK")) {
+            animasiWork();
             clear = false;
             work(userList);
         } else if (isWordEqualToString(&currentWord, "WORK CHALLENGE")) {
@@ -236,7 +238,6 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
             handleLoginMenu(userList, barangList, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
-            GetInput();
         } else if (isWordEqualToString(&currentWord, "QUIT")) {
             *running = false;
             printf("Exiting PURRMART. Goodbye!\n");

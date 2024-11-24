@@ -98,6 +98,38 @@ void animasiQuit()
     } 
 }
 
+void animasiChallenge(){
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/workchallenge.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
+void animasiWork(){
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/work.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
 void printMainMenu() {
     printf("=========================================\n");
     printf("Welcome to PURRMART Main Menu!\n");
@@ -136,21 +168,6 @@ void printInsideMenu() {
     printf("Enter your command: ");
 }
 
-void printWorkMenu(){
-    FILE *fascii;
-    fascii = NULL;
-    fascii = fopen("animasi/work.txt","r");
-    if(fascii  == NULL)
-    {
-        printf("error opening file\n");
-    } 
-    else 
-    {
-        printImage(fascii);
-        fclose(fascii);
-    }
-    printf("\n\n\n"); 
-}
 
 void printStoreMenu(){
     printf("=========================================\n");

@@ -18,7 +18,9 @@ void animasiMenu();
 
 void animasiLogin();
 
-void printWorkMenu();
+void animasiWork();
+
+void animasiChallenge();
 
 void printMainMenu() ;
 

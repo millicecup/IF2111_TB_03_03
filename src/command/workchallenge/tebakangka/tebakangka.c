@@ -18,8 +18,9 @@ void tebakangka(UserList *userList) {
     }
     currentUser->money -= 200;
     printf("200 koin telah dikurangi. Sisa uang Anda: %d.\n", currentUser->money);
-    printf("Selamat datang di permainan W0RDL3!\n");
+    printf("Selamat datang di permainan Tebak Angka!\n");
     printf("ATTENTION! : \n");
+    printf("Anda memiliki 10 kesempatan untuk menebak.\n");
     printf("Apabila angka yang ditebak lebih kecil akan ada pemberitahuan.\n");
     printf("Apabila angka yang ditebak lebih besar akan ada pemberitahuan.\n");
     printf("Apabila angka yang ditebak benar akan ada pemberitahuan dan otomatis keluar dari permainan.\n");
@@ -43,6 +44,7 @@ void tebakangka(UserList *userList) {
             printf("Tebakanmu benar! Selamat!\n");
             printf("Anda mendapatkan 350 koin!\n");
             currentUser->money += 350;
+            printf("Uang Anda saat ini: %d.\n", currentUser->money);
             break; 
         }
 
