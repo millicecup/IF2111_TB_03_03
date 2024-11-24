@@ -15,7 +15,7 @@ void animasiMainMenu()
     FILE *fascii;
     system("cls || clear");
     fascii = NULL;
-    fascii = fopen("command/animasi/run.txt","r");
+    fascii = fopen("animasi/run.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
@@ -33,7 +33,7 @@ void animasiStore()
 {
     FILE *fascii;
     fascii = NULL;
-    fascii = fopen("command/animasi/store.txt","r");
+    fascii = fopen("animasi/store.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
@@ -50,7 +50,7 @@ void animasiMenu()
 {
     FILE *fascii;
     fascii = NULL;
-    fascii = fopen("command/animasi/menu.txt","r");
+    fascii = fopen("animasi/menu.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
@@ -62,31 +62,12 @@ void animasiMenu()
     }
     printf("\n\n\n"); 
 }
-
-void perrystop()
-{
-    FILE *fascii;
-    fascii = NULL;
-    fascii = fopen("command/animasi/menu.txt","r");
-    fascii = fopen("command/animasi/perrystop.txt","r");
-    if(fascii  == NULL)
-    {
-        printf("error opening file\n");
-    } 
-    else 
-    {
-        printImage(fascii);
-        fclose(fascii);
-    }
-    printf("\n\n\n"); 
-}
-
 
 void animasiLogin()
 {
     FILE *fascii;
     fascii = NULL;
-    fascii = fopen("command/animasi/login.txt","r");
+    fascii = fopen("animasi/login.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
@@ -104,7 +85,7 @@ void animasiQuit()
     FILE *fascii;
     system("cls || clear");
     fascii = NULL;
-    fascii = fopen("command/animasi/perrystop.txt","r");
+    fascii = fopen("animasi/perrystop.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
@@ -115,6 +96,38 @@ void animasiQuit()
         printImage(fascii);
         fclose(fascii);
     } 
+}
+
+void animasiChallenge(){
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/workchallenge.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
+void animasiWork(){
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/work.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
 }
 
 void printMainMenu() {
@@ -155,21 +168,6 @@ void printInsideMenu() {
     printf("Enter your command: ");
 }
 
-void animasiWorkMenu(){
-    FILE *fascii;
-    fascii = NULL;
-    fascii = fopen("command/animasi/work.txt","r");
-    if(fascii  == NULL)
-    {
-        printf("error opening file\n");
-    } 
-    else 
-    {
-        printImage(fascii);
-        fclose(fascii);
-    }
-    printf("\n\n\n"); 
-}
 
 void printStoreMenu(){
     printf("=========================================\n");

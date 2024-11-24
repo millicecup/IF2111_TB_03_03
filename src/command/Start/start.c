@@ -9,8 +9,8 @@
 #include "start.h"
 
 // Function to load default configuration and populate UserList and BarangList
-int startfunc(UserList *userList, BarangList *barangList) {
-    FILE *pita = fopen("Data/tez.txt", "r");
+int start(UserList *userList, BarangList *barangList) {
+    FILE *pita = fopen("../../save/config.txt", "r");
     if (pita == NULL) {
         printf("Error: Unable to open default configuration file.\n");
         return 1; // Return error code

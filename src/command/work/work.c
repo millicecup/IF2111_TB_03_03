@@ -71,8 +71,7 @@ void work(UserList *userList) {
         tunggu(pekerjaanDipilih.durasi);
         currentUser->money += pekerjaanDipilih.pendapatan;
         
-        printf("Pekerjaan selesai, +%d rupiah telah ditambahkan ke akun Anda.\n", 
-               pekerjaanDipilih.pendapatan);
+        printf("Pekerjaan selesai, +%d rupiah telah ditambahkan ke akun Anda.\n", pekerjaanDipilih.pendapatan);
         printf("Jumlah uang anda sekarang adalah %d.\n", currentUser->money);
     } else {
         printf("Pilihan pekerjaan tidak valid!\n");

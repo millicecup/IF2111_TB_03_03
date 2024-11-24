@@ -1,9 +1,8 @@
 #include "../../ADT/User_Barang/user.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include <stdio.h>
-#include "../save/save.h" // Ensure save function is included
+#include "../save/save.h" 
 
-// Function to check if a username already exists
 boolean isUsernameTaken(const UserList *userArray, const Word *username) {
     for (int i = 0; i < userArray->count; i++) {
         if (isWordEqualToString(username, userArray->users[i].name)) {
@@ -14,60 +13,54 @@ boolean isUsernameTaken(const UserList *userArray, const Word *username) {
 }
 
 void saveuser(const char *filename, User *newUser) {
-    FILE *file = fopen(filename, "a"); // Open the file in append mode
+    FILE *file = fopen(filename, "a"); // Buka file dengan append mode
     if (file == NULL) {
         printf("Error: Unable to open file for writing.\n");
         return;
     }
 
-    // Append only the new user's data
+    // Append hanya data user baru
     fprintf(file, "%d %s %s\n", newUser->money, newUser->name, newUser->password);
 
     fclose(file);
-    //printf("User successfully appended to %s\n", filename);
 }
 
 
 void registerUser(UserList *userArray) {
-    Word currentWord, password, name;
+    Word password, name;
     boolean validInput = false;
     User newUser;
 
     while (!validInput) {
-        // Ask for username
         printf("Enter username: ");
-        GetInput();
-        chartoWord(&currentWord, currentInput.TabWord);
-        if (currentWord.Length == 0) {
+        STARTINPUT(stdin);
+        if (currentInput.Length == 0) {
             printf("Username cannot be empty. Please try again.\n");
             continue;
-        } else if (isUsernameTaken(userArray, &currentWord)) {
+        } else if (isUsernameTaken(userArray, &currentInput)) {
             printf("Username is already taken. Please try again.\n");
             continue;
         }
 
-        chartoWord(&name, currentWord.TabWord);
+        name = currentInput;
 
-        // Ask for password
         printf("Enter password: ");
-        GetInput();
-        chartoWord(&currentWord, currentInput.TabWord);
-        if (currentWord.Length == 0) {
+        STARTINPUT(stdin);
+        if (currentInput.Length == 0) {
             printf("Password cannot be empty. Please try again.\n");
             continue;
         }
 
-        chartoWord(&password, currentWord.TabWord);
+        password = currentInput;
 
-        // Ask for initial money
         printf("Enter initial money (or press Enter for default 0): ");
-        GetInput();
-        chartoWord(&currentWord, currentInput.TabWord);
-        if (currentWord.Length == 0) {
+        STARTINPUT(stdin);
+        int money = WordToInt(&currentInput);
+        if (currentInput.Length == 0) {
             newUser.money = 0; // Default money
         } else {
-            newUser.money = WordToInt(&currentWord);
-            if (newUser.money < 0) {
+            newUser.money = money;
+            if (money < 0) {
                 printf("Money cannot be negative. Please try again.\n");
                 continue;
             }

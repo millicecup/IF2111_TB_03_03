@@ -1,16 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "../../ADT/User_Barang/user.h"
 #include "../../ADT/User_Barang/barang.h"
-#include <stdio.h>
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 
 
-#include <stdlib.h>
-
-
-
 // Function to save BarangList and UserList to a file
-void SaveToFile(const char *filename, BarangList *barangList, UserList *userList) {
-    FILE *file = fopen(filename, "a"); // Open the file in append mode
+void SaveToFile(const char *fileName, BarangList *barangList, UserList *userList) {
+    const char *parent_dir = "../../save";
+    
+    char path[255];
+    snprintf(path, sizeof(path), "%s/%s.txt", parent_dir, fileName);
+    
+    FILE *file = fopen(path, "a");
+
     if (file == NULL) {
         printf("Error: Unable to open file for writing.\n");
         return;
@@ -35,7 +38,7 @@ void SaveToFile(const char *filename, BarangList *barangList, UserList *userList
     }
 
     fclose(file);
-    printf("Data successfully saved to %s\n", filename);
+    printf("Data successfully saved to %s\n", path);
 }
 
 
