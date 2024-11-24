@@ -42,8 +42,10 @@ void tebakangka(UserList *userList) {
             printf("Tebakanmu lebih besar!\n");
         } else {
             printf("Tebakanmu benar! Selamat!\n");
-            printf("Anda mendapatkan 350 koin!\n");
-            currentUser->money += 350;
+            int hadiah = 50;
+            hadiah *= kesempatan;
+            printf("Anda mendapatkan %d koin!\n", hadiah);
+            currentUser->money += hadiah;
             printf("Uang Anda saat ini: %d.\n", currentUser->money);
             break; 
         }
@@ -57,12 +59,3 @@ void tebakangka(UserList *userList) {
     }
 
 }
-
-// int main(){
-//     tebakangka();
-//     return 0;
-// }
-
-/*
- gcc tebakangka.c ../../../ADT/Mesin_Karakter/mesinkarakter.c ../../../ADT/Mesin_Kata/mesinkata.c ../../../ADT/Mesin_Baris/mesinbaris.c -o tebakangka
- */
