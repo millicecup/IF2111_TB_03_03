@@ -1,0 +1,6 @@
+2
+50 kukis
+10 kopi
+2
+100 admin ak
+10000 pla 123

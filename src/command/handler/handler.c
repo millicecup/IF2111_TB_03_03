@@ -10,7 +10,7 @@
 
 #include "handler.h"
 #include "../animasi/animasi.h"
-#include "../start/start.h"
+#include "../Start/start.h"
 #include "../load/load.h"
 #include "../login/login.h"
 #include "../register/register.h"
@@ -22,11 +22,15 @@
 #include "../Store_Request/Store_Request.h"
 #include "../Store_Supply/Store_Supply.h"
 #include "../Store_Remove/Store_Remove.h"
+#include "../Help/help.h"
+#include "../Logout/logout.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) {
     update_menu(currentMenu, menustore);
     boolean isInStoreMenu = true;
-
+    //animasiStore();
     while (isInStoreMenu) {
         animasiStore();
         GetInput();
@@ -48,6 +52,7 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request,
             storeSupply(barangList, request);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
+            GetInput();
         } else if (isWordEqualToString(&currentWord, "MENU")) {
             isInStoreMenu = false;
             printf("Returning to Inside Menu...\n");
@@ -60,9 +65,10 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request,
 void handleWorkChallengeMenu(UserList *userList, MenuState *currentMenu) {
     update_menu(currentMenu, menuworkchallenge);
     boolean isInWorkChallengeMenu = true;
-
+    //animasiWorkMenu();
     while (isInWorkChallengeMenu) {
-        printWorkMenu();
+        animasiWorkMenu();
+        // printWorkMenu();
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
@@ -82,37 +88,37 @@ void handleWorkChallengeMenu(UserList *userList, MenuState *currentMenu) {
     }
 }
 
-void handleWorkMenu(UserList *userList, BarangList *barangList, MenuState *currentMenu) {
-    update_menu(currentMenu, menuutama);
-    boolean isInWorkMenu = true;
+// void handleWorkMenu(UserList *userList, BarangList *barangList, MenuState *currentMenu) {
+//     update_menu(currentMenu, menuwork);
+//     boolean isInWorkMenu = true;
+//     printWorkMenu();
+//     while (isInWorkMenu) {
+//         GetInput();
+//         Word currentWord;
+//         chartoWord(&currentWord, currentInput.TabWord);
 
-    while (isInWorkMenu) {
-        printWorkMenu();
-        GetInput();
-        Word currentWord;
-        chartoWord(&currentWord, currentInput.TabWord);
-
-        if (isWordEqualToString(&currentWord, "WORK")) {
-            work(userList);
-        } else if (isWordEqualToString(&currentWord, "WORK CHALLENGE")) {
-            handleWorkChallengeMenu(userList, currentMenu);
-        } else if (isWordEqualToString(&currentWord, "HELP")) {
-            help(currentMenu);
-        } else if (isWordEqualToString(&currentWord, "MENU")) {
-            isInWorkMenu = false;
-            printf("Returning to Inside Menu...\n");
-        } else {
-            printf("Invalid command. Please try again.\n");
-        }
-    }
-}
+//         if (isWordEqualToString(&currentWord, "WORK")) {
+//             work(userList);
+//         } else if (isWordEqualToString(&currentWord, "WORK CHALLENGE")) {
+//             handleWorkChallengeMenu(userList, currentMenu);
+//         } else if (isWordEqualToString(&currentWord, "HELP")) {
+//             help(currentMenu);
+//         } else if (isWordEqualToString(&currentWord, "MENU")) {
+//             isInWorkMenu = false;
+//             printf("Returning to Inside Menu...\n");
+//         } else {
+//             printf("Invalid command. Please try again.\n");
+//         }
+//     }
+// }
 
 void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) {
     update_menu(currentMenu, menuutama);
     boolean isInside = true;
-
+    //animasiMenu();
     while (isInside) {
-        printInsideMenu();
+        // printInsideMenu();
+        animasiMenu();
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
@@ -120,7 +126,9 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
         if (isWordEqualToString(&currentWord, "STORE")) {
             handleStoreMenu(userList, barangList, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "WORK")) {
-            handleWorkMenu(userList, barangList, currentMenu);
+            work(userList);
+        } else if (isWordEqualToString(&currentWord, "WORK CHALLENGE")) {
+            handleWorkChallengeMenu(userList, currentMenu);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "SAVE")) {
@@ -133,7 +141,11 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             SaveToFile(filename, barangList, userList);
         } else if (isWordEqualToString(&currentWord, "LOGOUT")) {
             logout(&isInside, *userList);
-            printf("Logging out...\n");
+            if (isInside == false) {
+                printf("Logging out...\n");
+                handleLoginMenu(userList, barangList, request, currentMenu);
+            }
+            
         } else {
             printf("Invalid command. Please try again.\n");
         }
@@ -143,6 +155,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
 void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) {
     update_menu(currentMenu, menuforlogin);
     boolean isInLoginMenu = true;
+    // animasiLogin();
 
     while (isInLoginMenu) {
         animasiLogin();
@@ -152,7 +165,8 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
 
         if (isWordEqualToString(&currentWord, "LOGIN")) {
             login(userList);
-            if (loggedIn) {
+            if (loggedIn) { // Assume loggedIn is set in login()
+                update_menu(currentMenu, menuutama); // Update menu state to main
                 handleInsideMenu(userList, barangList, request, currentMenu);
             }
         } else if (isWordEqualToString(&currentWord, "REGISTER")) {
@@ -172,7 +186,6 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
 }
 
 void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request, MenuState *currentMenu) {
-    update_menu(currentMenu, menuforwelcome);
     while (*running) {
         animasiMainMenu();
         GetInput();
@@ -180,6 +193,7 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
         chartoWord(&currentWord, currentInput.TabWord);
 
         if (isWordEqualToString(&currentWord, "START")) {
+            update_menu(currentMenu, menuforlogin); // Update menu state to login
             if (start(userList, barangList) == 0) {
                 printf("Configuration loaded successfully!\n");
                 handleLoginMenu(userList, barangList, request, currentMenu);
@@ -187,10 +201,12 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
                 printf("Failed to load configuration.\n");
             }
         } else if (isWordEqualToString(&currentWord, "LOAD")) {
+            update_menu(currentMenu, menuforlogin); // Update menu state to login
             Load(userList, barangList);
             handleLoginMenu(userList, barangList, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
-            help(currentMenu);
+            help(currentMenu); // Call the help function for the main menu
+            GetInput();
         } else if (isWordEqualToString(&currentWord, "QUIT")) {
             *running = false;
             printf("Exiting PURRMART. Goodbye!\n");

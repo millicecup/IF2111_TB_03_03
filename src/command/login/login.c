@@ -1,6 +1,3 @@
-#include "login.h"
-#include "../../ADT/User_Barang/user.h"
-#include "../load/load.h"
 
 #include "login.h"
 #include "../../ADT/User_Barang/user.h"
@@ -43,7 +40,6 @@ void login(UserList *userArray) {
         if (isWordEqualToString(&username, currentUser.name) &&
             isWordEqualToString(&password, currentUser.password)) {
             loggedIn = true;
-            userArray->currentUserIndex = i;
             printf("Login successful! Welcome, %s.\n", currentUser.name);
             break;
         }

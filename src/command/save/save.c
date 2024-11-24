@@ -35,7 +35,7 @@ void SaveToFile(const char *filename, BarangList *barangList, UserList *userList
     }
 
     fclose(file);
-    printf("Data successfully appended to %s\n", filename);
+    printf("Data successfully saved to %s\n", filename);
 }
 
 

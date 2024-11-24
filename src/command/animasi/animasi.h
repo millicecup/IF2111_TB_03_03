@@ -8,7 +8,7 @@
 
 void printImage(FILE *fascii);
 
-void perrystop();
+void animasiQuit();
 
 void animasiMainMenu();
 
@@ -24,7 +24,7 @@ void printLoginMenu() ;
 
 void printInsideMenu();
 
-void printWorkMenu();
+void animasiWorkMenu();
 
 void printStoreMenu();
 

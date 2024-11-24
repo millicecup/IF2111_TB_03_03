@@ -82,7 +82,7 @@ void wordl3(UserList *userList) {
         return;
     }
     currentUser->money -= 500;
-    printf("1500 koin telah dikurangi. Sisa uang Anda: %d.\n", currentUser->money);
+    printf("500 koin telah dikurangi. Sisa uang Anda: %d.\n", currentUser->money);
     printf("Selamat datang di permainan W0RDL3!\n");
     printf("ATTENTION! : \n");
     printf("Apabila huruf yang ditebak benar dan posisinya benar, maka akan ditandai dengan huruf tersebut.\n");

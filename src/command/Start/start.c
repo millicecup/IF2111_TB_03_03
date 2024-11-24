@@ -9,7 +9,7 @@
 
 // Function to load default configuration and populate UserList and BarangList
 int start(UserList *userList, BarangList *barangList) {
-    FILE *pita = fopen("../../save/config.txt", "r");
+    FILE *pita = fopen("Data/tez.txt", "r");
     if (pita == NULL) {
         printf("Error: Unable to open default configuration file.\n");
         return 1; // Return error code
@@ -17,7 +17,7 @@ int start(UserList *userList, BarangList *barangList) {
 
     // Initialize UserList and BarangList
     CreateUserList(userList);
-    CreateBarangList(barangList, 2); // Initial capacity 2 for BarangList
+    CreateBarangList(barangList, 10); // Initial capacity 2 for BarangList
 
     // Start reading the file
     STARTFILE(pita);

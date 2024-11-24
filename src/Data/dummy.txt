@@ -2,6 +2,8 @@
 10 AK47
 20 Lalabu
 20 Ayam Goreng Crisbar
-2
+3
 100 admin alstrukdatkeren
 25 praktikan kerenbangetkak
+10000 pla 123
+10000 pla 123

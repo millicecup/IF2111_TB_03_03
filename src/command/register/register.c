@@ -24,7 +24,7 @@ void saveuser(const char *filename, User *newUser) {
     fprintf(file, "%d %s %s\n", newUser->money, newUser->name, newUser->password);
 
     fclose(file);
-    printf("User successfully appended to %s\n", filename);
+    //printf("User successfully appended to %s\n", filename);
 }
 
 
@@ -94,7 +94,7 @@ void registerUser(UserList *userArray) {
     AddUser(userArray, newUser.name, newUser.password, newUser.money);
 
     // Save only the new user
-    saveuser("save/dummy.txt", &newUser);
+    saveuser("Data/dummy.txt", &newUser);
     
 
     printf("Registration successful! User '%s' has been registered.\n", name.TabWord);

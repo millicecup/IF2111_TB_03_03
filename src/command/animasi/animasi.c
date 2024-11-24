@@ -15,7 +15,7 @@ void animasiMainMenu()
     FILE *fascii;
     system("cls || clear");
     fascii = NULL;
-    fascii = fopen("animasi/run.txt","r");
+    fascii = fopen("command/animasi/run.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
@@ -26,56 +26,85 @@ void animasiMainMenu()
         printImage(fascii);
         fclose(fascii);
     }
-    printf("Enter your command: ");
+    printf("\n\n\n"); 
 }
 
 void animasiStore()
 {
     FILE *fascii;
-    system("cls || clear");
     fascii = NULL;
-    fascii = fopen("animasi/store.txt","r");
+    fascii = fopen("command/animasi/store.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
     } 
     else 
     {
-        system("cls || clear");
         printImage(fascii);
         fclose(fascii);
     }
-    printf("Enter your command: ");
+    printf("\n\n\n"); 
 }
 
-// void animasiMenu();
+void animasiMenu()
+{
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("command/animasi/menu.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
 void perrystop()
 {
     FILE *fascii;
-    system("cls || clear");
     fascii = NULL;
-    fascii = fopen("animasi/menu.txt","r");
-    fascii = fopen("perrystop.txt","r");
+    fascii = fopen("command/animasi/menu.txt","r");
+    fascii = fopen("command/animasi/perrystop.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
     } 
     else 
     {
-        system("cls || clear");
         printImage(fascii);
         fclose(fascii);
     }
-    printf("Enter your command: ");
+    printf("\n\n\n"); 
 }
 
 
 void animasiLogin()
 {
     FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("command/animasi/login.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
+void animasiQuit()
+{
+    FILE *fascii;
     system("cls || clear");
     fascii = NULL;
-    fascii = fopen("animasi/login.txt","r");
+    fascii = fopen("command/animasi/perrystop.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
@@ -85,9 +114,9 @@ void animasiLogin()
         system("cls || clear");
         printImage(fascii);
         fclose(fascii);
-    }
-    printf("Enter your command: ");
+    } 
 }
+
 void printMainMenu() {
     printf("=========================================\n");
     printf("Welcome to PURRMART Main Menu!\n");
@@ -126,22 +155,20 @@ void printInsideMenu() {
     printf("Enter your command: ");
 }
 
-void printWorkMenu(){
+void animasiWorkMenu(){
     FILE *fascii;
-    system("cls || clear");
     fascii = NULL;
-    fascii = fopen("work.txt","r");
+    fascii = fopen("command/animasi/work.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
     } 
     else 
     {
-        system("cls || clear");
         printImage(fascii);
         fclose(fascii);
     }
-    printf("Enter your command: ");
+    printf("\n\n\n"); 
 }
 
 void printStoreMenu(){

@@ -17,32 +17,40 @@ void LoadConfig(const char *filename, UserList *userList, BarangList *barangList
     }
 
     if (userList != NULL) {
-        CreateUserList(userList); // Initialize user list if not NULL
+        CreateUserList(userList); // Initialize user list ga NULL
     }
     if (barangList != NULL) {
-        CreateBarangList(barangList, 2); // Initialize barang list if not NULL
+        CreateBarangList(barangList, 2); // Initialize barang list ga NULL
     }
 
-    // Start reading from the file
+    // baca
     STARTFILE(pita);
 
-    // Read number of items (Barang)
+    // Read Barang
     if (barangList != NULL) {
         int num_items = atoi(currentLine.kalimat);
         printf("Jumlah barang: %d\n", num_items);
 
         for (int i = 0; i < num_items; i++) {
-            ADVWORD(); // Read item price
+            ADVWORD(); // baca price
             int price = WordtoNum(currentWord);
 
-            ADVSENTENCE(); // Read item name
+            ADVSENTENCE(); // baca name
             AddBarang(barangList, currentLine.kalimat, price);
         }
 
-        ADVSENTENCE(); // Move to the next line (number of users)
+        ADVSENTENCE(); // pindah baris
+    } else {
+        // Skip barang-related lines if BarangList is NULL
+        int num_items = atoi(currentLine.kalimat);
+        for (int i = 0; i < num_items; i++) {
+            ADVSENTENCE(); // Skip each barang entry
+        }
+
+        ADVSENTENCE(); // pindah baris
     }
 
-    // Read number of users
+    // Read users
     if (userList != NULL) {
         int num_users = atoi(currentLine.kalimat);
         printf("Jumlah pengguna: %d\n", num_users);
@@ -73,6 +81,7 @@ void LoadConfig(const char *filename, UserList *userList, BarangList *barangList
     printf("\nConfig file %s successfully loaded.\n", filename);
 }
 
+
 void Load(UserList *userList, BarangList *barangList) {
     char filename[MAX_LEN];
     Word file;
@@ -97,18 +106,18 @@ void Load(UserList *userList, BarangList *barangList) {
 //     CreateUserList(&userArray);
 
 //     BarangList barangArray;
-//     CreateBarangList(&barangArray, 10);
-//     Load(&userArray, &barangArray);
-//     // Print loaded items and users for verification
-//     // printf("\nDaftar Barang:\n");
-//     // PrintBarang(&barangArray);
+//     CreateBarangList(&barangArray, 2);
+//     LoadConfig("../../../save/config.txt", &userArray, &barangArray);
 
-//     // printf("\nDaftar Pengguna:\n");
-//     // PrintUsers(&userArray);
+//     // Print loaded items and users for verification
+//     printf("\nDaftar Barang:\n");
+//     PrintBarang(&barangArray);
+
+//     printf("\nDaftar Pengguna:\n");
+//     PrintUsers(&userArray);
 
 //     return 0;
 // }
 
-/*
-gcc load.c ../../ADT/User_Barang/user.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Baris/mesinbaris.c
-*/
+//gcc load.c ../../ADT/User_Barang/user.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Baris/mesinbaris.c
+
