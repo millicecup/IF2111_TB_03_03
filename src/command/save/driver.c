@@ -65,5 +65,5 @@ int main() {
 
 
 /* 
-gcc driver.c ../../ADT/User_Barang/user.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Kata/mesinkarakterv2.c ../../ADT/Mesin_Baris/mesinbaris.c save.c ../Start/start.c -o program
+gcc driver.c ../../ADT/User_Barang/user.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Baris/mesinbaris.c save.c ../Start/start.c -o program
 */

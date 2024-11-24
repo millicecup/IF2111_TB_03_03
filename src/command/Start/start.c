@@ -6,6 +6,7 @@
 #include "../../ADT/Mesin_Karakter/mesinkarakter.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../ADT/Mesin_Baris/mesinbaris.h"
+#include "start.h"
 
 // Function to load default configuration and populate UserList and BarangList
 int start(UserList *userList, BarangList *barangList) {

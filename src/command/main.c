@@ -111,6 +111,7 @@ void handleWorkChallenge(UserList *userList, MenuState *currentMenu) {
             wordl3(userList);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
+            GetInput();
         } else if (isWordEqualToString(&currentWord, "MENU")) {
             isInWorkChallengeMenu = false;
             printf("Returning to Work Menu...\n");
@@ -152,6 +153,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             clear = false;
             help(currentMenu);
+            GetInput();
         } else if (isWordEqualToString(&currentWord, "SAVE")) {
             clear = false;
             printf("Enter the filename to save the current state: ");
