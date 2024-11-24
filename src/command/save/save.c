@@ -39,8 +39,8 @@ void SaveToFile(const char *filename, const BarangList *barangArray, const UserL
     }
 
     fclose(file);
-    printf("Data successfully saved to %s\n", path);
     issave = true;
+    printf("Data successfully saved to %s\n", path);
 }
 
 

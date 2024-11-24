@@ -210,11 +210,10 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
         } else if (isWordEqualToString(&currentWord, "QUIT")) {
             quit(&isInLoginMenu, *userList);
             if (isInLoginMenu == false) {
-                printf("Exiting PURRMART. Goodbye!\n");
-                // handleLoginMenu(userList, barangList, request, currentMenu); /////////////////////////////////////////////////////////////////////////////
+                exit(0);
             }
             //printf("Exiting PURRMART. Goodbye!\n");
-            exit(0);
+            // exit(0);
         } else {
             printf("Invalid command. Please try again.\n");
         }
@@ -250,9 +249,10 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "QUIT")) {
-            *running = false;
-            printf("Exiting PURRMART. Goodbye!\n");
-            exit(0);
+            quit(running, *userList);
+            if(running==false){
+                exit(0);
+            }
         } else {
             printf("Invalid command. Please try again.\n");
         }
@@ -289,4 +289,5 @@ gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Ka
 */
 
 /*
-gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Karakter/mesinkarakter.c ../ADT/Mesin_Kata/mesinkata.c ../ADT/Mesin_Baris/mesinbaris.c Start/start.c login/login.c register/register.c save/save.c load/load.c animasi/animasi.c Store_List/Store_List.c ../ADT/List/list.c ../ADT/queue/queue.c Store_Request/Store_Request.c Store_Remove/Store_Remove.c Store_Supply/Store_Supply.c workchallenge/wordl3/wordl3.c workchallenge/tebakangka/tebakangka.c work/work.c help/help.c logout/logout.c quit/quit.c -o program*/
+gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Karakter/mesinkarakter.c ../ADT/Mesin_Kata/mesinkata.c ../ADT/Mesin_Baris/mesinbaris.c Start/start.c login/login.c register/register.c save/save.c load/load.c animasi/animasi.c Store_List/Store_List.c ../ADT/List/list.c ../ADT/queue/queue.c Store_Request/Store_Request.c Store_Remove/Store_Remove.c Store_Supply/Store_Supply.c workchallenge/wordl3/wordl3.c workchallenge/tebakangka/tebakangka.c work/work.c help/help.c logout/logout.c quit/quit.c -o program
+*/

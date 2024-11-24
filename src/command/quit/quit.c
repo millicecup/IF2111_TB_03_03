@@ -12,9 +12,13 @@ void quit(boolean *isInLoginMenu, UserList list){
         GetInput();
         if(compareStringsManual(currentInput.TabWord, "Y")){
             *isInLoginMenu = 0;
-            printf("Anda berhasil keluar\n");
+            //printf("Anda berhasil keluar\n");
+            printf("Exiting PURRMART. Goodbye!\n");
+
         } else {
             printf("Anda belum melakukan save\n");
+            printf("Silahkan lakukan save file terlebih dahulu\n");
+            printf("Mengarahkan anda kembali...\n");
         }
     } else {
         printf("Anda belum login\n");
