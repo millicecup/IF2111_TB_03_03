@@ -1,8 +1,8 @@
-# Compiler and Flags
+# Compiler dan Flags
 CC = gcc
 CFLAGS = -Wno-implicit-function-declaration
 
-# Source Files (Mimicking the manual command)
+# Source Files
 SRC = main.c \
     ../ADT/User_Barang/user.c \
     ../ADT/User_Barang/barang.c \
@@ -29,19 +29,28 @@ SRC = main.c \
     quit/quit.c \
     handler/handler.c
 
-# Output Binary
-OUTPUT = program.exe
+# Output
+OUTPUT = program
 
-# Target to build the program
-all: $(OUTPUT)
+# untuk pisahin windows linux
+ifeq ($(OS),Windows_NT)
+    RM = del /f /q
+    EXE = .exe
+else
+    RM = rm -f
+    EXE =
+endif
 
-$(OUTPUT): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(OUTPUT)
+# build program
+all: $(OUTPUT)$(EXE)
 
-# Run the program (Optional)
-run: $(OUTPUT)
-	$(OUTPUT)
+$(OUTPUT)$(EXE): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(OUTPUT)$(EXE)
 
-# Clean generated files
+# Run 
+run: $(OUTPUT)$(EXE)
+	./$(OUTPUT)$(EXE)
+
+# Clean files
 clean:
-	del /f /q $(OUTPUT) 2>nul
+	$(RM) $(OUTPUT)$(EXE)
