@@ -33,6 +33,7 @@ void login(UserList *userArray) {
     // Check credentials
     for (int i = 0; i < userArray->count; i++) {
         User currentUser = userArray->users[i];
+        userArray->currentUserIndex = i;
 
         // Debugging: Print user being compared
         //printf("Debug: Comparing with Username: %s, Password: %s\n", currentUser.name, currentUser.password);

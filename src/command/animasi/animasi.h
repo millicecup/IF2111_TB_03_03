@@ -18,13 +18,13 @@ void animasiMenu();
 
 void animasiLogin();
 
+void printWorkMenu();
+
 void printMainMenu() ;
 
 void printLoginMenu() ;
 
 void printInsideMenu();
-
-void animasiWorkMenu();
 
 void printStoreMenu();
 
