@@ -43,13 +43,17 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request,
 
         if (isWordEqualToString(&currentWord, "STORE LIST")) {
             DisplayStore(*barangList);
+            tunggu(5);
         } else if (isWordEqualToString(&currentWord, "STORE REQUEST")) {
             StoreRequest(request, barangList);
+            tunggu(2);
         } else if (isWordEqualToString(&currentWord, "STORE REMOVE")) {
             DisplayStore(*barangList);
             removeItem(barangList);
+            tunggu(2);
         } else if (isWordEqualToString(&currentWord, "STORE SUPPLY")) {
             storeSupply(barangList, request);
+            tunggu(2);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "MENU")) {
@@ -111,8 +115,10 @@ void handleWorkChallenge(UserList *userList, MenuState *currentMenu) {
 
         if (isWordEqualToString(&currentWord, "TEBAK ANGKA")) {
             tebakangka(userList);
+            tunggu(3);
         } else if (isWordEqualToString(&currentWord, "WORDL3")) {
             wordl3(userList);
+            tunggu(3);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "MENU")) {
@@ -133,7 +139,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
     while (isInside) {
         if (clear)
         {
-            system("cls || clear");
+            system("clear");
             animasiMenu();
         }
         printf("\n\n");
@@ -150,11 +156,12 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             animasiWork();
             clear = false;
             work(userList);
+            tunggu(3);
         } else if (isWordEqualToString(&currentWord, "WORK CHALLENGE")) {
             clear = true;
             handleWorkChallenge(userList, currentMenu);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
-            clear = false;
+            clear = true;
             help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "SAVE")) {
             clear = false;
@@ -166,11 +173,13 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             chartoWord(&file, currentInput.TabWord);
             WordToChar(&file, filename); 
             SaveToFile(filename, barangList, userList);
+            tunggu(3);
         } else if (isWordEqualToString(&currentWord, "LOGOUT")) {
             clear = true;
             logout(&isInside, *userList);
             if (isInside == false) {
                 printf("Logging out...\n");
+                tunggu(2);
                 // handleLoginMenu(userList, barangList, request, currentMenu); /////////////////////////////////////////////////////////////////////////////
             }
         } else {
@@ -200,8 +209,10 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
                 update_menu(currentMenu, menuutama);
                 handleInsideMenu(userList, barangList, request, currentMenu);
             }
+            tunggu(2);
         } else if (isWordEqualToString(&currentWord, "REGISTER")) {
             registerUser(userList);
+            tunggu(2);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "MAIN MENU")) {
@@ -237,6 +248,7 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
             update_menu(currentMenu, menuforlogin);
             if (start(userList, barangList) == 0) {
                 printf("Configuration loaded successfully!\n");
+                tunggu(1);
                 handleLoginMenu(userList, barangList, request, currentMenu);
             } else {
                 printf("Failed to load configuration.\n");
@@ -244,7 +256,7 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
         } else if (isWordEqualToString(&currentWord, "LOAD")) {
             update_menu(currentMenu, menuforlogin);
             Load(userList, barangList);
-            tunggu(15);
+            tunggu(barangList->count);
             handleLoginMenu(userList, barangList, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);

@@ -1,49 +1,46 @@
-# Compiler dan Flags
+# Compiler and Flags
 CC = gcc
 CFLAGS = -Wno-implicit-function-declaration
 
-# File Sumber dan Header
+# Source Files (Mimicking the manual command)
 SRC = main.c \
-    Logout/logout.c \
-    Help/help.c \
-    animasi/animasi.c \
-    load/load.c \
+    ../ADT/User_Barang/user.c \
+    ../ADT/User_Barang/barang.c \
+    ../ADT/Mesin_Karakter/mesinkarakter.c \
+    ../ADT/Mesin_Kata/mesinkata.c \
+    ../ADT/Mesin_Baris/mesinbaris.c \
+    Start/start.c \
     login/login.c \
     register/register.c \
     save/save.c \
-    Start/start.c \
+    load/load.c \
+    animasi/animasi.c \
     Store_List/Store_List.c \
-    Store_Remove/Store_Remove.c \
-    Store_Request/Store_Request.c \
-    Store_Supply/Store_Supply.c \
-    work/work.c \
-    workchallenge/tebakangka/tebakangka.c \
-    workchallenge/wordl3/wordl3.c \
     ../ADT/List/list.c \
-    ../ADT/Mesin_Baris/mesinbaris.c \
-    ../ADT/Mesin_Karakter/mesinkarakter.c \
-    ../ADT/Mesin_Kata/mesinkata.c \
     ../ADT/queue/queue.c \
-    ../ADT/User_Barang/user.c \
-    ../ADT/User_Barang/barang.c
+    Store_Request/Store_Request.c \
+    Store_Remove/Store_Remove.c \
+    Store_Supply/Store_Supply.c \
+    workchallenge/wordl3/wordl3.c \
+    workchallenge/tebakangka/tebakangka.c \
+    work/work.c \
+    help/help.c \
+    logout/logout.c \
+    quit/quit.c
 
-OBJ = $(SRC:.c=.o)
+# Output Binary
+OUTPUT = program.exe
 
-# Target Utama
-all: program
+# Target to build the program
+all: $(OUTPUT)
 
-# Membuat Program dari Objek
-program: $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o program
+$(OUTPUT): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(OUTPUT)
 
-# Membuat File Objek
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+# Run the program (Optional)
+run: $(OUTPUT)
+	$(OUTPUT)
 
-# Menjalankan Program
-run: program
-	./program ../../save/config.txt
-
-# Membersihkan File Objek dan Program
+# Clean generated files
 clean:
-	del /f /q *.o program.exe 2>nul
+	del /f /q $(OUTPUT) 2>nul
