@@ -155,7 +155,6 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             clear = false;
             help(currentMenu);
-            GetInput();
         } else if (isWordEqualToString(&currentWord, "SAVE")) {
             clear = false;
             printf("Enter the filename to save the current state: ");
