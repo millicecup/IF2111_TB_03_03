@@ -197,7 +197,7 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
             registerUser(userList);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
-        } else if (isWordEqualToString(&currentWord, "MENU")) {
+        } else if (isWordEqualToString(&currentWord, "MAIN MENU")) {
             isInLoginMenu = false;
             printf("Returning to Main Menu...\n");
         } else if (isWordEqualToString(&currentWord, "QUIT")) {
@@ -211,6 +211,7 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
 
 // Fungsi untuk handle main menu
 void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request, MenuState *currentMenu) {
+    update_menu(currentMenu, menuforwelcome);
     system("cls || clear");
 
     while (*running) {
