@@ -40,6 +40,6 @@ Buatlah sebuah aplikasi simulasi berbasis CLI (command-line interface). Sistem i
 ### Compile dengan Makefile
 1. Pastikan berada di directory src/command.
 2. Buka terminal.
-3. Jalankan `make clean` di terminal.
+3. Jalankan `make clean` di terminal. **PASTIKAN MELAKUKAN INI**
 4. Jalankan `make` di terminal.
 5. Jalankan `make run` di terminal.
