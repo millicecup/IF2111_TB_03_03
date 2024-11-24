@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "../ADT/User_Barang/user.h"
 #include "../ADT/Mesin_Kata/mesinkata.h"
 #include "../ADT/User_Barang/barang.h"
@@ -238,6 +239,7 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
         } else if (isWordEqualToString(&currentWord, "LOAD")) {
             update_menu(currentMenu, menuforlogin);
             Load(userList, barangList);
+            tunggu(15);
             handleLoginMenu(userList, barangList, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
