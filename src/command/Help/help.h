@@ -2,16 +2,7 @@
 #define HELP_H
 
 #include <stdio.h>
-
-// struck for help
-typedef enum {
-    menuforwelcome,
-    menuforlogin,
-    menuutama,
-    menustore,
-    menuwork,
-    menuworkchallenge,
-} MenuState;
+#include "../../ADT/User_Barang/menu.h"
 
 
 void help(MenuState *current_menu);
