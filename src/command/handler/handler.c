@@ -66,39 +66,6 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request,
     }
 }
 
-// mending dipisah apa engga work challenge nya?????
-// // Fungsi untuk handle work menu
-// void handleWorkMenu(UserList *userList, BarangList *barangList, MenuState *currentMenu) {
-//     update_menu(currentMenu, menuwork);
-//     boolean isInWorkMenu = true;
-//     system("cls || clear");
-//     printWorkMenu();
-
-//     while (isInWorkMenu) {
-//         printf("\n\n");
-//         printf("Enter command: ");
-//         //scanf("%s", command);
-//         GetInput();
-//         Word currentWord;
-//         chartoWord(&currentWord, currentInput.TabWord);
-
-//         if (isWordEqualToString(&currentWord, "TEBAK ANGKA")) {
-//             tebakangka(userList);
-//         } else if (isWordEqualToString(&currentWord, "WORDL3")) {
-//             wordl3(userList);
-//         } else if (isWordEqualToString(&currentWord, "WORK")) {
-//             work(userList);
-//         } else if (isWordEqualToString(&currentWord, "HELP")) {
-//             help(currentMenu);
-//         } else if (isWordEqualToString(&currentWord, "MENU")) {
-//             isInWorkMenu = false;
-//             printf("Returning to Inside Menu...\n");
-//         } else {
-//             printf("Invalid command. Please try again.\n");
-//         }
-//     }
-// }
-
 void handleWorkChallenge(UserList *userList, MenuState *currentMenu) {
     update_menu(currentMenu, menuworkchallenge);
     boolean isInWorkChallengeMenu = true;
@@ -176,6 +143,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             WordToChar(&file, filename); 
             SaveToFile(filename, barangList, userList);
             tunggu(3);
+            handleInsideMenu(userList, barangList, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "LOGOUT")) {
             clear = true;
             logout(&isInside, *userList);

@@ -8,7 +8,7 @@ boolean issave = false;
 
 // Function to save BarangList and UserList to a file
 void SaveToFile(const char *filename, const BarangList *barangArray, const UserList *userArray){
-    const char *parent_dir = "../../save";
+    const char *parent_dir = "../../root";
     
     char path[255];
     snprintf(path, sizeof(path), "%s/%s.txt", parent_dir, filename);

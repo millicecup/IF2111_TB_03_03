@@ -10,7 +10,7 @@
 
 // Function to load default configuration and populate UserList and BarangList
 int start(UserList *userList, BarangList *barangList) {
-    FILE *pita = fopen("../../save/config.txt", "r");
+    FILE *pita = fopen("../../root/config.txt", "r");
     if (pita == NULL) {
         printf("Error: Unable to open default configuration file.\n");
         return 1; // Return error code

@@ -19,7 +19,7 @@ void LoadConfig(const char *filename, UserList *userList, BarangList *barangList
         CreateUserList(userList); // Initialize user list ga NULL
     }
     if (barangList != NULL) {
-        CreateBarangList(barangList, 2); // Initialize barang list ga NULL
+        CreateBarangList(barangList, 3); // Initialize barang list ga NULL
     }
 
     // baca
