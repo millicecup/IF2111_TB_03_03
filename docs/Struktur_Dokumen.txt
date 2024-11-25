@@ -1,13 +1,12 @@
 
 ├── root
 │   ├── save1.txt        # Konfigurasi yang pernah disimpan
-│   ├── saveberapa.txt   # Konfigurasi lain yang pernah disimpan
 │   └── config.txt       # Konfigurasi awal
 ├── docs                  
-│   ├── Spesifikasi Tugas Besar 1 IF2111 2024/2025.pdf
-│   └── IF2111_TB_03_03.pdf
+│   ├── Spesifikasi Tugas Besar 1 IF2111 2024/2025.pdf      # Dokumen spesifikasi
+│   └── IF2111_TB_03_03.pdf                                 # Laporan tugas besar
 ├── src
-│   ├── ADT               
+│   ├── ADT                  # Implementasi seluruh struktur data yang digunakan 
 │   │   ├── List
 │   │   ├── Mesin_Baris    
 │   │   ├── Mesin_Karakter      
@@ -15,7 +14,7 @@
 │   │   ├── User_Barang
 │   │   ├── queue 
 │   │   ├── boolean.h
-├   ├── command              
+├   ├── command             # Implementasi seluruh command         
 │   │   ├── Help
 │   │   ├── Logout    
 │   │   ├── Start      
@@ -33,5 +32,5 @@
 │   │   ├── work    
 │   │   ├── workchallenge
 │   │   ├── Makefile    
-└── └── └── main.c
+└── └── └── main.c         # Memanggil semua command
 README.MD
