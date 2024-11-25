@@ -225,9 +225,12 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
             }
         } else if (isWordEqualToString(&currentWord, "LOAD")) {
             update_menu(currentMenu, menuforlogin);
-            Load(userList, barangList);
-            tunggu(barangList->count);
-            handleLoginMenu(userList, barangList, request, currentMenu);
+            if (Load(userList, barangList)) {
+                tunggu(2);
+                handleLoginMenu(userList, barangList, request, currentMenu); 
+            } else {
+                update_menu(currentMenu, menuforwelcome);
+            }
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "QUIT")) {

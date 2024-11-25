@@ -6,19 +6,20 @@
 #include "../../ADT/Mesin_Karakter/mesinkarakter.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../ADT/Mesin_Baris/mesinbaris.h"
+#include "../work/work.h"
 
 // Function to load both BarangList and UserList from a file
-void LoadConfig(const char *filename, UserList *userList, BarangList *barangList) {
+boolean LoadConfig(const char *filename, UserList *userList, BarangList *barangList) {
     const char *parent_dir = "../../root";
     
     char path[255];
-    snprintf(path, sizeof(path), "%s/%s.txt", parent_dir, filename);
+    snprintf(path, sizeof(path), "%s/%s", parent_dir, filename);
     
     FILE *pita = fopen(path, "r");
     
     if (pita == NULL) {
         printf("Error: Unable to open file %s.\n", filename);
-        return;
+        return false;
     }
 
     if (userList == NULL) {
@@ -34,7 +35,7 @@ void LoadConfig(const char *filename, UserList *userList, BarangList *barangList
     // Read Barang
     if (barangList != NULL) {
         int num_items = atoi(currentLine.kalimat);
-        printf("Jumlah barang: %d\n", num_items);
+        // printf("Jumlah barang: %d\n", num_items);
 
         for (int i = 0; i < num_items; i++) {
             ADVWORD(); // baca price
@@ -58,7 +59,7 @@ void LoadConfig(const char *filename, UserList *userList, BarangList *barangList
     // Read users
     if (userList != NULL) {
         int num_users = atoi(currentLine.kalimat);
-        printf("Jumlah pengguna: %d\n", num_users);
+        // printf("Jumlah pengguna: %d\n", num_users);
 
         for (int i = 0; i < num_users; i++) {
             ADVWORD(); // Read user money
@@ -84,10 +85,11 @@ void LoadConfig(const char *filename, UserList *userList, BarangList *barangList
 
     fclose(pita);
     printf("\nConfig file %s successfully loaded.\n", filename);
+    return true;
 }
 
 
-void Load(UserList *userList, BarangList *barangList) {
+boolean Load(UserList *userList, BarangList *barangList) {
     char filename[MAX_LEN];
     Word file;
     printf("Enter the file name to load: ");
@@ -100,7 +102,13 @@ void Load(UserList *userList, BarangList *barangList) {
     LoadConfig(filename, userList, barangList);
     // printf("\nDaftar Barang:\n");
     // PrintBarang(barangList);
-
+    if (LoadConfig(filename, userList, barangList)) {
+        return true; // Load berhasil
+    } else {
+        printf("\nReturning to main menu...\n");
+        tunggu(3); 
+        return false; // Load gagal
+    }
     // printf("\nDaftar Pengguna:\n");
     // PrintUsers(userList);
 }
