@@ -4,6 +4,7 @@
 - [Fitur Utama](#fitur-utama)
 - [Writer](#writer)
 - [Cara Menjalankan](#how-to-run)
+***
 
 
 ![Application Screenshot](src/command/Data/start.png)
