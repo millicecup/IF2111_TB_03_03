@@ -118,8 +118,11 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
         chartoWord(&currentWord, currentInput.TabWord);
 
         if (isWordEqualToString(&currentWord, "STORE")) {
+            MenuState insidemenu = *currentMenu;
             clear = true;
+            update_menu(currentMenu, menustore);
             handleStoreMenu(userList, barangList, request, currentMenu);
+            update_menu(currentMenu, insidemenu);
         } else if (isWordEqualToString(&currentWord, "WORK")) {
             animasiWork();
             clear = false;
@@ -127,8 +130,10 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             tunggu(3);
             handleInsideMenu(userList, barangList, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "WORK CHALLENGE")) {
-            clear = true;
+            MenuState insidemenu = *currentMenu;
+            update_menu(currentMenu, menuworkchallenge);
             handleWorkChallenge(userList, currentMenu);
+            update_menu(currentMenu, insidemenu);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             clear = true;
             help(currentMenu);

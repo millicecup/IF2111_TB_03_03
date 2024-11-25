@@ -95,10 +95,7 @@ boolean Load(UserList *userList, BarangList *barangList) {
     printf("Enter the file name to load: ");
     GetInput();
     chartoWord(&file, currentInput.TabWord);
-    // strncpy(filename, currentInput.TabWord, currentInput.Length);
-    // filename[currentInput.Length] = '\0'; // Null-terminate the filename string
     WordToChar(&file, filename);
-    // Pass the entered filename to LoadConfig
     LoadConfig(filename, userList, barangList);
     // printf("\nDaftar Barang:\n");
     // PrintBarang(barangList);
