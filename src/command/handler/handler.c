@@ -193,6 +193,7 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
         } else if (isWordEqualToString(&currentWord, "MAIN MENU")) {
             isInLoginMenu = false;
             printf("Returning to Main Menu...\n");
+            handleMainMenu(userList, barangList, &isInLoginMenu, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "QUIT")) {
             quit(&isInLoginMenu, *userList);
             if (isInLoginMenu == false) {

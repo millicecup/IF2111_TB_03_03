@@ -34,23 +34,29 @@ void tebakangka(UserList *userList) {
     while (kesempatan > 0) {
         printf("Tebak angka: ");
         STARTINPUT(stdin);
-        tebakan = atoi(currentInput.TabWord);
-        
-        if (tebakan < target) {
-            printf("Tebakanmu lebih kecil!\n");
-        } else if (tebakan > target) {
-            printf("Tebakanmu lebih besar!\n");
-        } else {
-            printf("Tebakanmu benar! Selamat!\n");
-            int hadiah = 50;
-            hadiah *= kesempatan;
-            printf("Anda mendapatkan %d koin!\n", hadiah);
-            currentUser->money += hadiah;
-            printf("Uang Anda saat ini: %d.\n", currentUser->money);
-            break; 
-        }
+        int tebakan = WordToInt(&currentInput);
+        if (tebakan > 0)
+        {
+            if (tebakan < target) {
+                printf("Tebakanmu lebih kecil!\n");
+            } else if (tebakan > target) {
+                printf("Tebakanmu lebih besar!\n");
+            } else {
+                printf("Tebakanmu benar! Selamat!\n");
+                int hadiah = 50;
+                hadiah *= kesempatan;
+                printf("Anda mendapatkan %d koin!\n", hadiah);
+                currentUser->money += hadiah;
+                printf("Uang Anda saat ini: %d.\n", currentUser->money);
+                break; 
+            }
 
-        kesempatan--;
+            kesempatan--;
+        }
+        else
+        {
+            printf("Input tidak valid!.\n");
+        }
     }
 
     if (kesempatan == 0) {
