@@ -24,8 +24,8 @@ SRC = main.c \
     workchallenge/wordl3/wordl3.c \
     workchallenge/tebakangka/tebakangka.c \
     work/work.c \
-    help/help.c \
-    logout/logout.c \
+    Help/help.c \
+    Logout/logout.c \
     quit/quit.c \
     handler/handler.c
 
