@@ -9,16 +9,22 @@
 
 // Function to load both BarangList and UserList from a file
 void LoadConfig(const char *filename, UserList *userList, BarangList *barangList) {
-    FILE *pita = fopen(filename, "r");
+    const char *parent_dir = "../../root";
+    
+    char path[255];
+    snprintf(path, sizeof(path), "%s/%s.txt", parent_dir, filename);
+    
+    FILE *pita = fopen(path, "r");
+    
     if (pita == NULL) {
         printf("Error: Unable to open file %s.\n", filename);
         return;
     }
 
-    if (userList != NULL) {
+    if (userList == NULL) {
         CreateUserList(userList); // Initialize user list ga NULL
     }
-    if (barangList != NULL) {
+    if (barangList == NULL) {
         CreateBarangList(barangList, 3); // Initialize barang list ga NULL
     }
 
@@ -92,11 +98,11 @@ void Load(UserList *userList, BarangList *barangList) {
     WordToChar(&file, filename);
     // Pass the entered filename to LoadConfig
     LoadConfig(filename, userList, barangList);
-    printf("\nDaftar Barang:\n");
-    PrintBarang(barangList);
+    // printf("\nDaftar Barang:\n");
+    // PrintBarang(barangList);
 
-    printf("\nDaftar Pengguna:\n");
-    PrintUsers(userList);
+    // printf("\nDaftar Pengguna:\n");
+    // PrintUsers(userList);
 }
 
 
