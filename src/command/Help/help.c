@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "help.h" 
 #include "../../ADT/boolean.h"
-#include "../../ADT/mesin_kata/mesinkata.h"
+#include "../../ADT/Mesin_Kata/mesinkata.h"
 
 //fungsi untuk menampilkan HELP sesuai menu aktif
 void help(MenuState *current_menu) {

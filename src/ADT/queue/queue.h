@@ -2,7 +2,7 @@
 #define ADTqueue_H
 
 #include "../boolean.h"
-#include "../mesin_kata/mesinkata.h"
+#include "../Mesin_Kata/mesinkata.h"
 #include "../User_Barang/barang.h"
 
 #define IDX_UNDEFQ -1

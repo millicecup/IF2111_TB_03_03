@@ -1,7 +1,7 @@
 #ifndef QUIT_H
 #define QUIT_H
 
-#include "../../ADT/user_barang/user.h" 
+#include "../../ADT/User_Barang/user.h" 
 #include "../../ADT/boolean.h"
 #include "../../command/save/save.h"
 

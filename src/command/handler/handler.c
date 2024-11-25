@@ -7,7 +7,7 @@
 #include "../../ADT/queue/queue.h"
 
 #include "../animasi/animasi.h"
-#include "../start/start.h"
+#include "../Start/start.h"
 #include "../load/load.h"
 #include "../login/login.h"
 #include "../register/register.h"
