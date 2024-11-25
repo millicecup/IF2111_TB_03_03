@@ -36,20 +36,27 @@ void storeSupply(BarangList *store, Queue *request)
 
             if (isEqualString(input, "Terima"))
             {
-                printf("Harga barang: ");
-                STARTINPUT(stdin);
-                int price = WordToInt(&currentInput);
+                boolean isValidPrice = false;
+                int price = 0;
 
-                if (price > 0)
+                while(!isValidPrice)
                 {
-                    req.price = price;
-                    InsertLast(store, req);
-                    printf("%s dengan harga %d telah ditambahkan ke toko.\n", req.name, price);
+                    printf("Harga barang: ");
+                    STARTINPUT(stdin);
+                    price = WordToInt(&currentInput);
+
+                    if (price > 0)
+                    {
+                        isValidPrice = true;
+                    }
+                    else
+                    {
+                        printf("Harga barang tidak valid!.\n");
+                    }
                 }
-                else
-                {
-                    printf("Harga barang tidak valid!.\n");
-                }
+                req.price = price;
+                InsertLast(store, req);
+                printf("%s dengan harga %d telah ditambahkan ke toko.\n", req.name, price);
             }
             else if (isEqualString(input, "Tunda"))
             {
