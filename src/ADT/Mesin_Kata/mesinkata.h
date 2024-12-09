@@ -80,10 +80,18 @@ int stringLength(char *str);
     Kemudian mengembalikan panjang dari string tersebut */
 
 boolean isWordEqualToString(const Word *w, const char *str);
+
 void READWORD();
+
 boolean compareStringsManual(const char *str1, const char *str2);
+
 void RemoveNewLineWord(Word kata);
+
 void stringToWord(char *str, Word *word);
+
 boolean IsWordEqual(Word w1, Word w2) ;
+
+boolean isGreaterString(char *str1, char *str2); 
+
 
 #endif

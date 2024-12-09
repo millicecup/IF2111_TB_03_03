@@ -359,3 +359,32 @@ boolean isEqualString(char *str1, char *str2)
     }
     return str1[i] == '\0' && str2[i] == '\0';
 }
+
+boolean isGreaterString(char *str1, char *str2) 
+{
+    int i = 0;
+    while (str1[i] != '\0' && str2[i] != '\0') 
+    {
+        if (str1[i] > str2[i]) 
+        {
+            return true;
+        }
+        else if (str1[i] < str2[i]) 
+        {
+            return false;
+        }
+        i++;
+    }
+
+    if (str1[i] != '\0') 
+    {
+        return true;  
+    }
+    if (str2[i] != '\0') 
+    {
+        return false; 
+    }
+
+    return false; 
+}
+

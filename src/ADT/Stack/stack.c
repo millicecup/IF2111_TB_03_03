@@ -8,6 +8,7 @@ void CreateEmptyStack(History *S)
 /* Mwmbuat stack kosong dengan kapasitas MaxEl */
 {
     Top(*S) = Nil;
+    Total_Amount(*S) = 0;
 }
 
 /* PREDIKAT */
@@ -29,19 +30,28 @@ void PushStack(History *S, char item, int price, int quantity)
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 {
+    int total = price * quantity;
     if (IsEmptyStack(*S))
     {
         Top(*S) = 0;
         assignString(InfoTopItem(*S), item);
         InfoTopPrice(*S) = price;
         InfoTopQuantity(*S) = quantity;
+        InfoTopCost(*S) = total;
+        Total_Amount(*S) = total;
     }
     else
     {
-        Top(*S)++;
-        assignString(InfoTopItem(*S), item);
-        InfoTopPrice(*S) = price;
-        InfoTopQuantity(*S) = quantity;
+        if ((total > InfoTopCost(*S)) || (total == InfoTopCost(*S) && isGreaterString(item, InfoTopItem(*S)) > 0))
+
+        {
+            Top(*S)++;
+            assignString(InfoTopItem(*S), item);
+            InfoTopPrice(*S) = price;
+            InfoTopQuantity(*S) = quantity;
+            InfoTopCost(*S) = total;
+            Total_Amount(*S) += total;
+        }
     }
 }
 
@@ -51,7 +61,7 @@ void PopStack(History *S, char *item, int *price, int *quantity)
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 {
-    *item = InfoTopItem(*S);
+    assignString(item, InfoTopItem(*S));
     *price = InfoTopPrice(*S);
     *quantity = InfoTopQuantity(*S);
     if (Top(*S) == 0)
@@ -84,26 +94,17 @@ void DisplayStack(History S)
     while (!IsEmptyStack(reverseStack))
     {
         PopStack(&reverseStack, &itemName, &itemPrice, &itemQuantity);
-        printf("{");
-        printf("%s", itemName);
-        printf(",");
-        printf("%d", itemPrice);
-        printf(",");
-        printf("%d", itemQuantity);
-        printf("}");
+        printf("{%s, %d, %d}", itemName, itemPrice, itemQuantity);
         if (Top(S) >= 0) 
         {
             printf(",");
         }
     }
     printf("]\n");
-
 }
 
 boolean IsMemberStack(History S, char *elmt)
 /* Mengecek apakah elemen tertentu ada di dalam stack */
-
-
 {
     if (IsEmptyStack(S)) 
     {
@@ -116,7 +117,6 @@ boolean IsMemberStack(History S, char *elmt)
             return true;
         }
     }
-
     return false;
 }
 
