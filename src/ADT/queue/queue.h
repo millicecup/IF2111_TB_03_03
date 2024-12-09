@@ -6,8 +6,8 @@
 #include "../User_Barang/barang.h"
 
 #define IDX_UNDEFQ -1
-#define MAX_STRING_LENGTH 50 // Adjust as needed
-#define IDX_MAXQueue 100     // Example max queue size
+#define MAX_STRING_LENGTH 50 
+#define IDX_MAXQueue 100  
 
 /* Definisi tipe elemen dan indeks pada Queue */
 typedef struct {
