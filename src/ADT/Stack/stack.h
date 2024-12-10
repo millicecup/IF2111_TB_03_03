@@ -37,7 +37,7 @@ boolean IsFullStack(History S);
 /* Mengembalikan true jika stack S penuh */
 
 /* Menambahkan elemen ke Stack */
-void PushStack(History *S, char item, int price, int quantity);
+void PushStack(History *S, char *item, int price, int quantity);
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */

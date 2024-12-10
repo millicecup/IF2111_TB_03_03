@@ -25,7 +25,7 @@ boolean IsFullStack(History S)
 }
 
 /* Menambahkan elemen ke Stack */
-void PushStack(History *S, char item, int price, int quantity)
+void PushStack(History *S, char *item, int price, int quantity)
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
@@ -51,7 +51,7 @@ void PushStack(History *S, char item, int price, int quantity)
             InfoTopQuantity(*S) = quantity;
             InfoTopCost(*S) = total;
             Total_Amount(*S) += total;
-        }
+        }   
     }
 }
 
@@ -80,22 +80,22 @@ void DisplayStack(History S)
     History reverseStack;
     CreateEmptyStack(&reverseStack);
 
-    char itemName;
+    char itemName[Max_Length];
     int itemPrice;
     int itemQuantity;
 
     while (!IsEmptyStack(S))
     {
-        PopStack(&S, &itemName, &itemPrice, &itemQuantity);
+        PopStack(&S, itemName, &itemPrice, &itemQuantity);
         PushStack(&reverseStack, itemName, itemPrice, itemQuantity);
     }
 
     printf("[");
     while (!IsEmptyStack(reverseStack))
     {
-        PopStack(&reverseStack, &itemName, &itemPrice, &itemQuantity);
+        PopStack(&reverseStack, itemName, &itemPrice, &itemQuantity);
         printf("{%s, %d, %d}", itemName, itemPrice, itemQuantity);
-        if (Top(S) >= 0) 
+        if (!IsEmptyStack(reverseStack)) 
         {
             printf(",");
         }
