@@ -6,27 +6,27 @@
 boolean IsEmptyWishlist(Wishlist L)
 /* Mengembalikan true jika Wishlist L kosong */
 {
-    return First(L) == Nil;
+    return First(L) == Nill;
 }
 
 void CreateEmptyWishlist(Wishlist *L)
 /* I.S. sembarang             */
 /* F.S. Terbentuk Wishlist kosong */
 {
-    First(*L) = Nil;
+    First(*L) = Nill;
 }
 
 address Alokasi(infoBarang X)
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
-/* menghasilkan P, maka info(P)=X, Next(P)=Nil */
-/* Jika alokasi gagal, mengirimkan Nil */
+/* menghasilkan P, maka info(P)=X, Next(P)=Nill */
+/* Jika alokasi gagal, mengirimkan Nill */
 {
     address P = (address)malloc(sizeof(ElmtList));
-    if (P != Nil)
+    if (P != Nill)
     {
         Info(P) = X;
-        Next(P) = Nil;
+        Next(P) = Nill;
     } 
     return P;
 }
@@ -42,17 +42,17 @@ void Dealokasi(address *P)
 address Search (Wishlist L, infoBarang X)
 /* Mencari apakah ada elemen list dengan info(P)= X */
 /* Jika ada, mengirimkan address elemen tersebut. */
-/* Jika tidak ada, mengirimkan Nil */
+/* Jika tidak ada, mengirimkan Nill */
 {
     address P = First(L);
 
     if (IsEmptyWishlist(L))
     {
-        return Nil;
+        return Nill;
     }
     else
     {
-        while (P != Nil)
+        while (P != Nill)
         {
             if ((isEqualString(Item(P), X.name) && (Price(P) == X.price)))
             {
@@ -63,7 +63,7 @@ address Search (Wishlist L, infoBarang X)
                 P = Next(P);
             }
         }
-        return Nil;
+        return Nill;
     }
 }
 
@@ -79,7 +79,7 @@ boolean SearchX (Wishlist L, infoBarang X)
     }
     else
     {
-        while (P != Nil)
+        while (P != Nill)
         {
             if ((isEqualString(Item(P), X.name) && (Price(P) == X.price)))
             {
@@ -103,7 +103,7 @@ void InsVFirst(Wishlist *L, infoBarang X)
 {
     address P = Alokasi(X);
 
-    if (P !=  Nil)
+    if (P !=  Nill)
     {
         InsertFirstW(L, P);
     }
@@ -117,7 +117,7 @@ void InsVLast(Wishlist *L, infoBarang X)
 {
     address P = Alokasi(X);
 
-    if (P != Nil)
+    if (P != Nill)
     {
         InsertLastW(L, P);
     }
@@ -174,7 +174,7 @@ void InsertLastW(Wishlist *L, address P)
     else   
     {
         address p = First(*L);
-        while (Next(p) != Nil)
+        while (Next(p) != Nill)
         {
             p = Next(p);
         }
@@ -210,15 +210,15 @@ void DelLast(Wishlist *L, address *P)
 {
     *P = First(*L);
 
-    if (Next(*P) == Nil)
+    if (Next(*P) == Nill)
     {
-        First(*L) = Nil;
+        First(*L) = Nill;
     }
     else
     {
         address Prev = *P;
 
-        while (Next(Next(Prev)) != Nil)
+        while (Next(Next(Prev)) != Nill)
         {
             Prev = Next(Prev);
         }
@@ -238,11 +238,11 @@ void PrintList(Wishlist L)
 
     printf("[");
     address P = First(L);
-    while (P != Nil)
+    while (P != Nill)
     {
         printf("{%s, %d}", Item(P), Price(P));
         P = Next(P);
-        if (P != Nil)
+        if (P != Nill)
         {
             printf(", ");
         }
@@ -256,7 +256,7 @@ int NbWishlist(Wishlist L)
     int count = 0;
     address P = First(L);
 
-    while (P != Nil)
+    while (P != Nill)
     {
         count++;
         P = Next(P);

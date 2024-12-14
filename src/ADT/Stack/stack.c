@@ -7,7 +7,7 @@
 void CreateEmptyStack(History *S)
 /* Mwmbuat stack kosong dengan kapasitas MaxEl */
 {
-    Top(*S) = Nil;
+    Top(*S) = Niil;
     Total_Amount(*S) = 0;
 }
 
@@ -15,7 +15,7 @@ void CreateEmptyStack(History *S)
 boolean IsEmptyStack(History S)
 /* Mengembalikan true jika stack S kosong */
 {
-    return Top(S) == Nil;
+    return Top(S) == Niil;
 }
 
 boolean IsFullStack(History S)
@@ -66,7 +66,7 @@ void PopStack(History *S, char *item, int *price, int *quantity)
     *quantity = InfoTopQuantity(*S);
     if (Top(*S) == 0)
     {
-        Top(*S) = Nil;
+        Top(*S) = Niil;
     }
     else
     {

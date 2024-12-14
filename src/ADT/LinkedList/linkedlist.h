@@ -4,7 +4,7 @@
 #include "../boolean.h"
 #include "../User_Barang/barang.h"
 
-#define Nil NULL
+#define Nill NULL
 
 typedef Barang infoBarang;
 
@@ -36,8 +36,8 @@ void CreateEmptyWishlist(Wishlist *L);
 address Alokasi(infoBarang X);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
-/* menghasilkan P, maka info(P)=X, Next(P)=Nil */
-/* Jika alokasi gagal, mengirimkan Nil */
+/* menghasilkan P, maka info(P)=X, Next(P)=Nill */
+/* Jika alokasi gagal, mengirimkan Nill */
 
 void Dealokasi(address *P);
 /* I.S. P terdefinisi */
@@ -47,7 +47,7 @@ void Dealokasi(address *P);
 address Search (Wishlist L, infoBarang X);
 /* Mencari apakah ada elemen list dengan info(P)= X */
 /* Jika ada, mengirimkan address elemen tersebut. */
-/* Jika tidak ada, mengirimkan Nil */
+/* Jika tidak ada, mengirimkan Nill */
 
 boolean SearchX (Wishlist L, infoBarang X);
 /* Mencari apakah ada elemen list dengan info(P)= X */

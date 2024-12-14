@@ -7,72 +7,100 @@
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../ADT/Mesin_Baris/mesinbaris.h"
 #include "start.h"
+#include "../../ADT/LinkedList/linkedlist.h"
+#include "../../ADT/Stack/stack.h"
 
 // Function to load default configuration and populate UserList and BarangList
 int start(UserList *userList, BarangList *barangList) {
-    FILE *pita = fopen("../../root/config.txt", "r");
+    FILE *pita = fopen("../../root/mingyu.txt", "r");
     if (pita == NULL) {
-        printf("Error: Unable to open default configuration file.\n");
-        return 1; // Return error code
+        printf("Error: Unable to open file %s.\n", pita);
+        return false;
     }
 
-    // Initialize UserList and BarangList
-    CreateUserList(userList);
-    CreateBarangList(barangList, 10); // Initial capacity 2 for BarangList
-
-    // Start reading the file
     STARTFILE(pita);
 
-    // Read the number of items (Barang)
+    // 1. Read Barang List
     int num_items = atoi(currentLine.kalimat);
-    //printf("Jumlah barang: %d\n", num_items);
-
-    for (int i = 0; i < num_items; i++) {
-        ADVWORD();
-        int price = WordtoNum(currentWord);
-        ADVSENTENCE();
-        AddBarang(barangList, currentLine.kalimat, price);
+    //printf("Loading barang list...\n");
+    if (num_items < 0) {
+        //printf("Error: Invalid number of items.\n");
+        fclose(pita);
+        return false;
     }
+    for (int i = 0; i < num_items; i++) {
+        ADVWORD(); // Read price
+        int price = WordtoNum(currentWord);
 
-    // Read the number of users
+        ADVSENTENCE(); // Read item name
+        AddBarang(barangList, currentLine.kalimat, price);
+        //printf("Added barang: %s, Price: %d\n", currentLine.kalimat, price);
+    }
     ADVSENTENCE();
-    int num_users = atoi(currentLine.kalimat);
-    //printf("Jumlah pengguna: %d\n", num_users);
+    //printf("Done loading barang list.\n");
 
+    // 2. Read Users
+    int num_users = atoi(currentLine.kalimat);
+    //printf("Loading user list...\n");
+    if (num_users < 0) {
+        printf("Error: Invalid number of users.\n");
+        fclose(pita);
+        return false;
+    }
     for (int i = 0; i < num_users; i++) {
-        // Read user money
-        ADVWORD();
+        ADVWORD(); // Read user money
         int money = WordtoNum(currentWord);
 
-        // Read username
-        ADVWORD();
+        ADVWORD(); // Read username
         char username[MAX_LEN];
-        for (int j = 0; j < currentWord.Length && j < MAX_LEN - 1; j++) {
-            username[j] = currentWord.TabWord[j];
-        }
-        username[currentWord.Length] = '\0'; // Null-terminate username
+        WordToChar(&currentWord, username);
 
-        // Read password
-        ADVWORD();
+        ADVWORD(); // Read password
         char password[MAX_LEN];
-        for (int j = 0; j < currentWord.Length && j < MAX_LEN - 1; j++) {
-            password[j] = currentWord.TabWord[j];
-        }
-        password[currentWord.Length] = '\0'; // Null-terminate password
+        WordToChar(&currentWord, password);
 
-        // Add user to UserList
-        AddUser(userList, username, password, money);
+        User user;
+        ManualStringCopy(user.name, username);
+        ManualStringCopy(user.password, password);
+        user.money = money;
+        CreateEmptyStack(&user.riwayat_pembelian);
+        CreateEmptyWishlist(&user.wishlist);
+
+        // 2.1. Load Transaction History
+        ADVSENTENCE();
+        int num_history = atoi(currentLine.kalimat);
+        //printf("Loading transaction history for user %s...\n", username);
+        for (int j = 0; j < num_history; j++) {
+            ADVWORD(); // Read price
+            int price = WordtoNum(currentWord);
+
+            ADVSENTENCE(); // Read item name
+            char historyItem[MAX_LEN];
+            ManualStringCopy(historyItem, currentLine.kalimat);
+
+            PushStack(&user.riwayat_pembelian, historyItem, price, 1);
+            //printf("Added to history: %s, Price: %d\n", historyItem, price);
+        }
+
+        // 2.2. Load Wishlist
+        ADVSENTENCE();
+        int num_wishlist = atoi(currentLine.kalimat);
+        //printf("Loading wishlist for user %s...\n", username);
+        for (int j = 0; j < num_wishlist; j++) {
+            ADVSENTENCE();
+            infoBarang newBarang;
+            ManualStringCopy(newBarang.name, currentLine.kalimat);
+            newBarang.price = 0;
+
+            InsVLast(&user.wishlist, newBarang);
+            //printf("Added to wishlist: %s\n", newBarang.name);
+        }
+
+        addUser(userList, &user);
+        //printf("Done loading user %s.\n", username);
     }
 
     fclose(pita);
-
-    // Print loaded items for verification
-    // printf("\nDaftar Barang:\n");
-    // PrintBarang(barangList);
-
-    // printf("\nDaftar Pengguna:\n");
-    // PrintUsers(userList);
-
-    printf("\nDefault configuration successfully loaded. PURRMART is ready.\n");
-    return 0; // Success
+    printf("Config file %s successfully loaded.\n", pita);
+    return true;
 }

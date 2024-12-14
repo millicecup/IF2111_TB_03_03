@@ -45,15 +45,31 @@ void AddUser(UserList *list, char *name, char *password, int money) {
 }
 
 // Cetak daftar pengguna
-void PrintUsers(UserList *list) {
-    for (int i = 0; i < list->count; i++) {
-        printf("User %d: Nama: %s, Password: %s, Uang: %d\n", 
-               i + 1, 
-               list->users[i].name, 
-               list->users[i].password, 
-               list->users[i].money);
+void PrintUsers(UserList *userList) {
+    for (int i = 0; i < userList->count; i++) {
+        User *user = &userList->users[i]; 
+        printf("User %d: Nama: %s, Password: %s, Uang: %d\n", i + 1, user->name, user->password, user->money);
+
+        // show riwayat pembelian
+        printf("  Riwayat Pembelian:\n");
+        if (!IsEmptyStack(user->riwayat_pembelian)) {
+            DisplayStack(user->riwayat_pembelian);
+        } else {
+            printf("    (No transactions)\n");
+        }
+
+        // show wishlist
+        printf("  Wishlist:\n");
+        if (!IsEmptyWishlist(user->wishlist)) {
+            PrintList(user->wishlist);
+            printf("\n");
+        } else {
+            printf("    (No wishlist items)\n");
+        }
     }
 }
+
+
 
 void InsertLastUser(UserList *array, User el) {
     if (array->count < MAX_USERS) {

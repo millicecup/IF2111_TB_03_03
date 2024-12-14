@@ -5,10 +5,17 @@
 #define MAX_USERS 100 // Maksimum jumlah pengguna
 #define MAX_LEN 100   // Panjang maksimum nama/password
 
+#include "../SetMap/setmap.h"
+#include "../Stack/stack.h"
+#include "../LinkedList/linkedlist.h"
+
 typedef struct {
     char name[MAX_LEN];
     char password[MAX_LEN];
     int money;
+    Keranjang keranjang;        //map
+    History riwayat_pembelian;  //stack
+    Wishlist wishlist;          //linkedlist
 } User;
 
 typedef struct {

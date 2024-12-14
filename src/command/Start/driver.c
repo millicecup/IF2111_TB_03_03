@@ -13,14 +13,12 @@ int main() {
     BarangList barangArray;
     CreateBarangList(&barangArray, 2);
 
-    // Call the start function to load data
     start(&userArray, &barangArray);
     login(&userArray);
 
     return 0;
 }
-
 /*
- gcc driver.c ../login/login.c ../../ADT/User_Barang/user.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Baris/mesinbaris.c start.c ../load/load.c -o program
+ gcc driver.c ../login/login.c ../../ADT/Stack/stack.c ../../ADT/User_Barang/user.c ../../ADT/LinkedList/linkedlist.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Baris/mesinbaris.c start.c ../load/load.c -o program
 
 */
