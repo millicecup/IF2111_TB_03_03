@@ -30,9 +30,10 @@ void DisplayStore (BarangList store)
         {
             if(IsUnique(store, i))
             {
-                printf("- ");
-                TulisWordNoNL(toKata(store.items[i].name));
-                printf(" - Harga: %d\n", store.items[i].price);
+                // printf("- ");
+                // TulisWordNoNL(toKata(store.items[i].name));
+                // printf(" - Harga: %d\n", store.items[i].price);
+                printf("- %s - Harga: %d\n", store.items[i].name, store.items[i].price);
                 
             }
         }

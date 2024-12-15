@@ -42,16 +42,12 @@ void PushStack(History *S, char *item, int price, int quantity)
     }
     else
     {
-        if ((total > InfoTopCost(*S)) || (total == InfoTopCost(*S) && isGreaterString(item, InfoTopItem(*S)) > 0))
-
-        {
-            Top(*S)++;
-            assignString(InfoTopItem(*S), item);
-            InfoTopPrice(*S) = price;
-            InfoTopQuantity(*S) = quantity;
-            InfoTopCost(*S) = total;
-            Total_Amount(*S) += total;
-        }   
+        Top(*S)++;
+        assignString(InfoTopItem(*S), item);
+        InfoTopPrice(*S) = price;
+        InfoTopQuantity(*S) = quantity;
+        InfoTopCost(*S) = total;
+        Total_Amount(*S) += total;  
     }
 }
 
@@ -73,6 +69,36 @@ void PopStack(History *S, char *item, int *price, int *quantity)
         Top(*S)--;
     }
 }
+
+// void ReverseStack(History *S)
+// /* Membalik urutan elemen dalam stack */
+// {
+//     History temp, reversed;
+//     CreateEmptyStack(&temp);
+//     CreateEmptyStack(&reversed);
+
+//     char item[Max_Length];
+//     int price, quantity;
+
+//     while (!IsEmptyStack(*S)) 
+//     {
+//         PopStack(S, item, &price, &quantity);
+//         PushStack(&temp, item, price, quantity);
+//     }
+
+//     while (!IsEmptyStack(temp)) 
+//     {
+//         PopStack(&temp, item, &price, &quantity);
+//         PushStack(&reversed, item, price, quantity);
+//     }
+
+//     while (!IsEmptyStack(reversed)) 
+//     {
+//         PopStack(&reversed, item, &price, &quantity);
+//         PushStack(S, item, price, quantity);
+//     }
+// }
+
 
 void DisplayStack(History S)
 /* Menampilkan semua elemen dalam stack */
