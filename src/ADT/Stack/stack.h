@@ -4,7 +4,7 @@
 #include "../boolean.h"
 #include "../User_Barang/barang.h" 
 
-#define Niil -1
+#define NilStack -1
 #define MaxStack 100
 #define Max_Length 50
 

@@ -22,3 +22,7 @@ int main() {
 
     return 0;
 }
+
+/*
+gcc -o driverstack driver_stack.c stack.c ../Mesin_Kata/mesinkata.c ../Mesin_Karakter/mesinkarakter.c ../Mesin_Baris/mesinbaris.c
+*/

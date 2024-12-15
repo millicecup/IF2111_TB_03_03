@@ -6,7 +6,7 @@
 #include "../Mesin_Kata/mesinkata.h"
 #include "../User_Barang/barang.h"
 
-#define Nil 0
+#define Nils 0
 #define MaxBasket 30
 #define undefined -999
 

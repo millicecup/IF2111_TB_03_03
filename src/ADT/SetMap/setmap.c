@@ -8,13 +8,13 @@ void CreateEmptyBasket(Keranjang *k)
 /* membuat Keranjang k kosong dengan kapasitas MaxBasket */
 /* semua elemen nama berupa mark dan harga 0 */
 {
-    (*k).count = Nil;
+    (*k).count = Nils;
 }
 
 boolean IsEmptyBasket(Keranjang k)
 /* mengembalikan true jika Keranjang k kosong */
 {
-    return k.count == Nil;
+    return k.count == Nils;
 }
 
 boolean IsFullBasket(Keranjang k)

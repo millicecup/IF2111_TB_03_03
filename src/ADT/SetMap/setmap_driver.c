@@ -41,3 +41,7 @@ int main()
 
     return 0;
 }
+
+/*
+gcc -o setdriver setmap_driver.c setmap.c ../Mesin_Kata/mesinkata.c ../Mesin_Karakter/mesinkarakter.c ../Mesin_Baris/mesinbaris.c 
+*/
