@@ -13,5 +13,5 @@
 // Function to load both BarangList and UserList from a file
 boolean LoadConfig(const char *filename, UserList *userList, BarangList *barangList);
 
-boolean Load(UserList *userList, BarangList *barangList);
+boolean Load(UserList *userList, BarangList *barangList) ;
 #endif 

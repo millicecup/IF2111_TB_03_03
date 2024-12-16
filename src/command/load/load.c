@@ -11,7 +11,7 @@
 #include "../../ADT/Stack/stack.h"
 
 boolean LoadConfig(const char *filename, UserList *userList, BarangList *barangList) {
-    const char *parent_dir = "../../root/";
+    const char *parent_dir = "../../root";
     char path[255];
     snprintf(path, sizeof(path), "%s/%s", parent_dir, filename);
 
@@ -104,7 +104,7 @@ boolean LoadConfig(const char *filename, UserList *userList, BarangList *barangL
     }
 
     fclose(pita);
-    printf("Config file %s successfully loaded.\n", filename);
+    printf("\nConfig file %s successfully loaded.\n", filename);
     return true;
 }
 
@@ -116,12 +116,14 @@ boolean Load(UserList *userList, BarangList *barangList) {
     GetInput();
     chartoWord(&file, currentInput.TabWord);
     WordToChar(&file, filename);
+    LoadConfig(filename, userList, barangList);
 
     if (LoadConfig(filename, userList, barangList)) {
-        printf("\nConfig successfully loaded.\n");
+        //printf("\nConfig successfully loaded.\n");
         return true;
     } else {
         printf("\nReturning to main menu...\n");
+        tunggu(3);
         return false;
     }
 }

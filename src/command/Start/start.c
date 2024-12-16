@@ -15,7 +15,7 @@ int start(UserList *userList, BarangList *barangList) {
     FILE *pita = fopen("../../root/mingyu.txt", "r");
     if (pita == NULL) {
         printf("Error: Unable to open file %s.\n", pita);
-        return false;
+        return 1;
     }
 
     STARTFILE(pita);
@@ -26,7 +26,7 @@ int start(UserList *userList, BarangList *barangList) {
     if (num_items < 0) {
         //printf("Error: Invalid number of items.\n");
         fclose(pita);
-        return false;
+        return 1;
     }
     for (int i = 0; i < num_items; i++) {
         ADVWORD(); // Read price
@@ -102,5 +102,5 @@ int start(UserList *userList, BarangList *barangList) {
 
     fclose(pita);
     printf("Config file %s successfully loaded.\n", pita);
-    return true;
+    return 0;
 }
