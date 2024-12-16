@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <string.h>  // For strcmp
+
 #include "user.h"
 #include "../Mesin_Kata/mesinkata.h"
 
@@ -97,7 +97,7 @@ void addUser(UserList *userArray, User *newUser) {
 // Periksa apakah pengguna ada
 int UserExists(UserList *list, char *name) {
     for (int i = 0; i < list->count; i++) {
-        if (strcmp(list->users[i].name, name) == 0) {
+        if (compareStringsManual(list->users[i].name, name) == 0) {
             return 1;  // User exists
         }
     }
@@ -107,7 +107,7 @@ int UserExists(UserList *list, char *name) {
 // Hapus pengguna dari daftar
 int RemoveUser(UserList *list, char *name) {
     for (int i = 0; i < list->count; i++) {
-        if (strcmp(list->users[i].name, name) == 0) {
+        if (compareStringsManual(list->users[i].name, name) == 0) {
             for (int j = i; j < list->count - 1; j++) {
                 list->users[j] = list->users[j + 1];
             }
@@ -121,7 +121,7 @@ int RemoveUser(UserList *list, char *name) {
 // Ubah uang pengguna
 void ModifyUserMoney(UserList *list, char *name, int newMoney) {
     for (int i = 0; i < list->count; i++) {
-        if (strcmp(list->users[i].name, name) == 0) { // Check if the user exists
+        if (compareStringsManual(list->users[i].name, name) == 0) { // Check if the user exists
             list->users[i].money = newMoney; // Update the money field
             printf("Uang pengguna %s berhasil diperbarui menjadi %d.\n", name, newMoney);
             return;
