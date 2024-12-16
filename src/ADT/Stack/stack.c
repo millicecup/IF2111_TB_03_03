@@ -42,12 +42,16 @@ void PushStack(History *S, char *item, int price, int quantity)
     }
     else
     {
-        Top(*S)++;
-        assignString(InfoTopItem(*S), item);
-        InfoTopPrice(*S) = price;
-        InfoTopQuantity(*S) = quantity;
-        InfoTopCost(*S) = total;
-        Total_Amount(*S) += total; 
+        if ((total > InfoTopCost(*S)) || (total == InfoTopCost(*S) && isGreaterString(item, InfoTopItem(*S)) > 0))
+
+        {
+            Top(*S)++;
+            assignString(InfoTopItem(*S), item);
+            InfoTopPrice(*S) = price;
+            InfoTopQuantity(*S) = quantity;
+            InfoTopCost(*S) = total;
+            Total_Amount(*S) += total;
+        }   
     }
 }
 

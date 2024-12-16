@@ -5,7 +5,7 @@
 #include "../User_Barang/barang.h" 
 
 #define NilStack -1
-#define MaxStack 100
+#define MaxStack 10
 #define Max_Length 50
 
 typedef struct {

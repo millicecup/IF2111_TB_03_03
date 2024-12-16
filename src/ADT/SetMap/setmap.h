@@ -7,7 +7,7 @@
 #include "../User_Barang/barang.h"
 
 #define Nils 0
-#define MaxBasket 30
+#define MaxBasket 10
 #define undefined -999
 
 typedef struct
