@@ -1,7 +1,7 @@
 #include "wishlist_clear.h"
 #include <stdio.h>
 
-WishlistClear(UserList *userArray, char *username){
+void WishlistClear(UserList *userArray, char *username){
     int i = 0;
     boolean found = false;
     while (i < userArray->count && !found){
