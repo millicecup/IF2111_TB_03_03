@@ -10,7 +10,7 @@ int main() {
     char itemA[] = "Apple";
     char itemB[] = "Banana";
     char itemC[] = "Cherry";
-    char itemD[] = "Donut";
+    char itemD[] = "Purry";
 
     PushStack(&S, itemA, 50, 2);
     PushStack(&S, itemB, 30, 5);

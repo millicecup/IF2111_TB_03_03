@@ -3,6 +3,7 @@
 
 #include "../boolean.h"
 #include "../User_Barang/barang.h" 
+#include "../Mesin_Kata/mesinkata.h"
 
 #define NilStack -1
 #define MaxStack 10
@@ -47,6 +48,9 @@ void PopStack(History *S, char *item, int *price, int *quantity);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
+
+// void ReverseStack(History *S);
+// /* Membalik urutan elemen dalam stack */
 
 void DisplayStack(History S);
 /* Menampilkan semua elemen dalam stack */
