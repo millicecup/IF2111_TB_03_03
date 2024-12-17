@@ -1,5 +1,134 @@
 #include "animasi.h"
 #include <stdio.h>
+#include <stdlib.h>
+
+void printImage(FILE *fascii)
+{
+    char read[MAX_LENGTH];
+    while(fgets(read,sizeof(read),fascii) != NULL)
+    printf("%s",read);
+    printf("\n");   
+}
+
+void animasiMainMenu()
+{
+    FILE *fascii;
+    system("cls || clear");
+    fascii = NULL;
+    fascii = fopen("animasi/run.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        system("cls || clear");
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
+void animasiStore()
+{
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/store.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
+void animasiMenu()
+{
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/menu.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
+void animasiLogin()
+{
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/login.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
+void animasiQuit()
+{
+    FILE *fascii;
+    system("cls || clear");
+    fascii = NULL;
+    fascii = fopen("animasi/perrystop.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        system("cls || clear");
+        printImage(fascii);
+        fclose(fascii);
+    } 
+}
+
+void animasiChallenge(){
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/workchallenge.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
+void animasiWork(){
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/work.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
 
 void printMainMenu() {
     printf("=========================================\n");
@@ -39,26 +168,15 @@ void printInsideMenu() {
     printf("Enter your command: ");
 }
 
-void printWorkMenu(){
-    printf("=========================================\n");
-    printf("Welcome to PURRMART!\n");
-    printf("Available Commands:\n");
-    printf("- TEBAKANGKA     : Tebak angka\n");
-    printf("- WORLD3         : World 3\n");
-    printf("- HELP           : Show available commands\n");
-    printf("- MENU           : Return to Inside Menu\n");
-    printf("=========================================\n");
-    printf("Enter your command: ");
-}
 
 void printStoreMenu(){
     printf("=========================================\n");
     printf("Welcome to PURRMART!\n");
     printf("Available Commands:\n");
-    printf("- STORE LIST        : list barang\n");
-    printf("- STORE REQUEST     : request barang\n");
-    printf("- STORE REMOVE      : remove store\n");
-    printf("- STORE SUPPLY      : tba\n");
+    printf("- STORE LIST        : Display store\n");
+    printf("- STORE REQUEST     : Request item\n");
+    printf("- STORE REMOVE      : Remove item from store\n");
+    printf("- STORE SUPPLY      : Add barang from request to store\n");
     printf("- MENU              : Return to Inside Menu\n");
     printf("=========================================\n");
     printf("Enter your command: ");

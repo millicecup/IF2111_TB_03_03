@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "user.h"
+#include "../Mesin_Kata/mesinkata.h"
 
 // Implementasi fungsi User
 void CreateUserList(UserList *list) {
@@ -65,4 +66,16 @@ void InsertLastUser(UserList *array, User el) {
 void addUser(UserList *userArray, User *newUser) {
     InsertLastUser(userArray, *newUser);  // Insert new user to array
                   // Save updated users list
+}
+
+
+void ModifyUserMoney(UserList *list, char *name, int newMoney) {
+    for (int i = 0; i < list->count; i++) {
+        if (isEqualString(list->users[i].name, name) == 0) { // Check if the user exists
+            list->users[i].money = newMoney; // Update the money field
+            printf("Uang pengguna %s berhasil diperbarui menjadi %d.\n", name, newMoney);
+            return;
+        }
+    }
+    printf("Pengguna dengan nama '%s' tidak ditemukan.\n", name);
 }

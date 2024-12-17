@@ -1,48 +1,103 @@
 #include <stdio.h>
 #include "barang.h"
 #include "user.h"
-
+/*
+gcc user.c barang.c driverBarangUser.c ../Mesin_Kata/mesinkata.c ../Mesin_Karakter/mesinkarakter.c ../Mesin_Baris/mesinbaris.c 
+*/
 int main() {
-    // Inisialisasi List Statis untuk User
+    printf("=== Testing User Functions ===\n");
+    // Create User List
     UserList userList;
     CreateUserList(&userList);
+    printf("User list created. Is it empty? %s\n", IsUserListEmpty(&userList) ? "Yes" : "No");
 
-    // Menambahkan pengguna secara manual
-    char adminName[MAX_LEN] = "admin";
-    char adminPassword[MAX_LEN] = "alstrukdatkeren";
-    ManualStringCopy(adminName, "admin");
-    ManualStringCopy(adminPassword, "alstrukdatkeren");
-    AddUser(&userList, adminName, adminPassword, 100);
-
-    char praktikanName[MAX_LEN] = "praktikan";
-    char praktikanPassword[MAX_LEN] = "kerenbangetkak";
-    ManualStringCopy(praktikanName, "praktikan");
-    ManualStringCopy(praktikanPassword, "kerenbangetkak");
-    AddUser(&userList, praktikanName, praktikanPassword, 25);
-
+    // Add Users
+    AddUser(&userList, "admin", "password123", 500);
+    AddUser(&userList, "user1", "pass1", 100);
+    AddUser(&userList, "user2", "pass2", 200);
     PrintUsers(&userList);
 
-    // Inisialisasi List Dinamis untuk Barang
+    // Modify User Money
+    printf("\nModifying money for 'user1'...\n");
+    ModifyUserMoney(&userList, "user1", 300);
+    PrintUsers(&userList);
+
+    // Add User via InsertLastUser
+    User newUser = {"user3", "pass3", 150};
+    InsertLastUser(&userList, newUser);
+    printf("\nAdded 'user3' via InsertLastUser:\n");
+    PrintUsers(&userList);
+
+    // Search User
+    printf("\nSearching for 'user2'...\n");
+    int found = -1;
+    for (int i = 0; i < userList.count; i++) {
+        if (isEqualString(userList.users[i].name, "user2") == 0) {
+            found = i;
+            break;
+        }
+    }
+    printf("User 'user2' is %sfound.\n", (found != -1) ? "" : "not ");
+
+    // Testing ManualStringCopy
+    printf("\nTesting ManualStringCopy...\n");
+    char dest[100];
+    ManualStringCopy(dest, "Test String");
+    printf("Copied string: %s\n", dest);
+
+    printf("\n=== Testing Barang Functions ===\n");
+    // Create Barang List
     BarangList barangList;
-    CreateBarangList(&barangList, 2); // Kapasitas awal 2
+    CreateBarangList(&barangList, 2);
+    printf("Barang list created. Is it empty? %s\n", IsEmpty(barangList) ? "Yes" : "No");
 
-    // Menambahkan barang secara manual
-    char barang1[MAX_LEN] = "AK47";
-    ManualStringCopy(barang1, "AK47");
-    AddBarang(&barangList, barang1, 10);
-
-    char barang2[MAX_LEN] = "Lalabu";
-    ManualStringCopy(barang2, "Lalabu");
-    AddBarang(&barangList, barang2, 20);
-
-    char barang3[MAX_LEN] = "Ayam Goreng Crisbar";
-    ManualStringCopy(barang3, "Ayam Goreng Crisbar");
-    AddBarang(&barangList, barang3, 30);
-
+    // Add Barang
+    AddBarang(&barangList, "Item1", 1000);
+    AddBarang(&barangList, "Item2", 2000);
+    AddBarang(&barangList, "Item3", 3000);
+    printf("Barang list after adding items:\n");
     PrintBarang(&barangList);
 
-    // Bebaskan memori yang digunakan oleh list dinamis
+    // Search for Barang
+    printf("\nSearching for 'Item2'...\n");
+    Word searchName;
+    stringToWord("Item2", &searchName);
+    int idx = SearchArrayDin(barangList, searchName);
+    if (idx != -1) {
+        printf("Item 'Item2' found at index %d.\n", idx);
+    } else {
+        printf("Item 'Item2' not found.\n");
+    }
+
+    // Insert Barang at specific position
+    printf("\nInserting 'NewItem' at index 1...\n");
+    Barang newBarang;
+    ManualStringCopy(newBarang.name, "NewItem");
+    newBarang.price = 2500;
+    InsertAt(&barangList, newBarang, 1);
+    PrintBarang(&barangList);
+
+    // Delete Barang
+    printf("\nDeleting first barang...\n");
+    DeleteFirst(&barangList);
+    PrintBarang(&barangList);
+
+    // Copy Barang List
+    printf("\nCopying barang list...\n");
+    BarangList copiedList = CopyArrayDin(barangList);
+    printf("Copied list:\n");
+    PrintBarang(&copiedList);
+
+    // Reverse Barang List
+    printf("\nReversing barang list...\n");
+    ReverseArrayDin(&barangList);
+    PrintBarang(&barangList);
+
+    // Free memory
+    printf("\nFreeing memory for barang lists...\n");
     FreeBarangList(&barangList);
+    FreeBarangList(&copiedList);
+    printf("Memory freed successfully.\n");
 
     return 0;
 }

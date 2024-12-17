@@ -1,0 +1,36 @@
+
+├── root
+│   ├── save1.txt        # Konfigurasi yang pernah disimpan
+│   └── config.txt       # Konfigurasi awal
+├── docs                  
+│   ├── Spesifikasi Tugas Besar 1 IF2111 2024/2025.pdf      # Dokumen spesifikasi
+│   └── IF2111_TB_03_03.pdf                                 # Laporan tugas besar
+├── src
+│   ├── ADT                  # Implementasi seluruh struktur data yang digunakan 
+│   │   ├── List
+│   │   ├── Mesin_Baris    
+│   │   ├── Mesin_Karakter      
+│   │   ├── Mesin_Kata    
+│   │   ├── User_Barang
+│   │   ├── queue 
+│   │   ├── boolean.h
+├   ├── command             # Implementasi seluruh command         
+│   │   ├── Help
+│   │   ├── Logout    
+│   │   ├── Start      
+│   │   ├── Store_List    
+│   │   ├── Store_Remove 
+│   │   ├── Store_Request    
+│   │   ├── Store_Supply 
+│   │   ├── animasi    
+│   │   ├── handler
+│   │   ├── load    
+│   │   ├── login 
+│   │   ├── quit    
+│   │   ├── register 
+│   │   ├── save
+│   │   ├── work    
+│   │   ├── workchallenge
+│   │   ├── Makefile    
+└── └── └── main.c         # Memanggil semua command
+README.MD

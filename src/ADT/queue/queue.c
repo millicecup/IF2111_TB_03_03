@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h> // For strlen
 #include "queue.h"
-#include "../mesin_kata/mesinkata.h"
+#include "../Mesin_Kata/mesinkata.h"
 #include "../User_Barang/barang.h"
 
 /* ********* Prototype ********* */

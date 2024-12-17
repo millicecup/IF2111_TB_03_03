@@ -14,6 +14,7 @@ typedef struct {
 typedef struct {
     User users[MAX_USERS];
     int count; // Jumlah pengguna saat ini
+    int currentUserIndex;
 } UserList;
 
 void CreateUserList(UserList *list);
@@ -32,4 +33,5 @@ void InsertLastUser(UserList *array, User el) ;
 
 void addUser(UserList *userArray, User *newUser);
 
+void ModifyUserMoney(UserList *list, char *name, int newMoney);
 #endif

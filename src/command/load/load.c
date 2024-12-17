@@ -1,51 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "load.h"
 #include "../../ADT/User_Barang/user.h"
 #include "../../ADT/User_Barang/barang.h"
 #include "../../ADT/Mesin_Karakter/mesinkarakter.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../ADT/Mesin_Baris/mesinbaris.h"
+#include "../work/work.h"
 
 // Function to load both BarangList and UserList from a file
-void LoadConfig(const char *filename, UserList *userList, BarangList *barangList) {
-    FILE *pita = fopen(filename, "r");
+boolean LoadConfig(const char *filename, UserList *userList, BarangList *barangList) {
+    const char *parent_dir = "../../root";
+    
+    char path[255];
+    snprintf(path, sizeof(path), "%s/%s", parent_dir, filename);
+    
+    FILE *pita = fopen(path, "r");
+    
     if (pita == NULL) {
         printf("Error: Unable to open file %s.\n", filename);
-        return;
+        return false;
     }
 
-    if (userList != NULL) {
-        CreateUserList(userList); // Initialize user list if not NULL
+    if (userList == NULL) {
+        CreateUserList(userList); // Initialize user list ga NULL
     }
-    if (barangList != NULL) {
-        CreateBarangList(barangList, 2); // Initialize barang list if not NULL
+    if (barangList == NULL) {
+        CreateBarangList(barangList, 3); // Initialize barang list ga NULL
     }
 
-    // Start reading from the file
+    // baca
     STARTFILE(pita);
 
-    // Read number of items (Barang)
+    // Read Barang
     if (barangList != NULL) {
         int num_items = atoi(currentLine.kalimat);
-        printf("Jumlah barang: %d\n", num_items);
+        // printf("Jumlah barang: %d\n", num_items);
 
         for (int i = 0; i < num_items; i++) {
-            ADVWORD(); // Read item price
+            ADVWORD(); // baca price
             int price = WordtoNum(currentWord);
 
-            ADVSENTENCE(); // Read item name
+            ADVSENTENCE(); // baca name
             AddBarang(barangList, currentLine.kalimat, price);
         }
 
-        ADVSENTENCE(); // Move to the next line (number of users)
+        ADVSENTENCE(); // pindah baris
+    } else {
+        // Skip barang-related lines if BarangList is NULL
+        int num_items = atoi(currentLine.kalimat);
+        for (int i = 0; i < num_items; i++) {
+            ADVSENTENCE(); // Skip each barang entry
+        }
+
+        ADVSENTENCE(); // pindah baris
     }
 
-    // Read number of users
+    // Read users
     if (userList != NULL) {
         int num_users = atoi(currentLine.kalimat);
-        printf("Jumlah pengguna: %d\n", num_users);
+        // printf("Jumlah pengguna: %d\n", num_users);
 
         for (int i = 0; i < num_users; i++) {
             ADVWORD(); // Read user money
@@ -71,45 +85,50 @@ void LoadConfig(const char *filename, UserList *userList, BarangList *barangList
 
     fclose(pita);
     printf("\nConfig file %s successfully loaded.\n", filename);
+    return true;
 }
 
-void Load(UserList *userList, BarangList *barangList) {
+
+boolean Load(UserList *userList, BarangList *barangList) {
     char filename[MAX_LEN];
     Word file;
     printf("Enter the file name to load: ");
     GetInput();
     chartoWord(&file, currentInput.TabWord);
-    // strncpy(filename, currentInput.TabWord, currentInput.Length);
-    // filename[currentInput.Length] = '\0'; // Null-terminate the filename string
     WordToChar(&file, filename);
-    // Pass the entered filename to LoadConfig
     LoadConfig(filename, userList, barangList);
-    printf("\nDaftar Barang:\n");
-    PrintBarang(barangList);
-
-    printf("\nDaftar Pengguna:\n");
-    PrintUsers(userList);
+    // printf("\nDaftar Barang:\n");
+    // PrintBarang(barangList);
+    if (LoadConfig(filename, userList, barangList)) {
+        return true; // Load berhasil
+    } else {
+        printf("\nReturning to main menu...\n");
+        tunggu(3); 
+        return false; // Load gagal
+    }
+    // printf("\nDaftar Pengguna:\n");
+    // PrintUsers(userList);
 }
 
-/*
-int main() {
-    UserList userArray;
-    CreateUserList(&userArray);
 
-    BarangList barangArray;
-    CreateBarangList(&barangArray, 2);
-    LoadConfig("../../../save/config.txt", &userArray, &barangArray);
+// int main() {
+//     UserList userArray;
+//     CreateUserList(&userArray);
 
-    // Print loaded items and users for verification
-    printf("\nDaftar Barang:\n");
-    PrintBarang(&barangArray);
+//     BarangList barangArray;
+//     CreateBarangList(&barangArray, 2);
+//     Load(&userArray, &barangArray);
+//     //LoadConfig("../../../save/config.txt", &userArray, &barangArray);
 
-    printf("\nDaftar Pengguna:\n");
-    PrintUsers(&userArray);
+//     // Print loaded items and users for verification
+//     printf("\nDaftar Barang:\n");
+//     PrintBarang(&barangArray);
 
-    return 0;
-}
-*/
-/*
-gcc load.c ../../ADT/User_Barang/user.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Baris/mesinbaris.c
-*/
+//     printf("\nDaftar Pengguna:\n");
+//     PrintUsers(&userArray);
+
+//     return 0;
+// }
+
+//gcc load.c ../../ADT/User_Barang/user.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Baris/mesinbaris.c
+

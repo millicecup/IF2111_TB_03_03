@@ -15,6 +15,7 @@ typedef struct
 
 extern Sentence currentLine;
 extern boolean endLine; 
+extern boolean EndSentence;
 
 /*  Kebanyakan fungsi mesinbaris digunakan atau diimplementasikan untuk
     bagian masukan dari pengguna atau pada terminal */
@@ -57,7 +58,6 @@ void CopyLine();
 
 // boolean isInputEqual(Sentence Input, Word Kata);
 
-void GetInput();
 
 void ResetKalimat();
 

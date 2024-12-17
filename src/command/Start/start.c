@@ -6,10 +6,11 @@
 #include "../../ADT/Mesin_Karakter/mesinkarakter.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../ADT/Mesin_Baris/mesinbaris.h"
+#include "start.h"
 
 // Function to load default configuration and populate UserList and BarangList
 int start(UserList *userList, BarangList *barangList) {
-    FILE *pita = fopen("../../save/config.txt", "r");
+    FILE *pita = fopen("../../root/config.txt", "r");
     if (pita == NULL) {
         printf("Error: Unable to open default configuration file.\n");
         return 1; // Return error code
@@ -17,14 +18,14 @@ int start(UserList *userList, BarangList *barangList) {
 
     // Initialize UserList and BarangList
     CreateUserList(userList);
-    CreateBarangList(barangList, 2); // Initial capacity 2 for BarangList
+    CreateBarangList(barangList, 10); // Initial capacity 2 for BarangList
 
     // Start reading the file
     STARTFILE(pita);
 
     // Read the number of items (Barang)
     int num_items = atoi(currentLine.kalimat);
-    printf("Jumlah barang: %d\n", num_items);
+    //printf("Jumlah barang: %d\n", num_items);
 
     for (int i = 0; i < num_items; i++) {
         ADVWORD();
@@ -36,7 +37,7 @@ int start(UserList *userList, BarangList *barangList) {
     // Read the number of users
     ADVSENTENCE();
     int num_users = atoi(currentLine.kalimat);
-    printf("Jumlah pengguna: %d\n", num_users);
+    //printf("Jumlah pengguna: %d\n", num_users);
 
     for (int i = 0; i < num_users; i++) {
         // Read user money
@@ -66,11 +67,11 @@ int start(UserList *userList, BarangList *barangList) {
     fclose(pita);
 
     // Print loaded items for verification
-    printf("\nDaftar Barang:\n");
-    PrintBarang(barangList);
+    // printf("\nDaftar Barang:\n");
+    // PrintBarang(barangList);
 
-    printf("\nDaftar Pengguna:\n");
-    PrintUsers(userList);
+    // printf("\nDaftar Pengguna:\n");
+    // PrintUsers(userList);
 
     printf("\nDefault configuration successfully loaded. PURRMART is ready.\n");
     return 0; // Success

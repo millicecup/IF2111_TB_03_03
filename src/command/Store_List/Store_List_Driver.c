@@ -1,50 +1,30 @@
 #include <stdio.h>
-#include <stdlib.h>
-
-#include "../../ADT/boolean.h"
-#include "../../ADT/List_Barang/listdin_barang.h"
-#include "../../ADT/Mesin_Kata/mesinkata.h"
 #include "Store_List.h"
+#include "../../ADT/User_Barang/barang.h"
 
 int main() {
-    // Initialize the dynamic array of barang (items)
-    Arraybarang storeItems = MakeArrayDin();
+    BarangList store = MakeArrayDin();
+    Barang item1, item2, item3, item4;
 
-    // Add some items to the store
-    Barang item1, item2, item3;
-    
-    // Define the first item
-    item1.name.Length = 5;
-    Word namaBarang1;
-    stringToWord("Item1", &namaBarang1);
-    item1.name = namaBarang1;
+    assignString(item1.name, "Apple");
+    item1.price = 15000;
 
-    // Define the second item
-    item2.name.Length = 5;
-    Word namaBarang2;
-    stringToWord("Item2", &namaBarang2);
-    item2.name = namaBarang2;
+    assignString(item2.name, "Banana");
+    item2.price = 8000;
 
-    // Define the third item
-    item3.name.Length = 5;
-    Word namaBarang3;
-    stringToWord("Item3", &namaBarang3);
-    item3.name = namaBarang3;
+    assignString(item3.name, "Apple"); // Tes duplikat item
+    item3.price = 15000;
 
-    // Insert the items into the array
-    InsertLast(&storeItems, item1);
-    InsertLast(&storeItems, item2);
-    InsertLast(&storeItems, item3);
+    assignString(item4.name, "Orange");
+    item4.price = 15000;
 
-    // Display the store's inventory
-    DisplayStore(storeItems);
 
-    // Free the dynamic array
-    DeallocateArrayDin(&storeItems);
+    InsertLast(&store, item1);
+    InsertLast(&store, item2);
+    InsertLast(&store, item3);
+    InsertLast(&store, item4);
+
+    DisplayStore(store);
 
     return 0;
 }
-
-/*
-gcc Store_List_Driver.c ../../ADT/List_Barang/listdin_barang.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Baris/mesinbaris.c Store_List.c -o s
-*/

@@ -8,7 +8,7 @@ int main() {
     CreateUserList(&userArray); // Initialize the UserList
 
     printf("=== User Login ===\n");
-    //LoadConfig("../../../save/config.txt", &userArray, &barangArray);
+    LoadConfig("../../Data/config.txt", &userArray, NULL); // Load users from configuration file
     // Call the login function
     login(&userArray);
 
