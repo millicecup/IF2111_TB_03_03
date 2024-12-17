@@ -130,6 +130,40 @@ void animasiWork(){
     printf("\n\n\n"); 
 }
 
+void animasiCart()
+{
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/cart.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
+void animasiWishlist()
+{
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/wishlist.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
 void printMainMenu() {
     printf("=========================================\n");
     printf("Welcome to PURRMART Main Menu!\n");

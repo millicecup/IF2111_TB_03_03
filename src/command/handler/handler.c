@@ -5,8 +5,11 @@
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../ADT/User_Barang/barang.h"
 #include "../../ADT/queue/queue.h"
+#include "../../ADT/SetMap/setmap.h"
 
 #include "../animasi/animasi.h"
+#include "../Cart_Add/cart_add.h"
+#include "../Cart_Remove/cart_remove.h"
 #include "../Start/start.h"
 #include "../load/load.h"
 #include "../login/login.h"
@@ -244,6 +247,70 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
             if(running==false){
                 exit(0);
             }
+        } else {
+            printf("Invalid command. Please try again.\n");
+        }
+    }
+}
+
+void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keranjang, MenuState *currentMenu) {
+    update_menu(currentMenu, menucart);
+    boolean isInCartMenu = true;
+    system("cls || clear");
+
+    while (isInCartMenu) {
+        animasiCart();
+        printf("\n\n");
+        printf("Enter command: ");
+        GetInput();
+        Word currentWord;
+        chartoWord(&currentWord, currentInput.TabWord);
+
+        if (isWordEqualToString(&currentWord, "CART")) {
+            ADVWORD(); 
+            Word commandType;
+            chartoWord(&commandType, currentInput.TabWord);
+
+            if (isWordEqualToString(&commandType, "ADD")) {
+                ADVWORD();
+                Word itemWord;
+                chartoWord(&itemWord, currentInput.TabWord);
+
+                ADVWORD();
+                Word quantityWord;
+                chartoWord(&quantityWord, currentInput.TabWord);
+
+                int qty = WordToInt(&quantityWord);
+                char itemName[50];
+                wordToString(&itemWord, itemName);
+
+                AddCart(keranjang, itemName, qty, barangList);
+                tunggu(3);
+            } else if (isWordEqualToString(&commandType, "REMOVE")) {
+                ADVWORD();
+                Word itemWord;
+                chartoWord(&itemWord, currentInput.TabWord);
+
+                ADVWORD();
+                Word quantityWord;
+                chartoWord(&quantityWord, currentInput.TabWord);
+
+                int qty = WordToInt(&quantityWord);
+                char itemName[50];
+                wordToString(&itemWord, itemName);
+
+                RemoveCart(keranjang, itemName, qty);
+                tunggu(3);
+            } else if (isWordEqualToString(&commandType, "SHOW")) {
+                printf("TBA\n");
+            } else if (isWordEqualToString(&commandType, "PAY")) {
+                printf("TBA\n");
+            } else {
+                printf("Invalid command!\n");
+            }
+        } else if (isWordEqualToString(&currentWord, "MENU")) {
+            isInCartMenu = false;
+            printf("Returning to Main Menu...\n");
         } else {
             printf("Invalid command. Please try again.\n");
         }

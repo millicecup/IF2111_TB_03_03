@@ -5,6 +5,7 @@
 #include "../ADT/Mesin_Kata/mesinkata.h"
 #include "../ADT/User_Barang/barang.h"
 #include "../ADT/queue/queue.h"
+#include "../ADT/SetMap/setmap.h"
 
 #include "animasi/animasi.h"
 #include "start/start.h"
@@ -31,9 +32,11 @@ int main() {
     UserList userList;
     BarangList barangList;
     Queue request;
+    Keranjang cart;
     CreateUserList(&userList);
     CreateBarangList(&barangList, 2);
     CreateEmptyRequest(&request);
+    CreateEmptyBasket(&cart);
 
     MenuState currentMenu = menuforwelcome;
 

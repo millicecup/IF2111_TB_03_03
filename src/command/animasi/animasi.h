@@ -22,6 +22,10 @@ void animasiWork();
 
 void animasiChallenge();
 
+void animasiCart();
+
+void animasiWishlist();
+
 void printMainMenu() ;
 
 void printLoginMenu() ;
