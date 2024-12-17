@@ -5,6 +5,9 @@
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../ADT/User_Barang/barang.h"
 #include "../../ADT/queue/queue.h"
+#include "../../ADT/Stack/stack.h"
+#include "../../ADT/LinkedList/linkedlist.h"
+#include "../../ADT/SetMap/setmap.h"
 
 #include "../animasi/animasi.h"
 #include "../Start/start.h"

@@ -63,6 +63,9 @@
     "store_supply.h": "c",
     "start.h": "c",
     "store_list.h": "c",
-    "animasi.h": "c"
+    "animasi.h": "c",
+    "linkedlist.h": "c",
+    "handler.h": "c",
+    "barang.h": "c"
   }
 }

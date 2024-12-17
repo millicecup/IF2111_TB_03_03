@@ -5,6 +5,8 @@
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../ADT/User_Barang/barang.h"
 #include "../../ADT/queue/queue.h"
+#include "../../ADT/Stack/stack.h"
+#include "../../ADT/LinkedList/linkedlist.h"
 #include "../../ADT/SetMap/setmap.h"
 
 #include "../animasi/animasi.h"
@@ -41,6 +43,7 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request,
         //scanf("%s", command);
         printf("\n\n");
         printf("Enter command: ");
+        ResetInput();
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
@@ -79,6 +82,7 @@ void handleWorkChallenge(UserList *userList, MenuState *currentMenu) {
         animasiChallenge();
         printf("\n\n");
         printf("Enter command: ");
+        ResetInput();
         //scanf("%s", command);
         GetInput();
         Word currentWord;
@@ -116,6 +120,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
         printf("\n\n");
         printf("Enter command: ");
         //scanf("%s", command);
+        ResetInput();
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
@@ -167,23 +172,29 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
 }
 
 // Fungsi untuk handle login menu
-void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) { ////////////////////////////////////////////////////////////
+void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) { 
+    printf("DEBUG: Entering handleLoginMenu.\n");
+
     update_menu(currentMenu, menuforlogin);
     boolean isInLoginMenu = true;
-    system("cls || clear");
+    // system("cls || clear");
     //animasiLogin();
 
     while (isInLoginMenu) {
         animasiLogin();
-        //scanf("%s", command);
         printf("\n\n");
         printf("Enter command: ");
+        ResetInput();
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
+
+        printf("DEBUG: Command entered: %s\n", currentInput.TabWord);
+        printf("DEBUG: isInLoginMenu = %d\n", isInLoginMenu);
+
         if (isWordEqualToString(&currentWord, "LOGIN")) {
             login(userList);
-            if (loggedIn) { 
+            if (loggedIn) {
                 update_menu(currentMenu, menuutama);
                 handleInsideMenu(userList, barangList, request, currentMenu);
             }
@@ -199,15 +210,17 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
             handleMainMenu(userList, barangList, &isInLoginMenu, request, currentMenu);
         } else if (isWordEqualToString(&currentWord, "QUIT")) {
             quit(&isInLoginMenu, *userList);
-            if (isInLoginMenu == false) {
+            if (!isInLoginMenu) {
                 exit(0);
             }
-            //printf("Exiting PURRMART. Goodbye!\n");
+            printf("Exiting PURRMART. Goodbye!\n");
             // exit(0);
-        } else {
+        } 
+        else {
             printf("Invalid command. Please try again.\n");
         }
     }
+
 }
 
 // Fungsi untuk handle main menu
@@ -220,18 +233,21 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
         animasiMainMenu();
         printf("\n\n");
         printf("Enter command: ");
+        ResetInput();
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
         if (isWordEqualToString(&currentWord, "START")) {
             update_menu(currentMenu, menuforlogin);
             if (start(userList, barangList) == 0) {
-                printf("Configuration loaded successfully!\n");
-                tunggu(1);
+                printf("DEBUG: Start completed successfully.\n");
+                //boolean isInLoginMenu = true;  // Ensure state is set correctly
+                printf("DEBUG: Transitioning to handleLoginMenu.\n");
                 handleLoginMenu(userList, barangList, request, currentMenu);
             } else {
-                printf("Failed to load configuration.\n");
+                printf("DEBUG: Start failed.\n");
             }
+
         } else if (isWordEqualToString(&currentWord, "LOAD")) {
             update_menu(currentMenu, menuforlogin);
             if (Load(userList, barangList)) {

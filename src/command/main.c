@@ -3,12 +3,15 @@
 #include <time.h>
 #include "../ADT/User_Barang/user.h"
 #include "../ADT/Mesin_Kata/mesinkata.h"
+#include "../ADT/Mesin_Baris/mesinbaris.h"
 #include "../ADT/User_Barang/barang.h"
 #include "../ADT/queue/queue.h"
+#include "../ADT/Stack/stack.h"
+#include "../ADT/LinkedList/linkedlist.h"
 #include "../ADT/SetMap/setmap.h"
 
 #include "animasi/animasi.h"
-#include "start/start.h"
+#include "Start/start.h"
 #include "load/load.h"
 #include "login/login.h"
 #include "register/register.h"
@@ -48,14 +51,3 @@ int main() {
     return 0;
 }
 
-/*
-gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Karakter/mesinkarakter.c ../ADT/Mesin_Kata/mesinkata.c ../ADT/Mesin_Baris/mesinbaris.c ../ADT/work/mesinword.c ../ADT/work/mesinkar.c Start/start.c login/login.c register/register.c save/save.c load/load.c work/tebakangka/tebakangka.c animasi/animasi.c Store_List/Store_List.c -o program
-*/
-
-/*
-gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Karakter/mesinkarakter.c ../ADT/Mesin_Kata/mesinkata.c ../ADT/Mesin_Baris/mesinbaris.c ../ADT/work/mesinword.c ../ADT/work/mesinkar.c Start/start.c login/login.c register/register.c save/save.c load/load.c animasi/animasi.c Store_List/Store_List.c ../ADT/List/list.c ../ADT/queue/queue.c Store_Request/Store_Request.c Store_Remove/Store_Remove.c Store_Supply/Store_Supply.c workchallenge/wordl3/wordl3.c workchallenge/tebakangka/tebakangka.c -o program
-*/
-
-/*
-gcc main.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Karakter/mesinkarakter.c ../ADT/Mesin_Kata/mesinkata.c ../ADT/Mesin_Baris/mesinbaris.c Start/start.c login/login.c register/register.c save/save.c load/load.c animasi/animasi.c Store_List/Store_List.c ../ADT/List/list.c ../ADT/queue/queue.c Store_Request/Store_Request.c Store_Remove/Store_Remove.c Store_Supply/Store_Supply.c workchallenge/wordl3/wordl3.c workchallenge/tebakangka/tebakangka.c work/work.c help/help.c logout/logout.c quit/quit.c handler/handler.c -o program
-*/

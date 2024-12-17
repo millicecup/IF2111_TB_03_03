@@ -4,6 +4,9 @@ CFLAGS = -Wno-implicit-function-declaration
 
 # Source Files
 SRC = main.c \
+    ../ADT/Stack/stack.c \
+    ../ADT/LinkedList/linkedlist.c \
+    ../ADT/SetMap/setmap.c \
     ../ADT/User_Barang/user.c \
     ../ADT/User_Barang/barang.c \
     ../ADT/Mesin_Karakter/mesinkarakter.c \
