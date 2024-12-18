@@ -8,7 +8,8 @@ typedef enum {
     menustore,
     menuwork,
     menuworkchallenge,
-    menucart
+    menucart,
+    menuwishlist
 } MenuState;
 
 #endif // MENU_H

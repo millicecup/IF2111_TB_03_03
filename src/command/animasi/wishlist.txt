@@ -22,4 +22,6 @@
 | '------------' || '----------' || '------------' || '------------' || '------------' || '----------' || '------------' || '-----------' |
  '---------------'  '-----------'  '--------------'  '--------------'  '--------------'  '------------'  '--------------'  '-------------' 
 
- 1. WISHLIST ADD    2. WISHLIST SWAP<i><j>   3. WISHLIST REMOVE<i>   4. WISHLIST REMOVE    5. WISHLIST CLEAR    6. WISHLIST SHOW    7. MENU
+         1. WISHLIST ADD               2. WISHLIST SWAP <i> <j>            3. WISHLIST REMOVE <i>              4. WISHLIST REMOVE  
+
+                 5. WISHLIST CLEAR               6. WISHLIST SHOW                  7. HELP                   8. MENU

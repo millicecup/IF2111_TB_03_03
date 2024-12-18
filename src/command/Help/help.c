@@ -45,7 +45,25 @@ void help(MenuState *current_menu) {
             printf("1. TEBAK ANGKA ->  Tebak kata dengan biaya bermain 200 dan kesempatan memenangkan 350\n");
             printf("2. WORDL3 -> Tebak kata dengan biaya bermain 500 dan kesempatan memenangkan 1500\n");
             printf("3. MENU -> Untuk kembali ke menu sebelumnya\n");
-        } 
+        } else if (*current_menu == menucart) {
+            printf("=====[ Menu Help PURRMART ]=====\n");
+            printf("Ketik 'back' untuk keluar dari menu help\n");
+            printf("1. CART ADD <nama> <n> ->  Untuk menambahkan barang <nama> sejumlah <n> ke keranjang\n");
+            printf("2. CART REMOVE <nama> <n> -> Untuk menghapus barang <nama> sejumlah <n> dari keranjang\n");
+            printf("3. CART SHOW ->  Untuk menunjukkan barang yang ada di keranjang\n");
+            printf("4. CART PAY -> Untuk membeli barang - barang yang sudah dimasukkan ke keranjang\n");
+            printf("5. MENU -> Untuk kembali ke menu sebelumnya\n");
+        } else if (*current_menu == menuwishlist) {
+            printf("=====[ Menu Help PURRMART ]=====\n");
+            printf("Ketik 'back' untuk keluar dari menu help\n");
+            printf("1. WISHLIST ADD ->  Untuk menambahkan barang ke wishlist\n");
+            printf("2. WISHLIST SWAP <i> <j> -> Untuk menukar barang posisi ke <i> dengan barang posisi ke <j> pada wishlist\n");
+            printf("3. WISHLIST REMOVE <i> ->  Untuk menghapus barang posisi ke <i> pada wishlist\n");
+            printf("4. WISHLIST REMOVE -> Untuk menghapus barang dari wishlist\n");
+            printf("5. WISHLIST CLEAR ->  Untuk menghapus semua barang dari wishlist\n");
+            printf("6. WISHLIST SHOW -> Untuk menunjukkan barang - barang yang sudah dimasukkan ke wishlist\n");
+            printf("7. MENU -> Untuk kembali ke menu sebelumnya\n");
+        }
         GetInput();
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);

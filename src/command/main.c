@@ -36,18 +36,26 @@ int main() {
     BarangList barangList;
     Queue request;
     Keranjang cart;
+    Wishlist wishlist;
+    History history;
     CreateUserList(&userList);
     CreateBarangList(&barangList, 2);
     CreateEmptyRequest(&request);
     CreateEmptyBasket(&cart);
+    CreateEmptyWishlist(&wishlist);
+    CreateEmptyStack(&history);
 
     MenuState currentMenu = menuforwelcome;
 
     while (running) {
-        handleMainMenu(&userList, &barangList, &running, &request, &currentMenu);
+        handleMainMenu(&userList, &barangList, &running, &request, &cart, &wishlist, &history, &currentMenu);
     }
 
     FreeBarangList(&barangList);
     return 0;
 }
 
+
+/*
+gcc main.c ../ADT/Stack/stack.c ../ADT/LinkedList/linkedlist.c ../ADT/User_Barang/user.c ../ADT/User_Barang/barang.c ../ADT/Mesin_Karakter/mesinkarakter.c ../ADT/Mesin_Kata/mesinkata.c ../ADT/Mesin_Baris/mesinbaris.c Start/start.c login/login.c register/register.c save/save.c load/load.c animasi/animasi.c Store_List/Store_List.c ../ADT/List/list.c ../ADT/queue/queue.c Store_Request/Store_Request.c Store_Remove/Store_Remove.c Store_Supply/Store_Supply.c workchallenge/wordl3/wordl3.c workchallenge/tebakangka/tebakangka.c work/work.c Help/help.c Logout/logout.c quit/quit.c handler/handler.c ../ADT/SetMap/setmap.c Cart_Add/cart_add.c Cart_Remove/cart_remove.c History/history.c -o program
+*/

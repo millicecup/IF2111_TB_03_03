@@ -25,6 +25,7 @@
 #include "../Store_Supply/Store_Supply.h"
 #include "../Store_Remove/Store_Remove.h"
 #include "../Help/help.h"
+#include "../History/history.h"
 #include "../Logout/logout.h"
 #include "../quit/quit.h"
 #include "handler.h"
@@ -106,7 +107,7 @@ void handleWorkChallenge(UserList *userList, MenuState *currentMenu) {
 }
 
 // Fungsi untuk handle menu
-void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) {
+void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request, Keranjang *cart, Wishlist *wishlist, History *history, MenuState *currentMenu) {
     update_menu(currentMenu, menuutama);
     boolean isInside = true;
     boolean clear = true;
@@ -136,12 +137,40 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             clear = false;
             work(userList);
             tunggu(3);
-            handleInsideMenu(userList, barangList, request, currentMenu);
+            handleInsideMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
         } else if (isWordEqualToString(&currentWord, "WORK CHALLENGE")) {
             MenuState insidemenu = *currentMenu;
             update_menu(currentMenu, menuworkchallenge);
             handleWorkChallenge(userList, currentMenu);
             update_menu(currentMenu, insidemenu);
+        } else if (isWordEqualToString(&currentWord, "CART")) {
+            MenuState insidemenu = *currentMenu;
+            update_menu(currentMenu, menucart);
+            handleCartMenu(userList, barangList, cart, currentMenu);
+            update_menu(currentMenu, insidemenu);
+        } else if (isWordEqualToString(&currentWord, "WISHLIST")) {
+            MenuState insidemenu = *currentMenu;
+            update_menu(currentMenu, menuwishlist);
+            handleWishlistMenu(userList, barangList, wishlist, currentMenu);
+            update_menu(currentMenu, insidemenu);
+        } else if (isWordEqualToString(&currentWord, "HISTORY")) {
+            animasiHistory();
+            clear = false;
+            DisplayHistory(*history, 5);
+            GetInput();
+            Word currentWord;
+            chartoWord(&currentWord, currentInput.TabWord);
+            if (isWordEqualToString(&currentWord, "back"))
+            {
+                handleInsideMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
+            }
+            else
+            {
+                printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
+            }
+        } else if (isWordEqualToString(&currentWord, "PROFILE")) {
+            clear = true;
+            printf("TBA\n");
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             clear = true;
             help(currentMenu);
@@ -156,14 +185,14 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             WordToChar(&file, filename); 
             SaveToFile(filename, barangList, userList);
             tunggu(3);
-            handleInsideMenu(userList, barangList, request, currentMenu);
+            handleInsideMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
         } else if (isWordEqualToString(&currentWord, "LOGOUT")) {
             clear = true;
             logout(&isInside, *userList);
             if (isInside == false) {
                 printf("Logging out...\n");
                 tunggu(2);
-                handleLoginMenu(userList, barangList, request, currentMenu); /////////////////////////////////////////////////////////////////////////////
+                handleLoginMenu(userList, barangList, request, cart, wishlist, history, currentMenu); /////////////////////////////////////////////////////////////////////////////
             }
         } else {
             printf("Invalid command. Please try again.\n");
@@ -172,7 +201,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
 }
 
 // Fungsi untuk handle login menu
-void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) { 
+void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request, Keranjang *cart, Wishlist *wishlist, History *history, MenuState *currentMenu) { 
     printf("DEBUG: Entering handleLoginMenu.\n");
 
     update_menu(currentMenu, menuforlogin);
@@ -196,7 +225,7 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
             login(userList);
             if (loggedIn) {
                 update_menu(currentMenu, menuutama);
-                handleInsideMenu(userList, barangList, request, currentMenu);
+                handleInsideMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
             }
             tunggu(2);
         } else if (isWordEqualToString(&currentWord, "REGISTER")) {
@@ -207,7 +236,7 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
         } else if (isWordEqualToString(&currentWord, "MAIN MENU")) {
             isInLoginMenu = false;
             printf("Returning to Main Menu...\n");
-            handleMainMenu(userList, barangList, &isInLoginMenu, request, currentMenu);
+            handleMainMenu(userList, barangList, &isInLoginMenu, request, cart, wishlist, history, currentMenu);
         } else if (isWordEqualToString(&currentWord, "QUIT")) {
             quit(&isInLoginMenu, *userList);
             if (!isInLoginMenu) {
@@ -224,7 +253,7 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
 }
 
 // Fungsi untuk handle main menu
-void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request, MenuState *currentMenu) {
+void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request, Keranjang *cart, Wishlist *wishlist, History *history, MenuState *currentMenu) {
     update_menu(currentMenu, menuforwelcome);
     system("cls || clear");
 
@@ -243,7 +272,7 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
                 printf("DEBUG: Start completed successfully.\n");
                 //boolean isInLoginMenu = true;  // Ensure state is set correctly
                 printf("DEBUG: Transitioning to handleLoginMenu.\n");
-                handleLoginMenu(userList, barangList, request, currentMenu);
+                handleLoginMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
             } else {
                 printf("DEBUG: Start failed.\n");
             }
@@ -252,7 +281,7 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
             update_menu(currentMenu, menuforlogin);
             if (Load(userList, barangList)) {
                 tunggu(2);
-                handleLoginMenu(userList, barangList, request, currentMenu); 
+                handleLoginMenu(userList, barangList, request, cart, wishlist, history, currentMenu); 
             } else {
                 update_menu(currentMenu, menuforwelcome);
             }
@@ -278,52 +307,55 @@ void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keran
         animasiCart();
         printf("\n\n");
         printf("Enter command: ");
-        GetInput();
-        Word currentWord;
-        chartoWord(&currentWord, currentInput.TabWord);
+        GetInput(); // Membaca input penuh ke currentInput
+        printf("DEBUG: Input received: ");
+        TulisWordNoNL(currentInput);
+        printf("\n");
 
+        // baca kata dari currentInput
+        STARTWORD(stdin);
         if (isWordEqualToString(&currentWord, "CART")) {
-            ADVWORD(); 
-            Word commandType;
-            chartoWord(&commandType, currentInput.TabWord);
+            printf("DEBUG: Command CART detected!\n");
+            ADVWORD(); // (ADD/REMOVE/SHOW/PAY)
+            printf("DEBUG: Sub-command = ");
+            TulisWord(currentWord);
+            printf("\n");
 
-            if (isWordEqualToString(&commandType, "ADD")) {
-                ADVWORD();
-                Word itemWord;
-                chartoWord(&itemWord, currentInput.TabWord);
+            if (isWordEqualToString(&currentWord, "ADD")) {
+                printf("DEBUG: Sub-command recognized as ADD\n");
 
-                ADVWORD();
-                Word quantityWord;
-                chartoWord(&quantityWord, currentInput.TabWord);
+                ADVWORD(); // Membaca nama item
+                Word itemName;
+                CopyWordToVar(&currentWord, itemName);
+                printf("DEBUG: Item name = %s\n", itemName);
 
-                int qty = WordToInt(&quantityWord);
+                ADVWORD(); // Membaca jumlah
+                int qty = WordToInt(&currentWord);
+                printf("DEBUG: Quantity = %d\n", qty);
+
+                AddCart(keranjang, itemName.TabWord, qty, barangList);
+                printf("Item %s dengan jumlah %d berhasil ditambahkan ke keranjang.\n", itemName, qty);
+            } else if (isWordEqualToString(&currentWord, "REMOVE")) {
+                ADVWORD(); // Membaca nama item
                 char itemName[50];
-                wordToString(&itemWord, itemName);
+                WordToChar(&currentWord, itemName);
+                printf("DEBUG: Item name = %s\n", itemName);
 
-                AddCart(keranjang, itemName, qty, barangList);
-                tunggu(3);
-            } else if (isWordEqualToString(&commandType, "REMOVE")) {
-                ADVWORD();
-                Word itemWord;
-                chartoWord(&itemWord, currentInput.TabWord);
-
-                ADVWORD();
-                Word quantityWord;
-                chartoWord(&quantityWord, currentInput.TabWord);
-
-                int qty = WordToInt(&quantityWord);
-                char itemName[50];
-                wordToString(&itemWord, itemName);
+                ADVWORD(); // Membaca jumlah
+                int qty = WordtoNum(currentWord);
+                printf("DEBUG: Quantity = %d\n", qty);
 
                 RemoveCart(keranjang, itemName, qty);
-                tunggu(3);
-            } else if (isWordEqualToString(&commandType, "SHOW")) {
+                printf("Item %s dengan jumlah %d berhasil dihapus dari keranjang.\n", itemName, qty);
+            } else if (isWordEqualToString(&currentWord, "SHOW")) {
                 printf("TBA\n");
-            } else if (isWordEqualToString(&commandType, "PAY")) {
+            } else if (isWordEqualToString(&currentWord, "PAY")) {
                 printf("TBA\n");
             } else {
-                printf("Invalid command!\n");
+                printf("Invalid CART command!\n");
             }
+        } else if (isWordEqualToString(&currentWord, "HELP")) {
+            help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "MENU")) {
             isInCartMenu = false;
             printf("Returning to Main Menu...\n");
@@ -332,3 +364,114 @@ void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keran
         }
     }
 }
+
+
+
+void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wishlist, MenuState *currentMenu) {
+    update_menu(currentMenu, menuwishlist);
+    boolean isInWishlistMenu = true;
+    system("cls || clear");
+
+    while (isInWishlistMenu) {
+        animasiWishlist();
+        printf("\n\n");
+        printf("Enter command: ");
+        ResetInput();
+        GetInput();
+        Word currentWord;
+        chartoWord(&currentWord, currentInput.TabWord);
+
+        if (isWordEqualToString(&currentWord, "WISHLIST ADD")) {
+            printf("TBA\n");
+        } 
+        else if (isWordEqualToString(&currentWord, "WISHLIST SWAP")) {
+            printf("TBA\n");
+        } 
+        else if (isWordEqualToString(&currentWord, "WISHLIST REMOVE")) {
+            printf("TBA\n");
+        } 
+        else if (isWordEqualToString(&currentWord, "WISHLIST CLEAR")) {
+            printf("TBA\n");
+        } 
+        else if (isWordEqualToString(&currentWord, "WISHLIST SHOW")) {
+            printf("TBA\n");
+        } 
+        else if (isWordEqualToString(&currentWord, "HELP")) {
+            help(currentMenu);
+        } 
+        else if (isWordEqualToString(&currentWord, "MENU")) {
+            isInWishlistMenu = false;
+            printf("Returning to Inside Menu...\n");
+        } 
+        else {
+            printf("Invalid command. Please try again.\n");
+        }
+    }
+}
+
+
+// void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keranjang, MenuState *currentMenu) {
+//     update_menu(currentMenu, menucart);
+//     boolean isInCartMenu = true;
+//     system("cls || clear");
+
+//     while (isInCartMenu) {
+//         animasiCart();
+//         printf("\n\n");
+//         printf("Enter command: ");
+//         GetInput();
+//         Word currentWord;
+//         chartoWord(&currentWord, currentInput.TabWord);
+
+//         if (isWordEqualToString(&currentWord, "CART")) {
+//             ADVWORD(); 
+//             Word commandType;
+//             chartoWord(&commandType, currentInput.TabWord);
+
+//             if (isWordEqualToString(&commandType, "ADD")) {
+//                 ADVWORD();
+//                 Word itemWord;
+//                 chartoWord(&itemWord, currentInput.TabWord);
+
+//                 ADVWORD();
+//                 Word quantityWord;
+//                 chartoWord(&quantityWord, currentInput.TabWord);
+
+//                 int qty = WordToInt(&quantityWord);
+//                 char itemName[50];
+//                 WordToChar(&itemWord, itemName);
+
+//                 AddCart(keranjang, itemName, qty, barangList);
+//                 tunggu(3);
+//             } else if (isWordEqualToString(&commandType, "REMOVE")) {
+//                 ADVWORD();
+//                 Word itemWord;
+//                 chartoWord(&itemWord, currentInput.TabWord);
+
+//                 ADVWORD();
+//                 Word quantityWord;
+//                 chartoWord(&quantityWord, currentInput.TabWord);
+
+//                 int qty = WordToInt(&quantityWord);
+//                 char itemName[50];
+//                 WordToChar(&itemWord, itemName);
+
+//                 RemoveCart(keranjang, itemName, qty);
+//                 tunggu(3);
+//             } else if (isWordEqualToString(&commandType, "SHOW")) {
+//                 printf("TBA\n");
+//             } else if (isWordEqualToString(&commandType, "PAY")) {
+//                 printf("TBA\n");
+//             } else {
+//                 printf("Invalid command!\n");
+//             }
+//         } else if (isWordEqualToString(&currentWord, "HELP")) {
+//              help(currentMenu);
+//         } else if (isWordEqualToString(&currentWord, "MENU")) {
+//             isInCartMenu = false;
+//             printf("Returning to Main Menu...\n");
+//         } else {
+//             printf("Invalid command. Please try again.\n");
+//         }
+//     }
+// }

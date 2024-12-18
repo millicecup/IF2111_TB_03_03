@@ -27,15 +27,21 @@
 #include "../quit/quit.h"
 
 // Fungsi untuk handle store menu
-void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) ;
+void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu);
 
 void handleWorkChallenge(UserList *userList, MenuState *currentMenu);
 
 // Fungsi untuk handle menu
-void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu) ;
+void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request, Keranjang *cart, Wishlist *wishlist, History *history, MenuState *currentMenu);
 
 // Fungsi untuk handle login menu
-void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu);
+void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request, Keranjang *cart, Wishlist *wishlist, History *history, MenuState *currentMenu);
 
 // Fungsi untuk handle main menu
-void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request, MenuState *currentMenu);
+void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request, Keranjang *cart, Wishlist *wishlist, History *history, MenuState *currentMenu);
+
+// Fungsi untuk handle cart menu
+void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keranjang, MenuState *currentMenu);
+
+// Fungsi untuk handle wishlist menu
+void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wishlist, MenuState *currentMenu);

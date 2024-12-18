@@ -164,6 +164,22 @@ void animasiWishlist()
     printf("\n\n\n"); 
 }
 
+void animasiHistory(){
+    FILE *fascii;
+    fascii = NULL;
+    fascii = fopen("animasi/history.txt","r");
+    if(fascii  == NULL)
+    {
+        printf("error opening file\n");
+    } 
+    else 
+    {
+        printImage(fascii);
+        fclose(fascii);
+    }
+    printf("\n\n\n"); 
+}
+
 void printMainMenu() {
     printf("=========================================\n");
     printf("Welcome to PURRMART Main Menu!\n");

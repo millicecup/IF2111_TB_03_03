@@ -26,6 +26,8 @@ void animasiCart();
 
 void animasiWishlist();
 
+void animasiHistory();
+
 void printMainMenu() ;
 
 void printLoginMenu() ;
