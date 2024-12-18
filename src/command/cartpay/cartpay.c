@@ -4,9 +4,9 @@
 #include "../ADT/User_Barang/barang.h"
 #include "../ADT/Mesin_Kata/mesinkata.h"
 #include "../ADT/SetMap/setmap.h"
+#include "../ADT/Stack/stack.h"
 #include "../command/cartshow/cartshow.h"
 
-// Fungsi untuk menghitung total biaya keranjang
 int calculateTotalBasketCost(Keranjang k) {
     int totalCost = 0;
     for (int i = 0; i < TotalBasket(k); i++) {
@@ -15,49 +15,60 @@ int calculateTotalBasketCost(Keranjang k) {
     return totalCost;
 }
 
-// Fungsi untuk melakukan pembayaran
-void cartPay(Keranjang *k, int *userMoney) {
-    // Cek apakah keranjang kosong
+void findHighestTotalItem(Keranjang k, char* maxName, int* maxPrice, int* maxQuantity) {
+    int maxTotal = 0;
+    *maxPrice = 0;
+    *maxQuantity = 0;
+    
+    // Inisialisasi maxName dengan item pertama jika keranjang tidak kosong
+    if (!IsEmptyBasket(k)) {
+        assignString(maxName, k.item[0].name);
+    }
+    
+    for (int i = 0; i < TotalBasket(k); i++) {
+        int currentTotal = k.item[i].price * k.quantity[i];
+        
+        // Jika total lebih besar atau sama dengan total maksimum saat ini
+        if (currentTotal > maxTotal || 
+            (currentTotal == maxTotal && isGreaterString(k.item[i].name, maxName))) {
+            maxTotal = currentTotal;
+            assignString(maxName, k.item[i].name);
+            *maxPrice = k.item[i].price;
+            *maxQuantity = k.quantity[i];
+        }
+    }
+}
+
+void cartPay(Keranjang *k, int *userMoney, History *h) {
     if (IsEmptyBasket(*k)) {
         printf("Keranjang kamu kosong!\n");
         return;
     }
-
-    // Gunakan fungsi cartShow untuk menampilkan keranjang
     cartShow(*k);
-
-    // Minta konfirmasi pembayaran
     printf("Apakah jadi dibeli? (Ya/Tidak): ");
-
-    // Input konfirmasi pembayaran
+    
     ResetInput();
     GetInput();
-
-    // Konversi input ke word "Ya"
-    Word yaWord = toKata("ya");
-
-    // Validasi input
     if (isWordEqualToString(&currentInput, "ya") || isWordEqualToString(&currentInput, "Ya")) {
-        // Hitung total biaya
         int totalCost = calculateTotalBasketCost(*k);
-
-        // Cek kecukupan uang
         if (*userMoney >= totalCost) {
-            // Lakukan pembayaran
             *userMoney -= totalCost;
-            printf("Selamat kamu telah membeli barang-barang tersebut!\n");
             
-            // Kosongkan keranjang setelah pembayaran
+            char maxName[Max_Length];
+            int maxPrice, maxQuantity;
+            findHighestTotalItem(*k, maxName, &maxPrice, &maxQuantity);
+            
+            // Menambahkan ke history menggunakan PushStack yang sudah ada
+            PushStack(h, maxName, maxPrice, maxQuantity);
+            
+            printf("Selamat kamu telah membeli barang-barang tersebut!\n");
             CreateEmptyBasket(k);
         } else {
-            // Uang tidak cukup
             printf("Uang kamu hanya %d, tidak cukup untuk membeli barang yang ada di keranjang!\n", *userMoney);
         }
     } else if (isWordEqualToString(&currentInput, "tidak") || isWordEqualToString(&currentInput, "Tidak")) {
-        // Batalkan pembayaran
         printf("Pembayaran dibatalkan.\n");
     } else {
-        // Input tidak valid
         printf("Input tidak valid. Pembayaran dibatalkan.\n");
     }
 }
