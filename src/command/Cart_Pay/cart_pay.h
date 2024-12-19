@@ -15,6 +15,6 @@ int calculateTotalBasketCost(Keranjang k);
 
 void findHighestTotalItem(Keranjang k, char* maxName, int* maxPrice, int* maxQuantity);
 
-void cartPay(Keranjang *k, History *h, UserList *userList);
+void cartPay(Keranjang *k, UserList *userList);
 
 #endif

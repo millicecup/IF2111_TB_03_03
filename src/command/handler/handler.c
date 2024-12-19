@@ -25,6 +25,7 @@
 #include "../Wishlist_Clear/wishlist_clear.h"
 #include "../Wishlist_Remove_i/Wishlist_Remove_i.h"
 #include "../Wishlist_Remove/Wishlist_Remove.h"
+#include "../Wishlist_Add/wishlist_add.h"
 #include "../Store_List/Store_List.h"
 #include "../Store_Request/Store_Request.h"
 #include "../Store_Supply/Store_Supply.h"
@@ -154,7 +155,7 @@ void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keran
             } else if (isWordEqualToString(&currentWord, "SHOW")) {
                 cartShow(*keranjang);
             } else if (isWordEqualToString(&currentWord, "PAY")) {
-                cartPay(keranjang, history, userList);
+                cartPay(keranjang, userList);
             } else {
                 printf("Invalid CART command!\n");
             }
@@ -186,7 +187,7 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
             ADVCOMM(); 
 
             if (isWordEqualToString(&currentWord, "ADD")) {
-                printf("TBA\n");
+                WishlistAdd(userList, barangList);
             } else if (isWordEqualToString(&currentWord, "SWAP")) {
                 ADVCOMM(); 
                 int idx1 = WordToInt(&currentWord);
@@ -274,18 +275,19 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
         } else if (isWordEqualToString(&currentWord, "HISTORY")) {
             animasiHistory();
             clear = false;
-            DisplayHistory(*history, 5);
+            ADVCOMM();
+            int N = WordToInt(&currentWord);
+            DisplayHistory(N, userList);
+
             GetInput();
             Word currentWord;
             chartoWord(&currentWord, currentInput.TabWord);
-            if (isWordEqualToString(&currentWord, "back"))
-            {
+            if (isWordEqualToString(&currentWord, "back")) {
                 handleInsideMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
             }
-            else
-            {
+            else {
                 printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
-            }
+            } 
         } else if (isWordEqualToString(&currentWord, "PROFILE")) {
             clear = true;
             profile(userList);

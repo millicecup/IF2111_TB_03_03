@@ -35,7 +35,7 @@ void findHighestTotalItem(Keranjang k, char* maxName, int* maxPrice, int* maxQua
     }
 }
 
-void cartPay(Keranjang *k, History *h, UserList *userList) {
+void cartPay(Keranjang *k, UserList *userList) {
     User *currentUser = &userList->users[userList->currentUserIndex];
 
     if (IsEmptyBasket(*k)) {
@@ -57,7 +57,7 @@ void cartPay(Keranjang *k, History *h, UserList *userList) {
             findHighestTotalItem(*k, maxName, &maxPrice, &maxQuantity);
             
             // Menambahkan ke history menggunakan PushStack yang sudah ada
-            PushStack(h, maxName, maxPrice, maxQuantity);
+            PushStack(&currentUser->riwayat_pembelian, maxName, maxPrice, maxQuantity);
             
             printf("Selamat kamu telah membeli barang-barang tersebut!, uang kamu tersisa %d.\n", currentUser->money);
             CreateEmptyBasket(k);

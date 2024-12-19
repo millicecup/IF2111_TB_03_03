@@ -3,6 +3,6 @@
 
 #include "../../ADT/Stack/stack.h"
 
-void DisplayHistory(History H, int N);
+void DisplayHistory(int N, UserList *userList);
 
 #endif
