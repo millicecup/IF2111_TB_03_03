@@ -34,7 +34,7 @@ void WishlistRemoveI(Wishlist *wishlist) {
         return;
     }
 
-    address prev = Nil;
+    address prev = Nill;
     address curr = First(*wishlist);
     int count = 1;
 
@@ -44,7 +44,7 @@ void WishlistRemoveI(Wishlist *wishlist) {
         count++;
     }
 
-    if (prev == Nil) {
+    if (prev == Nill) {
         DelFirst(wishlist, &curr);
     } else {
         DelAfter(wishlist, &curr, prev);
