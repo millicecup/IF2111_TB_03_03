@@ -81,6 +81,8 @@ int stringLength(char *str);
 
 boolean isWordEqualToString(const Word *w, const char *str);
 
+void ConcatWord(Word *dest, const Word *src);
+
 void READWORD();
 
 boolean compareStringsManual(const char *str1, const char *str2);

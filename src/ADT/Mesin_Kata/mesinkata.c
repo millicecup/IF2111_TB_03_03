@@ -321,6 +321,23 @@ boolean isWordEqualToString(const Word *w, const char *str) {
     return i == w->Length && str[i] == '\0';
 }
 
+void ConcatWord(Word *dest, const Word *src) {
+    int i;
+    int initialLength = dest->Length;
+
+    if (initialLength > 0 && initialLength < NMax) {
+        dest->TabWord[initialLength] = ' ';
+        dest->Length++;
+        initialLength++;
+    }
+
+    for (i = 0; i < src->Length && initialLength + i < NMax; i++) {
+        dest->TabWord[initialLength + i] = src->TabWord[i];
+    }
+
+    dest->Length = initialLength + i;
+}
+
 
 void WordToChar(const Word *word, char *output) {
     for (int i = 0; i < word->Length; i++) {

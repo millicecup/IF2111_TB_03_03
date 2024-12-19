@@ -27,7 +27,7 @@ void STARTINPCOMMAND(FILE* input)
 {
     START(input);
     IgnoreNewLine();
-    if (currentChar == ';')
+    if (currentChar == '\n')
     {
         endWord = true;
     }
@@ -39,16 +39,16 @@ void STARTINPCOMMAND(FILE* input)
 }
 
 void ResetCommand() {
-    for (int i = 0; i < currentWord.Length; i++) {
+    for (int i = 0; i < sizeof(currentWord.TabWord); i++) {
         currentWord.TabWord[i] = '\0';
+        currentWord.Length = 0;
     }
-    currentWord.Length = 0;
 }
 
 void CopyCommand() {
     ResetCommand();
     int i = 0;
-    while ((currentChar != ';') && (currentChar != ' ') && (currentChar != EOF))
+    while ((currentChar != '\n') && (currentChar != ' ') && (currentChar != EOF))
     {
         currentWord.TabWord[i] = currentChar;
         i++;
@@ -60,7 +60,7 @@ void CopyCommand() {
 
 void ADVCOMM() {
     IgnoreBlanks();
-    if (currentChar != ';')
+    if (currentChar != '\n')
     {
         endWord = false;
         CopyCommand();

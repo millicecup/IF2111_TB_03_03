@@ -39,3 +39,7 @@ int main()
 
     return 0;
 }
+
+/*
+gcc -o crdriver cr_driver.c cart_remove.c ../../ADT/SetMap/setmap.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Baris/mesinbaris.c
+*/
