@@ -31,7 +31,7 @@ void ResetCommand();
 
 void ADVCOMM();
 /* Mesin akan menyimpan masukan kata kedua dari pengguna */
-
+void ADVAPA();
 void ADVLINE();
 /* Pita akan maju satu baris atau turun ke baris selanjutnya */
 

@@ -59,16 +59,32 @@ void CopyCommand() {
 }
 
 void ADVCOMM() {
-    IgnoreBlanks();
-
-    if (currentChar == '\n') {
+    IgnoreBlanks();  
+    if (currentChar == '\n' || currentChar == EOF) {
+        
         endWord = true;
         ResetCommand();
     } else {
+        
         endWord = false;
         CopyCommand();
     }
 }
+
+
+void ADVAPA() {
+    //IgnoreBlanks();  
+    if (currentChar == '\n' || currentChar == EOF) {
+        
+        endWord = true;
+        ResetCommand();
+    } else {
+        IgnoreBlanks();
+        endWord = false;
+        CopyCommand();
+    }
+}
+
 
 void CopyLine() {
     ResetKalimat();  // Reset buffer

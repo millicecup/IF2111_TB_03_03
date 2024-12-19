@@ -139,7 +139,6 @@ void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keran
                 int qty = -1;
                 while (!isEndWord() && WordToInt(&currentWord) == -1) {
                     ConcatWord(&item, &currentWord);
-
                     ADVCOMM();
                 }
                 qty = WordToInt(&currentWord);
@@ -186,46 +185,62 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
         GetCommand();
 
         if (isWordEqualToString(&currentWord, "WISHLIST")) {
-            ADVCOMM(); 
-
-            if (isWordEqualToString(&currentWord, "ADD")) {
+            ADVCOMM(); // Move to next word after "WISHLIST"
+            
+            if (isWordEqualToString(&currentWord, "REMOVE")) {
+                ADVAPA(); // Move to potential index
+                
+                if (currentWord.Length == 0) {
+                    // If no index provided, remove all items
+                    WishlistRemove(userList);
+                    printf("All items have been removed from the wishlist.\n");
+                } else {
+                    // If index provided, remove specific item
+                    int idx = WordToInt(&currentWord);
+                    if (idx != -1) {
+                        WishlistRemoveI(userList, idx);
+                        printf("Item at index %d removed from wishlist.\n", idx);
+                    } else {
+                        printf("Invalid index provided.\n");
+                    }
+                }
+                PrintList(userList->users->wishlist); // Show updated wishlist
+            }
+            else if (isWordEqualToString(&currentWord, "ADD")) {
                 WishlistAdd(userList, barangList);
-            } else if (isWordEqualToString(&currentWord, "SWAP")) {
-                ADVCOMM(); 
-                int idx1 = WordToInt(&currentWord);
-
-                ADVCOMM(); 
-                int idx2 = WordToInt(&currentWord);
-
-                printf("idx1 = %d\n", idx1);
-                printf("idx2 = %d\n", idx2);
-
-                WishlistSwap(userList, idx1, idx2);
-            } else if (isWordEqualToString(&currentWord, "REMOVE")) {
+            }
+            else if (isWordEqualToString(&currentWord, "SWAP")) {
                 ADVCOMM();
-                int idx = WordToInt(&currentWord);
-
-                printf("idx yg mau diapus = %d", idx);
-                WishlistRemoveI(userList, idx);
-            } else if (isWordEqualToString(&currentWord, "CLEAR")) {
+                int idx1 = WordToInt(&currentWord);
+                ADVCOMM();
+                int idx2 = WordToInt(&currentWord);
+                WishlistSwap(userList, idx1, idx2);
+            }
+            else if (isWordEqualToString(&currentWord, "CLEAR")) {
                 WishlistClear(userList, userList->users[userList->currentUserIndex].name);
-            } else if (isWordEqualToString(&currentWord, "SHOW")) {
+            }
+            else if (isWordEqualToString(&currentWord, "SHOW")) {
                 WishlistShow(userList);
-            } else {
+                PrintList(userList->users->wishlist);
+            }
+            else {
                 printf("Invalid WISHLIST command!\n");
             }
-        } else if (isWordEqualToString(&currentWord, "WISHLIST REMOVE")) {
-            WishlistRemove(wishlist);
-        } else if (isWordEqualToString(&currentWord, "HELP")) {
+        }
+        else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
-        } else if (isWordEqualToString(&currentWord, "MENU")) {
+        }
+        else if (isWordEqualToString(&currentWord, "MENU")) {
             isInWishlistMenu = false;
             printf("Returning to Inside Menu...\n");
-        } else {
+        }
+        else {
             printf("Invalid command. Please try again.\n");
         }
     }
 }
+
+
 
 // Fungsi untuk handle menu
 void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request, Keranjang *cart, Wishlist *wishlist, History *history, MenuState *currentMenu) {
@@ -254,16 +269,19 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             handleStoreMenu(userList, barangList, request, currentMenu);
             update_menu(currentMenu, insidemenu);
         } else if (isWordEqualToString(&currentWord, "WORK")) {
-            animasiWork();
-            clear = false;
-            work(userList);
-            tunggu(3);
-            handleInsideMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
-        } else if (isWordEqualToString(&currentWord, "WORK CHALLENGE")) {
-            MenuState insidemenu = *currentMenu;
-            update_menu(currentMenu, menuworkchallenge);
-            handleWorkChallenge(userList, currentMenu);
-            update_menu(currentMenu, insidemenu);
+            ADVAPA();
+            if (currentWord.Length==0){
+                animasiWork();
+                clear = false;
+                work(userList);
+                tunggu(3);
+                handleInsideMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
+            } else {
+                MenuState insidemenu = *currentMenu;
+                update_menu(currentMenu, menuworkchallenge);
+                handleWorkChallenge(userList, currentMenu);
+                update_menu(currentMenu, insidemenu);
+            }
         } else if (isWordEqualToString(&currentWord, "CART")) {
             MenuState insidemenu = *currentMenu;
             update_menu(currentMenu, menucart);

@@ -296,12 +296,17 @@ int WordToInt(Word *w) {
 boolean isWordEqualToString(const Word *w, const char *str) {
     int i = 0;
 
-    // Loop sampe selese dua2nya
+    // Handle empty Word input early
+    if (w->Length == 0) {
+        return str[0] == '\0';  // If word is empty, the string must also be empty
+    }
+
+    // Loop through each character of both Word and string
     while (i < w->Length && str[i] != '\0') {
         char wordChar = w->TabWord[i];
         char strChar = str[i];
 
-        // Normalize sendiri
+        // Normalize both characters to lowercase
         if (wordChar >= 'A' && wordChar <= 'Z') {
             wordChar += ('a' - 'A'); // Convert uppercase to lowercase
         }
@@ -309,7 +314,7 @@ boolean isWordEqualToString(const Word *w, const char *str) {
             strChar += ('a' - 'A'); // Convert uppercase to lowercase
         }
 
-        // Compare karakter
+        // Compare characters
         if (wordChar != strChar) {
             return false;
         }
@@ -317,9 +322,10 @@ boolean isWordEqualToString(const Word *w, const char *str) {
         i++;
     }
 
-    // cek
+    // After loop: both lengths must match and str must end
     return i == w->Length && str[i] == '\0';
 }
+
 
 void ConcatWord(Word *dest, const Word *src) {
     int i;

@@ -1,9 +1,10 @@
-4
+5
 10 AK47
 20 Lalabu
 20 Ayam Goreng Crisbar
 500 Meong
-2
+35 Kacang Merah
+3
 100 user1 alstrukdatkeren
 6
 40 AK47
@@ -19,3 +20,12 @@ meong
 0
 1
 Meong
+10000 mingyu shadow
+3
+10 Kacang Merah
+10 Meong
+20 AK47
+3
+Lalabu
+Meong
+AK47
