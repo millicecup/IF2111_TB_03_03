@@ -3,21 +3,21 @@
 #include "Wishlist_Remove_i.h"
 
 
-// Function to remove an item from the wishlist based on the index
-void WishlistRemoveI(Wishlist *wishlist, int idx) {
-    if (IsEmptyWishlist(*wishlist)) {
+// Function to remove an item from the userlist->users->wishlist)) { based on the index
+void WishlistRemoveI(UserList *userlist, int idx){
+    if (IsEmptyWishlist(userlist->users->wishlist)) {
         printf("Penghapusan barang WISHLIST gagal dilakukan, WISHLIST kosong!\n");
         return;
     }
 
     // Validate 
-    if (idx < 1 || idx > NbWishlist(*wishlist)) {
+    if (idx < 1 || idx > NbWishlist(userlist->users->wishlist)) {
         printf("Penghapusan barang WISHLIST gagal dilakukan, Barang ke-%d tidak ada di WISHLIST!\n", idx);
         return;
     }
 
     address prev = NULL;
-    address curr = First(*wishlist);
+    address curr = First(userlist->users->wishlist);
     int count = 1;
 
     while (count < idx) {
@@ -29,42 +29,42 @@ void WishlistRemoveI(Wishlist *wishlist, int idx) {
     // Remove the node at position idx
     if (prev == NULL) {
         // Remove the first node
-        DelFirst(wishlist, &curr);
+        DelFirst(&userlist->users->wishlist, &curr);
     } else {
         // Remove a node after the first
-        DelAfter(wishlist, &curr, prev);
+        DelAfter(&userlist->users->wishlist, &curr, prev);
     }
 
-    printf("Berhasil menghapus barang posisi ke-%d dari wishlist!\n", idx);
+    printf("Berhasil menghapus barang posisi ke-%d dari userlist->users->wishlist)) {!\n", idx);
     Dealokasi(&curr); 
 }
 
 // int main() {
-//     Wishlist wishlist;
-//     CreateEmptyWishlist(&wishlist);
+//     Wishlist userlist->users->wishlist)) {;
+//     CreateEmptyWishlist(&userlist->users->wishlist)) {;
 
-//     // Create some sample items to add to the wishlist
+//     // Create some sample items to add to the userlist->users->wishlist)) {
 //     infoBarang item1 = {"Book", 50000};
 //     infoBarang item2 = {"Pen", 2000};
 //     infoBarang item3 = {"Laptop", 15000000};
 
 //     // Test insertion
-//     InsVLast(&wishlist, item1);
-//     InsVLast(&wishlist, item2);
-//     InsVLast(&wishlist, item3);
+//     InsVLast(&userlist->users->wishlist)) {, item1);
+//     InsVLast(&userlist->users->wishlist)) {, item2);
+//     InsVLast(&userlist->users->wishlist)) {, item3);
 
 //     printf("Wishlist after insertion:\n");
-//     PrintList(wishlist);
+//     PrintList(userlist->users->wishlist)) {;
 //     printf("\n");
 
 //     // Test WishlistRemoveI function
 //     int indexToRemove; // Specify the index of the item to remove
 //     scanf("%d", &indexToRemove);
-//     printf("Removing item at position %d from the wishlist...\n", indexToRemove);
-//     WishlistRemoveI(&wishlist, indexToRemove);
+//     printf("Removing item at position %d from the userlist->users->wishlist)) {...\n", indexToRemove);
+//     WishlistRemoveI(&userlist->users->wishlist)) {, indexToRemove);
 
 //     printf("Wishlist after removal:\n");
-//     PrintList(wishlist);
+//     PrintList(userlist->users->wishlist)) {;
 //     printf("\n");
 
 //     // Test removing an invalid index

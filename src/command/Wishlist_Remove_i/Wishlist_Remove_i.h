@@ -6,7 +6,8 @@
 #include "../../ADT/Mesin_Baris/mesinbaris.h"
 #include "../../ADT/Mesin_Kata/mesinkata.h"
 #include "../../ADT/Mesin_Karakter/mesinkarakter.h"
+#include "../../ADT/User_Barang/user.h"
 
-void WishlistRemoveI(Wishlist *wishlist, int idx);
+void WishlistRemoveI(UserList *userlist, int idx);
 
 #endif

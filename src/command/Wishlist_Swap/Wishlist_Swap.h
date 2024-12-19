@@ -3,7 +3,8 @@
 
 #include "../../ADT/boolean.h"
 #include "../../ADT/LinkedList/linkedlist.h"
+#include "../../ADT/User_Barang/user.h"
 
-void WishlistSwap(Wishlist *wishlist, int i, int j);
+void WishlistSwap(UserList *userlist, int i, int j);
 
 #endif

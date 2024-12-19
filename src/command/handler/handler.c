@@ -200,17 +200,17 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
                 printf("idx1 = %d\n", idx1);
                 printf("idx2 = %d\n", idx2);
 
-                WishlistSwap(wishlist, idx1, idx2);
+                WishlistSwap(userList, idx1, idx2);
             } else if (isWordEqualToString(&currentWord, "REMOVE")) {
                 ADVCOMM();
                 int idx = WordToInt(&currentWord);
 
                 printf("idx yg mau diapus = %d", idx);
-                WishlistRemoveI(wishlist, idx);
+                WishlistRemoveI(userList, idx);
             } else if (isWordEqualToString(&currentWord, "CLEAR")) {
                 WishlistClear(userList, userList->users[userList->currentUserIndex].name);
             } else if (isWordEqualToString(&currentWord, "SHOW")) {
-                //WishlistShow(userList);
+                WishlistShow(userList);
             } else {
                 printf("Invalid WISHLIST command!\n");
             }
