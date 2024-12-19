@@ -336,6 +336,12 @@ void ConcatWord(Word *dest, const Word *src) {
     }
 
     dest->Length = initialLength + i;
+
+    if (dest->Length < NMax) {
+        dest->TabWord[dest->Length] = '\0';
+    } else {
+        dest->TabWord[NMax - 1] = '\0';
+    }
 }
 
 
