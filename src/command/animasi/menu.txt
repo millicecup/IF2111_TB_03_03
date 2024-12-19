@@ -23,5 +23,5 @@
 
     1. STORE          2. WORK           3. WORK CHALLENGE            4. CART             5. WISHLIST 
     
-        6. PROFILE          7. HISTORY           8. HELP           9. SAVE           10.LOGOUT
+        6. PROFILE          7. HISTORY <N>       8. HELP           9. SAVE           10.LOGOUT
 
