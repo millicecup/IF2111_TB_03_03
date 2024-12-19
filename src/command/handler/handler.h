@@ -9,6 +9,7 @@
 #include "../../ADT/LinkedList/linkedlist.h"
 #include "../../ADT/SetMap/setmap.h"
 
+
 #include "../animasi/animasi.h"
 #include "../Start/start.h"
 #include "../load/load.h"
@@ -25,6 +26,9 @@
 #include "../Help/help.h"
 #include "../Logout/logout.h"
 #include "../quit/quit.h"
+#include "../Wishlist_Clear/wishlist_clear.h"
+#include "../Wishlist_Remove_i/Wishlist_Remove_i.h"
+#include "../Wishlist_Remove/Wishlist_Remove.h"
 
 // Fungsi untuk handle store menu
 void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu);

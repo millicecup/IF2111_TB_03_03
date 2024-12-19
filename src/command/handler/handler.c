@@ -23,6 +23,8 @@
 #include "../workchallenge/tebakangka/tebakangka.h"
 #include "../workchallenge/wordl3/wordl3.h"
 #include "../Wishlist_Clear/wishlist_clear.h"
+#include "../Wishlist_Remove_i/Wishlist_Remove_i.h"
+#include "../Wishlist_Remove/Wishlist_Remove.h"
 #include "../Wishlist_Add/wishlist_add.h"
 #include "../Store_List/Store_List.h"
 #include "../Store_Request/Store_Request.h"
@@ -195,20 +197,23 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
 
                 printf("idx1 = %d", idx1);
                 printf("idx2 = %d", idx2);
+
+                WishlistSwap(wishlist, idx1, idx2);
             } else if (isWordEqualToString(&currentWord, "REMOVE")) {
                 ADVCOMM();
                 int idx = WordToInt(&currentWord);
 
                 printf("idx yg mau diapus = %d", idx);
+                WishlistRemoveI(wishlist, idx);
             } else if (isWordEqualToString(&currentWord, "CLEAR")) {
-                printf("TBA\n");
+                WishlistClear(userList, userList->users[userList->currentUserIndex].name);
             } else if (isWordEqualToString(&currentWord, "SHOW")) {
                 WishlistShow(userList);
             } else {
                 printf("Invalid WISHLIST command!\n");
             }
         } else if (isWordEqualToString(&currentWord, "WISHLIST REMOVE")) {
-            printf("TBA\n");
+            WishlistRemove(wishlist);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "MENU")) {

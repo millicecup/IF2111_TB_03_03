@@ -1,12 +1,11 @@
 #include <stdio.h>
-
-#include "wishlist_clear.h"
-#include "../../ADT/User_Barang/user.h" 
-
 #include <stdlib.h>
-
+#include <string.h>
+#include "wishlist_clear.h"
+#include "../../ADT/User_Barang/user.h"
 #include "../../ADT/LinkedList/linkedlist.h"
 
+// Function to create a dummy wishlist for testing
 void CreateDummyWishlist(Wishlist *wishlist) {
     CreateEmptyWishlist(wishlist);
 
@@ -57,9 +56,3 @@ int main() {
 
     return 0;
 }
-
-
-/*
- gcc driver.c wishlist_clear.c ../../ADT/Stack/stack.c ../../ADT/User_Barang/user.c ../../ADT/LinkedList/linkedlist.c ../../ADT/User_Barang/barang.c ../../ADT/Mesin_Karakter/mesinkarakter.c ../../ADT/Mesin_Kata/mesinkata.c ../../ADT/Mesin_Baris/mesinbaris.c
-
-*/
