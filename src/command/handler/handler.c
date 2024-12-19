@@ -231,10 +231,10 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
         printf("\n\n");
         printf("Enter command: ");
         //scanf("%s", command);
-        ResetInput();
-        GetInput();
-        Word currentWord;
-        chartoWord(&currentWord, currentInput.TabWord);
+        ResetCommand();
+        GetCommand();
+        // Word currentWord;
+        // chartoWord(&currentWord, currentInput.TabWord);
 
         if (isWordEqualToString(&currentWord, "STORE")) {
             MenuState insidemenu = *currentMenu;
@@ -286,13 +286,9 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             help(currentMenu);
         } else if (isWordEqualToString(&currentWord, "SAVE")) {
             clear = false;
-            printf("Enter the filename to save the current state: ");
+            ADVCOMM();
             char filename[COMMAND_MAX_LEN];
-            //scanf("%s", filename);
-            Word file;
-            GetInput();
-            chartoWord(&file, currentInput.TabWord);
-            WordToChar(&file, filename); 
+            WordToChar(&currentWord, filename);
             SaveToFile(filename, barangList, userList);
             tunggu(3);
             handleInsideMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
@@ -365,17 +361,16 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
 // Fungsi untuk handle main menu
 void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request, Keranjang *cart, Wishlist *wishlist, History *history, MenuState *currentMenu) {
     update_menu(currentMenu, menuforwelcome);
-    system("cls || clear");
+    //system("cls || clear");
 
     while (*running) {
         //scanf("%s", command);
         animasiMainMenu();
         printf("\n\n");
         printf("Enter command: ");
-        ResetInput();
-        GetInput();
-        Word currentWord;
-        chartoWord(&currentWord, currentInput.TabWord);
+        ResetCommand();
+        GetCommand();
+        
         if (isWordEqualToString(&currentWord, "START")) {
             update_menu(currentMenu, menuforlogin);
             if (start(userList, barangList) == 0) {
@@ -389,7 +384,10 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
 
         } else if (isWordEqualToString(&currentWord, "LOAD")) {
             update_menu(currentMenu, menuforlogin);
-            if (Load(userList, barangList)) {
+            ADVCOMM();
+            char filename[COMMAND_MAX_LEN];
+            WordToChar(&currentWord, filename);
+            if (LoadConfig(filename, userList, barangList)) {
                 tunggu(2);
                 handleLoginMenu(userList, barangList, request, cart, wishlist, history, currentMenu); 
             } else {
