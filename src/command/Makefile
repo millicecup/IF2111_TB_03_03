@@ -36,7 +36,8 @@ SRC = main.c \
     Cart_Remove/cart_remove.c \
     Cart_Show/cart_show.c \
     Cart_Pay/cart_pay.c \
-    profil/profile.c
+    profil/profile.c \
+    Wishlist_Add/wishlist_add.c
 
 # Output
 OUTPUT = program
