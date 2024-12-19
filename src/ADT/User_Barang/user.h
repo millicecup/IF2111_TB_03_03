@@ -35,7 +35,7 @@ int IsUserListEmpty(UserList *list);
 void ManualStringCopy(char *dest, const char *src);
 
 int AddUser(UserList *list, char *name, char *password, int money);
-void PrintUsersnew(UserList *userList);
+void PrintUsersDetailed(UserList *userList);
 void PrintUsers(UserList *list);
 
 void InsertLastUser(UserList *array, User el);

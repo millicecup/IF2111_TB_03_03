@@ -30,6 +30,7 @@
 #include "../Logout/logout.h"
 #include "../quit/quit.h"
 #include "handler.h"
+#include "../profil/profile.h"
 
 #define COMMAND_MAX_LEN 50
 
@@ -280,7 +281,8 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             }
         } else if (isWordEqualToString(&currentWord, "PROFILE")) {
             clear = true;
-            printf("TBA\n");
+            profile(userList);
+            GetInput();
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             clear = true;
             help(currentMenu);
