@@ -1,59 +1,13 @@
 #include <stdio.h>
 #include "wishlistswap.h"
 
-void WishlistSwap(Wishlist *wishlist) {
+void WishlistSwap(Wishlist *wishlist, int i, int j) {
     if (IsEmptyWishlist(*wishlist)) {
-        printf("Wishlist kosong! Tidak ada yang dapat ditukar.\n");
-        return;
-    }
-
-    STARTINPUT(stdin);
-
-    if (!IsWordEq(currentInput, toKata("WISHLIST"))) {
-        printf("Perintah tidak valid!\n");
-        return;
-    }
-
-    ADVWORD();
-    if (!IsWordEq(currentInput, toKata("SWAP"))) {
-        printf("Perintah tidak valid!\n");
-        return;
-    }
-
-    ADVWORD();
-    boolean isValidInput = true;
-    int i = 0, j = 0;
-
-    for (int k = 0; k < currentInput.Length; k++) {
-        if (currentInput.TabWord[k] < '0' || currentInput.TabWord[k] > '9') {
-            isValidInput = false;
-            break;
-        }
-        i = i * 10 + (currentInput.TabWord[k] - '0');
-    }
-
-    if (!isValidInput) {
-        printf("Perintah tidak valid, indeks pertama bukan angka!\n");
-        return;
-    }
-
-    ADVWORD();
-    isValidInput = true;
-    for (int k = 0; k < currentInput.Length; k++) {
-        if (currentInput.TabWord[k] < '0' || currentInput.TabWord[k] > '9') {
-            isValidInput = false;
-            break;
-        }
-        j = j * 10 + (currentInput.TabWord[k] - '0');
-    }
-
-    if (!isValidInput) {
-        printf("Perintah tidak valid, indeks kedua bukan angka!\n");
+        printf("Gagal menukar posisi! Wishlist kosong.\n");
         return;
     }
 
     int n = NbWishlist(*wishlist);
-
     if (i < 1 || j < 1 || i > n || j > n) {
         printf("Indeks tidak valid! Wishlist hanya memiliki %d barang.\n", n);
         return;
@@ -66,14 +20,18 @@ void WishlistSwap(Wishlist *wishlist) {
 
     address p1 = First(*wishlist);
     address p2 = First(*wishlist);
-    int idx;
 
-    for (idx = 1; idx < i; idx++) {
+    for (int idx = 1; idx < i; idx++) {
         p1 = Next(p1);
     }
 
-    for (idx = 1; idx < j; idx++) {
+    for (int idx = 1; idx < j; idx++) {
         p2 = Next(p2);
+    }
+
+    if (p1 == NULL || p2 == NULL) {
+        printf("Gagal menukar posisi! Elemen tidak ditemukan.\n");
+        return;
     }
 
     infoBarang temp = Info(p1);
