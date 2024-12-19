@@ -1,6 +1,6 @@
 #include "wishlist_clear.h"
 #include <stdio.h>
-#include <string.h> // For strcmp
+
 
 void WishlistClear(UserList *userArray, char *username) {
     int i = 0;
@@ -17,7 +17,7 @@ void WishlistClear(UserList *userArray, char *username) {
     // Search for the user in the UserList
     while (i < userArray->count && !found) {
         printf("Comparing input: '%s' with stored name: '%s'\n", username, userArray->users[i].name);
-        if (strcmp(userArray->users[i].name, username) == 0) {
+        if (isEqualString(userArray->users[i].name, username)) {
             found = true;
         } else {
             i++;

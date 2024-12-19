@@ -26,6 +26,7 @@
 #include "Wishlist_Clear/wishlist_clear.h"
 #include "Wishlist_Remove_i/Wishlist_Remove_i.h"
 #include "Wishlist_Remove/Wishlist_Remove.h"
+#include "Wishlist_Swap/wishlist_Swap.h"
 #include "Help/help.h"
 #include "Logout/logout.h"
 #include "quit/quit.h"

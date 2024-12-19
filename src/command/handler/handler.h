@@ -29,6 +29,7 @@
 #include "../Wishlist_Clear/wishlist_clear.h"
 #include "../Wishlist_Remove_i/Wishlist_Remove_i.h"
 #include "../Wishlist_Remove/Wishlist_Remove.h"
+#include "../Wishlist_Swap/wishlist_Swap.h"
 
 // Fungsi untuk handle store menu
 void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request, MenuState *currentMenu);

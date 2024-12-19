@@ -23,6 +23,7 @@
 #include "../workchallenge/tebakangka/tebakangka.h"
 #include "../workchallenge/wordl3/wordl3.h"
 #include "../Wishlist_Clear/wishlist_clear.h"
+#include "../Wishlist_Swap/wishlist_Swap.h"
 #include "../Wishlist_Remove_i/Wishlist_Remove_i.h"
 #include "../Wishlist_Remove/Wishlist_Remove.h"
 #include "../Wishlist_Add/wishlist_add.h"
@@ -195,8 +196,8 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
                 ADVCOMM(); 
                 int idx2 = WordToInt(&currentWord);
 
-                printf("idx1 = %d", idx1);
-                printf("idx2 = %d", idx2);
+                printf("idx1 = %d\n", idx1);
+                printf("idx2 = %d\n", idx2);
 
                 WishlistSwap(wishlist, idx1, idx2);
             } else if (isWordEqualToString(&currentWord, "REMOVE")) {
@@ -208,7 +209,7 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
             } else if (isWordEqualToString(&currentWord, "CLEAR")) {
                 WishlistClear(userList, userList->users[userList->currentUserIndex].name);
             } else if (isWordEqualToString(&currentWord, "SHOW")) {
-                WishlistShow(userList);
+                //WishlistShow(userList);
             } else {
                 printf("Invalid WISHLIST command!\n");
             }

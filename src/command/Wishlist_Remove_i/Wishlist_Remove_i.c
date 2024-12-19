@@ -10,13 +10,12 @@ void WishlistRemoveI(Wishlist *wishlist, int idx) {
         return;
     }
 
-    // Validate the index directly
+    // Validate 
     if (idx < 1 || idx > NbWishlist(*wishlist)) {
         printf("Penghapusan barang WISHLIST gagal dilakukan, Barang ke-%d tidak ada di WISHLIST!\n", idx);
         return;
     }
 
-    // Traverse the linked list to find the node at position idx
     address prev = NULL;
     address curr = First(*wishlist);
     int count = 1;
@@ -37,7 +36,7 @@ void WishlistRemoveI(Wishlist *wishlist, int idx) {
     }
 
     printf("Berhasil menghapus barang posisi ke-%d dari wishlist!\n", idx);
-    Dealokasi(&curr); // Deallocate memory for the removed node
+    Dealokasi(&curr); 
 }
 
 // int main() {

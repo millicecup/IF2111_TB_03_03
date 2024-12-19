@@ -67,6 +67,8 @@
     "linkedlist.h": "c",
     "handler.h": "c",
     "barang.h": "c",
-    "tebakangka.h": "c"
+    "tebakangka.h": "c",
+    "wishlist_remove_i.h": "c",
+    "wishlist_clear.h": "c"
   }
 }
