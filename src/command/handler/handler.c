@@ -124,6 +124,7 @@ void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keran
 
     while (isInCartMenu) {
         animasiCart();
+        DisplayStore(*barangList);
         printf("\n\n");
         printf("Enter command: ");
         ResetCommand();
