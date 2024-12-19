@@ -30,7 +30,13 @@ SRC = main.c \
     Help/help.c \
     Logout/logout.c \
     quit/quit.c \
-    handler/handler.c
+    handler/handler.c \
+    History/history.c \
+    Cart_Add/cart_add.c \
+    Cart_Remove/cart_remove.c \
+    Cart_Show/cart_show.c \
+    Cart_Pay/cart_pay.c \
+    profil/profile.c
 
 # Output
 OUTPUT = program

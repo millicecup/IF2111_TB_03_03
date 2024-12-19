@@ -109,24 +109,24 @@ boolean LoadConfig(const char *filename, UserList *userList, BarangList *barangL
 }
 
 
-boolean Load(UserList *userList, BarangList *barangList) {
-    char filename[MAX_LEN];
-    Word file;
-    printf("Enter the file name to load: ");
-    GetInput();
-    chartoWord(&file, currentInput.TabWord);
-    WordToChar(&file, filename);
-    LoadConfig(filename, userList, barangList);
+// boolean Load(UserList *userList, BarangList *barangList) {
+//     char filename[MAX_LEN];
+//     Word file;
+//     // printf("Enter the file name to load: ");
+//     // GetInput();
+//     ADVCOMM();
+    
+//     LoadConfig(currentInput.TabWord, userList, barangList);
 
-    if (LoadConfig(filename, userList, barangList)) {
-        //printf("\nConfig successfully loaded.\n");
-        return true;
-    } else {
-        printf("\nReturning to main menu...\n");
-        tunggu(3);
-        return false;
-    }
-}
+//     if (LoadConfig(filename, userList, barangList)) {
+//         //printf("\nConfig successfully loaded.\n");
+//         return true;
+//     } else {
+//         printf("\nReturning to main menu...\n");
+//         tunggu(3);
+//         return false;
+//     }
+// }
 
 // main
 // int main() {
