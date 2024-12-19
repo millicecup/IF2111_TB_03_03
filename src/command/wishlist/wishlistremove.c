@@ -12,16 +12,16 @@ void WishlistRemove(Wishlist *wishlist) {
 
     P = Search(*wishlist, item);
 
-    if (P == Nil) {
+    if (P == Nill) {
         printf("Penghapusan barang WISHLIST gagal dilakukan, %s tidak ada di WISHLIST!\n", item.name);
     } else {
-        address Prec = Nil, Curr = First(*wishlist);
+        address Prec = Nill, Curr = First(*wishlist);
         while (Curr != P) {
             Prec = Curr;
             Curr = Next(Curr);
         }
 
-        if (Prec == Nil) {
+        if (Prec == Nill) {
             DelFirst(wishlist, &P);
         } else {
             DelAfter(wishlist, &P, Prec);
