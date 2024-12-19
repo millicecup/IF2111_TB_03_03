@@ -203,7 +203,7 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
             } else if (isWordEqualToString(&currentWord, "CLEAR")) {
                 printf("TBA\n");
             } else if (isWordEqualToString(&currentWord, "SHOW")) {
-                printf("TBA\n");
+                WishlistShow(userList);
             } else {
                 printf("Invalid WISHLIST command!\n");
             }
