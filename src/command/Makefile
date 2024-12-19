@@ -42,6 +42,7 @@ SRC = main.c \
     Wishlist_Remove_i/Wishlist_Remove_i.c \
     Wishlist_Remove/Wishlist_Remove.c \
     Wishlist_Swap/Wishlist_Swap.c \
+    Wishlist_Show/wishlist_show.c
 
 # Output
 OUTPUT = program

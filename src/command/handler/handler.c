@@ -26,6 +26,7 @@
 #include "../Wishlist_Remove_i/Wishlist_Remove_i.h"
 #include "../Wishlist_Remove/Wishlist_Remove.h"
 #include "../Wishlist_Add/wishlist_add.h"
+#include "../Wishlist_Show/wishlist_show.h"
 #include "../Store_List/Store_List.h"
 #include "../Store_Request/Store_Request.h"
 #include "../Store_Supply/Store_Supply.h"
