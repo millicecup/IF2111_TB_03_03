@@ -37,13 +37,13 @@ void STARTINPCOMMAND(FILE* input)
         CopyCommand();
     }
 }
-
 void ResetCommand() {
-    for (int i = 0; i < sizeof(currentWord.TabWord); i++) {
+    for (int i = 0; i < NMax; i++) {  
         currentWord.TabWord[i] = '\0';
-        currentWord.Length = 0;
     }
+    currentWord.Length = 0;
 }
+
 
 void CopyCommand() {
     ResetCommand();
@@ -60,14 +60,13 @@ void CopyCommand() {
 
 void ADVCOMM() {
     IgnoreBlanks();
-    if (currentChar != '\n')
-    {
+
+    if (currentChar == '\n') {
+        endWord = true;
+        ResetCommand();
+    } else {
         endWord = false;
         CopyCommand();
-    } 
-    else
-    {
-        endWord = true;
     }
 }
 
