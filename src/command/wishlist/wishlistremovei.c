@@ -8,9 +8,20 @@ void WishlistRemoveI(Wishlist *wishlist) {
         return;
     }
 
-    printf("Masukkan posisi barang yang ingin dihapus: ");
     STARTINPUT(stdin);
 
+    if (!IsWordEq(currentInput, toKata("WISHLIST"))) {
+        printf("Penghapusan barang WISHLIST gagal dilakukan, perintah tidak valid!\n");
+        return;
+    }
+
+    ADVWORD();
+    if (!IsWordEq(currentInput, toKata("REMOVE"))) {
+        printf("Penghapusan barang WISHLIST gagal dilakukan, perintah tidak valid!\n");
+        return;
+    }
+
+    ADVWORD();
     boolean isValidInput = true;
     int position = 0;
 
