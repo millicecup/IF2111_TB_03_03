@@ -22,7 +22,7 @@ void SaveToFile(const char *filename, const BarangList *barangArray, const UserL
 
     // Save BarangList
     if (barangArray != NULL) {
-        fprintf(file, "%d\n", barangArray->count); // Number of items in BarangList
+        fprintf(file, "%d\n", barangArray->count); // jumlah items in BarangList
         for (int i = 0; i < barangArray->count; i++) {
             fprintf(file, "%d %s\n", barangArray->items[i].price, barangArray->items[i].name);
         }
@@ -30,24 +30,23 @@ void SaveToFile(const char *filename, const BarangList *barangArray, const UserL
 
     // Save UserList
     if (userArray != NULL) {
-        fprintf(file, "%d\n", userArray->count); // Number of users
+        fprintf(file, "%d\n", userArray->count); // jumlah users
         for (int i = 0; i < userArray->count; i++) {
             const User *user = &userArray->users[i];
             fprintf(file, "%d %s %s\n", user->money, user->name, user->password); // User data
 
             // Save user's transaction history
             const History *history = &user->riwayat_pembelian;
-            fprintf(file, "%d\n", history->TOP + 1); // Number of transactions
+            fprintf(file, "%d\n", history->TOP + 1); // jumlah transactions
             for (int j = 0; j <= history->TOP; j++) {
                 fprintf(file, "%d %s %d\n",
                         history->price[j],
-                        history->item[j],
-                        history->quantity[j]);
+                        history->item[j]);
             }
 
             // Save user's wishlist
             int wishlistCount = NbWishlist(user->wishlist);
-            fprintf(file, "%d\n", wishlistCount); // Number of wishlist items
+            fprintf(file, "%d\n", wishlistCount); // jumlah wishlist items
             address current = First(user->wishlist);
             while (current != NULL) {
                 fprintf(file, "%s\n", Info(current).name); // Wishlist item name

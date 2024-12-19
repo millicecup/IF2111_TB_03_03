@@ -6,7 +6,7 @@
 #include "../../ADT/LinkedList/linkedlist.h"
 
 
-void WishlistClear(UserList *userArray, char *username);
+void WishlistClear(UserList *userArray, char *userName);
 
 
 #endif
