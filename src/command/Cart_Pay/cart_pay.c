@@ -35,7 +35,10 @@ void findHighestTotalItem(Keranjang k, char* maxName, int* maxPrice, int* maxQua
     }
 }
 
-void cartPay(Keranjang *k, int *userMoney, History *h) {
+void cartPay(Keranjang *k, History *h, UserList *userList) {
+    User *currentUser = &userList->users[userList->currentUserIndex];
+
+    int userMoney = currentUser->money;
     if (IsEmptyBasket(*k)) {
         printf("Keranjang kamu kosong!\n");
         return;
@@ -47,8 +50,8 @@ void cartPay(Keranjang *k, int *userMoney, History *h) {
     GetInput();
     if (isWordEqualToString(&currentInput, "ya") || isWordEqualToString(&currentInput, "Ya")) {
         int totalCost = calculateTotalBasketCost(*k);
-        if (*userMoney >= totalCost) {
-            *userMoney -= totalCost;
+        if (userMoney >= totalCost) {
+            userMoney -= totalCost;
             
             char maxName[Max_Length];
             int maxPrice, maxQuantity;
@@ -60,7 +63,7 @@ void cartPay(Keranjang *k, int *userMoney, History *h) {
             printf("Selamat kamu telah membeli barang-barang tersebut!\n");
             CreateEmptyBasket(k);
         } else {
-            printf("Uang kamu hanya %d, tidak cukup untuk membeli barang yang ada di keranjang!\n", *userMoney);
+            printf("Uang kamu hanya %d, tidak cukup untuk membeli barang yang ada di keranjang!\n", userMoney);
         }
     } else if (isWordEqualToString(&currentInput, "tidak") || isWordEqualToString(&currentInput, "Tidak")) {
         printf("Pembayaran dibatalkan.\n");

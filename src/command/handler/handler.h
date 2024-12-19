@@ -41,7 +41,7 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
 void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running, Queue *request, Keranjang *cart, Wishlist *wishlist, History *history, MenuState *currentMenu);
 
 // Fungsi untuk handle cart menu
-void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keranjang, MenuState *currentMenu);
+void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keranjang, History *history, MenuState *currentMenu);
 
 // Fungsi untuk handle wishlist menu
 void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wishlist, MenuState *currentMenu);

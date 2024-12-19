@@ -13,6 +13,7 @@
 #include "../Cart_Add/cart_add.h"
 #include "../Cart_Remove/cart_remove.h"
 #include "../Cart_Show/cart_show.h"
+#include "../Cart_Pay/cart_pay.h"
 #include "../Start/start.h"
 #include "../load/load.h"
 #include "../login/login.h"
@@ -21,6 +22,7 @@
 #include "../work/work.h"
 #include "../workchallenge/tebakangka/tebakangka.h"
 #include "../workchallenge/wordl3/wordl3.h"
+#include "../Wishlist_Clear/wishlist_clear.h"
 #include "../Store_List/Store_List.h"
 #include "../Store_Request/Store_Request.h"
 #include "../Store_Supply/Store_Supply.h"
@@ -109,7 +111,7 @@ void handleWorkChallenge(UserList *userList, MenuState *currentMenu) {
 }
 
 // Fungsi untuk handle cart menu
-void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keranjang, MenuState *currentMenu) {
+void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keranjang, History *history, MenuState *currentMenu) {
     update_menu(currentMenu, menucart);
     boolean isInCartMenu = true;
     system("cls || clear");
@@ -149,7 +151,7 @@ void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keran
             } else if (isWordEqualToString(&currentWord, "SHOW")) {
                 cartShow(*keranjang);
             } else if (isWordEqualToString(&currentWord, "PAY")) {
-                printf("TBA\n");
+                cartPay(keranjang, history, userList);
             } else {
                 printf("Invalid CART command!\n");
             }
@@ -256,7 +258,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
         } else if (isWordEqualToString(&currentWord, "CART")) {
             MenuState insidemenu = *currentMenu;
             update_menu(currentMenu, menucart);
-            handleCartMenu(userList, barangList, cart, currentMenu);
+            handleCartMenu(userList, barangList, cart, history, currentMenu);
             update_menu(currentMenu, insidemenu);
         } else if (isWordEqualToString(&currentWord, "WISHLIST")) {
             MenuState insidemenu = *currentMenu;
