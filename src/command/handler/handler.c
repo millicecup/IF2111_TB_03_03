@@ -202,7 +202,8 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
                     int idx = WordToInt(&currentWord);
                     if (idx != -1) {
                         WishlistRemoveI(userList, idx);
-                        printf("Item at index %d removed from wishlist.\n", idx);
+                        tunggu(2);
+                        //printf("Item at index %d removed from wishlist.\n", idx);
                     } else {
                         printf("Invalid index provided.\n");
                     }
@@ -211,6 +212,7 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
             }
             else if (isWordEqualToString(&currentWord, "ADD")) {
                 WishlistAdd(userList, barangList);
+                tunggu(2);
             }
             else if (isWordEqualToString(&currentWord, "SWAP")) {
                 ADVCOMM();
@@ -218,12 +220,15 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
                 ADVCOMM();
                 int idx2 = WordToInt(&currentWord);
                 WishlistSwap(userList, idx1, idx2);
+                tunggu(2);
             }
             else if (isWordEqualToString(&currentWord, "CLEAR")) {
                 WishlistClear(userList, userList->users[userList->currentUserIndex].name);
+                tunggu(2);
             }
             else if (isWordEqualToString(&currentWord, "SHOW")) {
                 WishlistShow(userList);
+                tunggu(5);
                 //PrintList(userList->users->wishlist);
             }
             else {
@@ -302,15 +307,17 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             int N = WordToInt(&currentWord);
             DisplayHistory(N, userList);
 
-            GetInput();
-            Word currentWord;
-            chartoWord(&currentWord, currentInput.TabWord);
-            if (isWordEqualToString(&currentWord, "back")) {
-                handleInsideMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
-            }
-            else {
-                printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
-            } 
+            do {
+                GetInput();
+                chartoWord(&currentWord, currentInput.TabWord);
+
+                if (isWordEqualToString(&currentWord, "back")) {
+                    handleInsideMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
+                    break;
+                } else {
+                    printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
+                }
+            } while (true);
         } else if (isWordEqualToString(&currentWord, "PROFILE")) {
             clear = true;
             profile(userList);
