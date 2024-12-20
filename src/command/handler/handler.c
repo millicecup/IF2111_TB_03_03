@@ -186,17 +186,15 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
         GetCommand();
 
         if (isWordEqualToString(&currentWord, "WISHLIST")) {
-            ADVCOMM(); // Move to next word after "WISHLIST"
+            ADVCOMM();
             
             if (isWordEqualToString(&currentWord, "REMOVE")) {
-                ADVAPA(); // Move to potential index
+                ADVAPA(); 
                 
                 if (currentWord.Length == 0) {
-                    // If no index provided, remove all items
                     WishlistRemove(userList);
                     printf("All items have been removed from the wishlist.\n");
                 } else {
-                    // If index provided, remove specific item
                     int idx = WordToInt(&currentWord);
                     if (idx != -1) {
                         WishlistRemoveI(userList, idx);
@@ -205,7 +203,7 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
                         printf("Invalid index provided.\n");
                     }
                 }
-                PrintList(userList->users->wishlist); // Show updated wishlist
+                //PrintList(userList->users->wishlist);
             }
             else if (isWordEqualToString(&currentWord, "ADD")) {
                 WishlistAdd(userList, barangList);
@@ -222,7 +220,7 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
             }
             else if (isWordEqualToString(&currentWord, "SHOW")) {
                 WishlistShow(userList);
-                PrintList(userList->users->wishlist);
+                //PrintList(userList->users->wishlist);
             }
             else {
                 printf("Invalid WISHLIST command!\n");
@@ -340,7 +338,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
 
 // Fungsi untuk handle login menu
 void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request, Keranjang *cart, Wishlist *wishlist, History *history, MenuState *currentMenu) { 
-    printf("DEBUG: Entering handleLoginMenu.\n");
+    //printf("DEBUG: Entering handleLoginMenu.\n");
 
     update_menu(currentMenu, menuforlogin);
     boolean isInLoginMenu = true;
@@ -356,8 +354,8 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
         Word currentWord;
         chartoWord(&currentWord, currentInput.TabWord);
 
-        printf("DEBUG: Command entered: %s\n", currentInput.TabWord);
-        printf("DEBUG: isInLoginMenu = %d\n", isInLoginMenu);
+        //printf("DEBUG: Command entered: %s\n", currentInput.TabWord);
+        //printf("DEBUG: isInLoginMenu = %d\n", isInLoginMenu);
 
         if (isWordEqualToString(&currentWord, "LOGIN")) {
             login(userList);
@@ -406,12 +404,12 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
         if (isWordEqualToString(&currentWord, "START")) {
             update_menu(currentMenu, menuforlogin);
             if (start(userList, barangList) == 0) {
-                printf("DEBUG: Start completed successfully.\n");
+                //printf("DEBUG: Start completed successfully.\n");
                 //boolean isInLoginMenu = true;  // Ensure state is set correctly
-                printf("DEBUG: Transitioning to handleLoginMenu.\n");
+                //printf("DEBUG: Transitioning to handleLoginMenu.\n");
                 handleLoginMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
             } else {
-                printf("DEBUG: Start failed.\n");
+                //printf("DEBUG: Start failed.\n");
             }
 
         } else if (isWordEqualToString(&currentWord, "LOAD")) {

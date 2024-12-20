@@ -101,6 +101,6 @@ int start(UserList *userList, BarangList *barangList) {
     }
 
     fclose(pita);
-    printf("Config file %s successfully loaded.\n", pita);
+    printf("Config file mingyu.txt successfully loaded.\n");
     return 0;
 }

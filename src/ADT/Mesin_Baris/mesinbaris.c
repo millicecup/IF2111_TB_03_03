@@ -8,18 +8,15 @@ Sentence currentLine;
 
 void STARTFILE(FILE* input)
 {
-    printf("tes");
     START(input);
     IgnoreNewLine();
     if (currentChar == '\0')
     {
         endWord = true;
-        printf("tes3");
     }
     else
     {
         endWord = false;
-        printf("tes2");
         CopyLine();
     }
 }

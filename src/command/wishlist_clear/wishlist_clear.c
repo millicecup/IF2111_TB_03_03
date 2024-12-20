@@ -6,8 +6,8 @@ void WishlistClear(UserList *userArray, char *username) {
     int i = 0;
     boolean found = false;
 
-    printf("Debug: Clearing wishlist for user: %s\n", username);
-    printf("Debug: UserList contains %d users\n", userArray->count);
+    //printf("Debug: Clearing wishlist for user: %s\n", username);
+    //printf("Debug: UserList contains %d users\n", userArray->count);
 
     // Print all users in the UserList for debugging
     for (int j = 0; j < userArray->count; j++) {
