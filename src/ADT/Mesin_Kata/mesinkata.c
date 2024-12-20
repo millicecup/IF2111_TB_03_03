@@ -326,6 +326,15 @@ boolean isWordEqualToString(const Word *w, const char *str) {
     return i == w->Length && str[i] == '\0';
 }
 
+void myStrcpy(char *dest, const char *src) {
+    int i = 0;
+    // Copy each character from src to dest, including the null terminator
+    while (src[i] != '\0') {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0'; // Add null terminator to the destination string
+}
 
 void ConcatWord(Word *dest, const Word *src) {
     int i;

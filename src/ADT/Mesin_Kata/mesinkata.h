@@ -94,6 +94,6 @@ void stringToWord(char *str, Word *word);
 boolean IsWordEqual(Word w1, Word w2) ;
 
 boolean isGreaterString(char *str1, char *str2); 
-
+void myStrcpy(char *dest, const char *src);
 
 #endif
