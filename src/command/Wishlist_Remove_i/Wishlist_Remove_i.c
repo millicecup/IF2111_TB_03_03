@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "Wishlist_Remove_i.h"
 
-// Function to remove an item from the wishlist based on the index
+// hapus index ke i
 void WishlistRemoveI(UserList *userlist, int idx) {
     User *currentUser = &userlist->users[userlist->currentUserIndex];
     if (IsEmptyWishlist(currentUser->wishlist)) {
@@ -26,12 +26,11 @@ void WishlistRemoveI(UserList *userlist, int idx) {
         count++;
     }
 
-    // Remove the node at position idx
     if (prev == NULL) {
-        // Remove the first node
+       
         DelFirst(&currentUser->wishlist, &curr);
     } else {
-        // Remove a node after the first
+        
         DelAfter(&currentUser->wishlist, &curr, prev);
     }
 

@@ -67,32 +67,24 @@ address Search (Wishlist L, infoBarang X)
     }
 }
 
-boolean SearchX (Wishlist L, infoBarang X)
-/* Mencari apakah ada elemen list dengan info(P)= X */
-/* Jika ada, mengirimkan true. */
-{
+boolean SearchX(Wishlist L, infoBarang X) {
     address P = First(L);
 
-    if (IsEmptyWishlist(L))
-    {
+    if (IsEmptyWishlist(L)) {
         return false;
-    }
-    else
-    {
-        while (P != Nill)
-        {
-            if ((isEqualString(Item(P), X.name) && (Price(P) == X.price)))
-            {
+    } else {
+        while (P != Nill) {
+            printf("Checking item: %s, price: %d\n", Item(P), Price(P)); // Debug statement
+            if ((isEqualString(Item(P), X.name) && (Price(P) == X.price))) {
                 return true;
-            }
-            else
-            {
+            } else {
                 P = Next(P);
             }
         }
         return false;
     }
 }
+
 
 
 /**** PRIMITIF BERDASARKAN NILAI ****/
@@ -122,6 +114,33 @@ void InsVLast(Wishlist *L, infoBarang X)
         InsertLastW(L, P);
     }
 }
+void DelP(Wishlist *L, infoBarang X)
+/* I.S. Sembarang */
+/* F.S. Jika ada elemen list beraddress P, dengan info(P)=X  */
+/* Maka P dihapus dari list dan di-dealokasi */
+/* Jika tidak ada elemen list dengan info(P)=X, maka list tetap */
+/* List mungkin menjadi kosong karena penghapusan */
+{
+    address prev = NULL;
+    address curr = First(*L);
+
+    while (curr != Nill && !(isEqualString(Item(curr), X.name) && Price(curr) == X.price)) {
+        prev = curr;         
+        curr = Next(curr);   
+    }
+
+   
+    if (curr != Nill) {
+        if (prev == NULL) {
+
+            DelFirst(L, &curr);  
+        } else {
+            DelAfter(L, &curr, prev); 
+        }
+        Dealokasi(&curr);  
+    }
+}
+
 
 void DelVFirst(Wishlist *L, infoBarang *X)
 /* I.S. Wishist L tidak kosong  */
@@ -144,6 +163,7 @@ void DelVLast(Wishlist *L, infoBarang *X)
     *X = Info(P);
     Dealokasi(&P);
 }
+
 
 /**** PRIMITIF BERDASARKAN NILAI ****/
 void InsertFirstW(Wishlist *L, address P)

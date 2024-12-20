@@ -1,31 +1,36 @@
 #include <stdio.h>
 #include "Wishlist_Remove.h"
 int main() {
-    // Assuming UserList is defined correctly and initialized.
-    UserList userlist;  
+    // Initialize user list and create an empty wishlist for the current user
+    UserList userlist;
     CreateEmptyWishlist(&userlist.users->wishlist);
 
-    // Create some sample items to add to the wishlist
-    Barang item1 = {"Book", 50000};
-    Barang item2 = {"Pen", 2000};
-    Barang item3 = {"Laptop", 15000000};
+    // Create sample items to add to the wishlist
+    infoBarang item1 = {"Book", 50000};
+    infoBarang item2 = {"Pen", 2000};
+    infoBarang item3 = {"Laptop", 15000000};
 
-    // Test insertion
+    // Add the items to the wishlist
     InsVLast(&userlist.users->wishlist, item1);
     InsVLast(&userlist.users->wishlist, item2);
     InsVLast(&userlist.users->wishlist, item3);
 
-    printf("Wishlist after insertion:\n");
+    // Display the wishlist after adding items
+    printf("Wishlist setelah penambahan:\n");
     PrintList(userlist.users->wishlist);
     printf("\n");
 
-    // Test WishlistRemove function
+    // Call the WishlistRemove function to test item removal
     WishlistRemove(&userlist);
 
-    printf("Wishlist after removal:\n");
+    // Display the wishlist after removal
+    printf("Wishlist setelah penghapusan:\n");
     PrintList(userlist.users->wishlist);
     printf("\n");
 
-    // Test removing an invalid index (to simulate the error message)
-    // This code should be handled already by the logic above
+    // Test removing an item that does not exist
+    printf("Mencoba menghapus item yang tidak ada:\n");
+    WishlistRemove(&userlist);
+
+    return 0;
 }
