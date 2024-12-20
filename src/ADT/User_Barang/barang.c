@@ -45,15 +45,15 @@ void FreeBarangList(BarangList *list) {
 
 BarangList MakeArrayDin() {
     BarangList array;
-    array.items = (Barang *)malloc(InitialSize * sizeof(Barang)); // Allocate memory for barang array
+    array.items = (Barang *)malloc(InitialSize * sizeof(Barang)); // Alokasi memori
     array.capacity = InitialSize; // Set initial capacity
-    array.count = 0; // Initial number of items is 0
+    array.count = 0; 
     return array;
 }
 
 /* Deallocates the dynamic array memory */
 void DeallocateArrayDin(BarangList *array) {
-    free(array->items); // Free the allocated memory for barang array
+    free(array->items); // Free memory
 }
 
 /* Check if the array is empty */
@@ -68,7 +68,7 @@ int Length(BarangList array) {
 
 /* Get the element at index i */
 Barang Get(BarangList array, IdxType i) {
-    return array.items[i]; // Return the barang at index i
+    return array.items[i]; // Return barang pada index i
 }
 
 /* Get the capacity of the array */
@@ -83,8 +83,8 @@ void InsertAt(BarangList *array, Barang el, IdxType i) {
 
     // If the array is full, expand it
     if (length == capacity) {
-        int desiredCapacity = capacity + InitialSize; // Increase capacity by InitialSize
-        Barang *arr = (Barang *)malloc(desiredCapacity * sizeof(Barang)); // Allocate new array
+        int desiredCapacity = capacity + InitialSize; 
+        Barang *arr = (Barang *)malloc(desiredCapacity * sizeof(Barang));
         for (int a = 0; a < length; a++) {
             arr[a] = Get(*array, a); // Copy elements to the new array
         }
@@ -104,7 +104,7 @@ void InsertAt(BarangList *array, Barang el, IdxType i) {
 
 /* Insert an element at the end of the array */
 void InsertLast(BarangList *array, Barang el) {
-    InsertAt(array, el, Length(*array)); // Insert at the end (i.e., current length)
+    InsertAt(array, el, Length(*array)); // Insert at the end 
 }
 
 /* Insert an element at the start of the array */

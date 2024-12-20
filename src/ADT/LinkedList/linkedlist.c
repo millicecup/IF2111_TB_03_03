@@ -74,7 +74,7 @@ boolean SearchX(Wishlist L, infoBarang X) {
         return false;
     } else {
         while (P != Nill) {
-            printf("Checking item: %s, price: %d\n", Item(P), Price(P)); // Debug statement
+            // printf("Checking item: %s, price: %d\n", Item(P), Price(P));
             if ((isEqualString(Item(P), X.name) && (Price(P) == X.price))) {
                 return true;
             } else {

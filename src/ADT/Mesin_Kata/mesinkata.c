@@ -296,25 +296,22 @@ int WordToInt(Word *w) {
 boolean isWordEqualToString(const Word *w, const char *str) {
     int i = 0;
 
-    // Handle empty Word input early
     if (w->Length == 0) {
-        return str[0] == '\0';  // If word is empty, the string must also be empty
+        return str[0] == '\0'; 
     }
 
-    // Loop through each character of both Word and string
     while (i < w->Length && str[i] != '\0') {
         char wordChar = w->TabWord[i];
         char strChar = str[i];
 
-        // Normalize both characters to lowercase
         if (wordChar >= 'A' && wordChar <= 'Z') {
-            wordChar += ('a' - 'A'); // Convert uppercase to lowercase
+            wordChar += ('a' - 'A'); // Convert uppercase ke lowercase
         }
         if (strChar >= 'A' && strChar <= 'Z') {
-            strChar += ('a' - 'A'); // Convert uppercase to lowercase
+            strChar += ('a' - 'A'); // Convert uppercase ke lowercase
         }
 
-        // Compare characters
+        // Compare karakter
         if (wordChar != strChar) {
             return false;
         }
@@ -322,18 +319,17 @@ boolean isWordEqualToString(const Word *w, const char *str) {
         i++;
     }
 
-    // After loop: both lengths must match and str must end
     return i == w->Length && str[i] == '\0';
 }
 
 void myStrcpy(char *dest, const char *src) {
     int i = 0;
-    // Copy each character from src to dest, including the null terminator
+
     while (src[i] != '\0') {
         dest[i] = src[i];
         i++;
     }
-    dest[i] = '\0'; // Add null terminator to the destination string
+    dest[i] = '\0'; // Add null terminator
 }
 
 void ConcatWord(Word *dest, const Word *src) {
@@ -362,7 +358,7 @@ void ConcatWord(Word *dest, const Word *src) {
 
 void WordToChar(const Word *word, char *output) {
     for (int i = 0; i < word->Length; i++) {
-        output[i] = word->TabWord[i]; // Copy each character
+        output[i] = word->TabWord[i]; 
     }
     output[word->Length] = '\0'; 
 }
@@ -373,10 +369,10 @@ boolean compareStringsManual(const char *str1, const char *str2) {
 
     // Normalize characters
     if (ch1 >= 'A' && ch1 <= 'Z') {
-        ch1 += ('a' - 'A'); // Convert uppercase to lowercase
+        ch1 += ('a' - 'A'); // Convert uppercase ke lowercase
     }
     if (ch2 >= 'A' && ch2 <= 'Z') {
-        ch2 += ('a' - 'A'); // Convert uppercase to lowercase
+        ch2 += ('a' - 'A'); // Convert uppercase ke lowercase
     }
 
     return ch1 == ch2;

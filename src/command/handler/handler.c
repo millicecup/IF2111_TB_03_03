@@ -145,6 +145,7 @@ void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keran
                 qty = WordToInt(&currentWord);
 
                 AddCart(keranjang, item.TabWord, qty, barangList);
+                tunggu(2);
             } else if (isWordEqualToString(&currentWord, "REMOVE")) {
                 ADVCOMM(); 
                 char itemName[50];
@@ -154,10 +155,13 @@ void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keran
                 int qty = WordtoNum(currentWord);
 
                 RemoveCart(keranjang, itemName, qty);
+                tunggu(2);
             } else if (isWordEqualToString(&currentWord, "SHOW")) {
                 cartShow(*keranjang);
+                tunggu(5);
             } else if (isWordEqualToString(&currentWord, "PAY")) {
                 cartPay(keranjang, userList);
+                tunggu(2);
             } else {
                 printf("Invalid CART command!\n");
             }
@@ -193,7 +197,7 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
                 
                 if (currentWord.Length == 0) {
                     WishlistRemove(userList);
-                    printf("All items have been removed from the wishlist.\n");
+                    // printf("All items have been removed from the wishlist.\n");
                 } else {
                     int idx = WordToInt(&currentWord);
                     if (idx != -1) {

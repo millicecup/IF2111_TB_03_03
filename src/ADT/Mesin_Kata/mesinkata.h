@@ -72,9 +72,13 @@ Word toKata(char *str);
 Word intToWord(int n);
 
 void chartoWord(Word *w, char *str) ;
+
 void WordToChar(const Word *word, char *output);
+
 void IgnoreTK();
+
 int WordToInt(Word *w) ;
+
 int stringLength(char *str);
 /*  Fungsi yang menerima sebuah parameter str bertipe string
     Kemudian mengembalikan panjang dari string tersebut */
@@ -82,8 +86,6 @@ int stringLength(char *str);
 boolean isWordEqualToString(const Word *w, const char *str);
 
 void ConcatWord(Word *dest, const Word *src);
-
-void READWORD();
 
 boolean compareStringsManual(const char *str1, const char *str2);
 
@@ -94,6 +96,7 @@ void stringToWord(char *str, Word *word);
 boolean IsWordEqual(Word w1, Word w2) ;
 
 boolean isGreaterString(char *str1, char *str2); 
+
 void myStrcpy(char *dest, const char *src);
 
 #endif

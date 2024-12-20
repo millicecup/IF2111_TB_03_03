@@ -10,7 +10,6 @@
 #include "../../ADT/Stack/stack.h"
 #include "../Cart_Show/cart_show.h"
 
-/* Function Prototype */
 int calculateTotalBasketCost(Keranjang k);
 
 void findHighestTotalItem(Keranjang k, char* maxName, int* maxPrice, int* maxQuantity);
