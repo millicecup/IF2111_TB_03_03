@@ -60,7 +60,18 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request,
 
         if (isWordEqualToString(&currentWord, "STORE LIST")) {
             DisplayStore(*barangList);
-            tunggu(5);
+            printf("\nKetik 'back' untuk keluar.\n");
+            do {
+                GetInput();
+                chartoWord(&currentWord, currentInput.TabWord);
+
+                if (isWordEqualToString(&currentWord, "back")) {
+                    handleStoreMenu(userList, barangList, request, currentMenu);
+                    break;
+                } else {
+                    printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
+                }
+            } while (true);
         } else if (isWordEqualToString(&currentWord, "STORE REQUEST")) {
             StoreRequest(request, barangList);
             tunggu(2);
@@ -158,10 +169,34 @@ void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keran
                 tunggu(2);
             } else if (isWordEqualToString(&currentWord, "SHOW")) {
                 cartShow(*keranjang);
-                tunggu(5);
+
+                printf("\nKetik 'back' untuk keluar.\n");
+                do {
+                GetInput();
+                chartoWord(&currentWord, currentInput.TabWord);
+
+                if (isWordEqualToString(&currentWord, "back")) {
+                    handleCartMenu(userList, barangList, keranjang, history, currentMenu);
+                    break;
+                } else {
+                    printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
+                }
+                } while (true);
             } else if (isWordEqualToString(&currentWord, "PAY")) {
                 cartPay(keranjang, userList);
-                tunggu(2);
+
+                printf("\nKetik 'back' untuk keluar.\n");
+                do {
+                GetInput();
+                chartoWord(&currentWord, currentInput.TabWord);
+
+                if (isWordEqualToString(&currentWord, "back")) {
+                    handleCartMenu(userList, barangList, keranjang, history, currentMenu);
+                    break;
+                } else {
+                    printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
+                }
+                } while (true);
             } else {
                 printf("Invalid CART command!\n");
             }
@@ -228,7 +263,19 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
             }
             else if (isWordEqualToString(&currentWord, "SHOW")) {
                 WishlistShow(userList);
-                tunggu(5);
+
+                printf("\nKetik 'back' untuk keluar.\n");
+                do {
+                GetInput();
+                chartoWord(&currentWord, currentInput.TabWord);
+
+                if (isWordEqualToString(&currentWord, "back")) {
+                    handleWishlistMenu(userList, barangList, wishlist, currentMenu);
+                    break;
+                } else {
+                    printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
+                }
+                } while (true);
                 //PrintList(userList->users->wishlist);
             }
             else {
@@ -446,114 +493,3 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
         }
     }
 }
-
-
-
-// void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wishlist, MenuState *currentMenu) {
-//     update_menu(currentMenu, menuwishlist);
-//     boolean isInWishlistMenu = true;
-//     system("cls || clear");
-
-//     while (isInWishlistMenu) {
-//         animasiWishlist();
-//         printf("\n\n");
-//         printf("Enter command: ");
-//         ResetInput();
-//         GetInput();
-//         Word currentWord;
-//         chartoWord(&currentWord, currentInput.TabWord);
-
-//         if (isWordEqualToString(&currentWord, "WISHLIST ADD")) {
-//             printf("TBA\n");
-//         } 
-//         else if (isWordEqualToString(&currentWord, "WISHLIST SWAP")) {
-//             printf("TBA\n");
-//         } 
-//         else if (isWordEqualToString(&currentWord, "WISHLIST REMOVE")) {
-//             printf("TBA\n");
-//         } 
-//         else if (isWordEqualToString(&currentWord, "WISHLIST CLEAR")) {
-//             printf("TBA\n");
-//         } 
-//         else if (isWordEqualToString(&currentWord, "WISHLIST SHOW")) {
-//             printf("TBA\n");
-//         } 
-//         else if (isWordEqualToString(&currentWord, "HELP")) {
-//             help(currentMenu);
-//         } 
-//         else if (isWordEqualToString(&currentWord, "MENU")) {
-//             isInWishlistMenu = false;
-//             printf("Returning to Inside Menu...\n");
-//         } 
-//         else {
-//             printf("Invalid command. Please try again.\n");
-//         }
-//     }
-// }
-
-
-// void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keranjang, MenuState *currentMenu) {
-//     update_menu(currentMenu, menucart);
-//     boolean isInCartMenu = true;
-//     system("cls || clear");
-
-//     while (isInCartMenu) {
-//         animasiCart();
-//         printf("\n\n");
-//         printf("Enter command: ");
-//         GetInput();
-//         Word currentWord;
-//         chartoWord(&currentWord, currentInput.TabWord);
-
-//         if (isWordEqualToString(&currentWord, "CART")) {
-//             ADVWORD(); 
-//             Word commandType;
-//             chartoWord(&commandType, currentInput.TabWord);
-
-//             if (isWordEqualToString(&commandType, "ADD")) {
-//                 ADVWORD();
-//                 Word itemWord;
-//                 chartoWord(&itemWord, currentInput.TabWord);
-
-//                 ADVWORD();
-//                 Word quantityWord;
-//                 chartoWord(&quantityWord, currentInput.TabWord);
-
-//                 int qty = WordToInt(&quantityWord);
-//                 char itemName[50];
-//                 WordToChar(&itemWord, itemName);
-
-//                 AddCart(keranjang, itemName, qty, barangList);
-//                 tunggu(3);
-//             } else if (isWordEqualToString(&commandType, "REMOVE")) {
-//                 ADVWORD();
-//                 Word itemWord;
-//                 chartoWord(&itemWord, currentInput.TabWord);
-
-//                 ADVWORD();
-//                 Word quantityWord;
-//                 chartoWord(&quantityWord, currentInput.TabWord);
-
-//                 int qty = WordToInt(&quantityWord);
-//                 char itemName[50];
-//                 WordToChar(&itemWord, itemName);
-
-//                 RemoveCart(keranjang, itemName, qty);
-//                 tunggu(3);
-//             } else if (isWordEqualToString(&commandType, "SHOW")) {
-//                 printf("TBA\n");
-//             } else if (isWordEqualToString(&commandType, "PAY")) {
-//                 printf("TBA\n");
-//             } else {
-//                 printf("Invalid command!\n");
-//             }
-//         } else if (isWordEqualToString(&currentWord, "HELP")) {
-//              help(currentMenu);
-//         } else if (isWordEqualToString(&currentWord, "MENU")) {
-//             isInCartMenu = false;
-//             printf("Returning to Main Menu...\n");
-//         } else {
-//             printf("Invalid command. Please try again.\n");
-//         }
-//     }
-// }
