@@ -12,6 +12,11 @@ void WishlistShow(UserList *userList) {
     }
     
     printf("Berikut adalah isi wishlist-mu:\n");
+    //printf("===============================\n");
+    printf("+-----------------------------+\n");
+    printf("|No | Nama                    |\n");
+    printf("+-----------------------------+\n");
+    //printf("===============================\n");
 
     address checker;
     while (temp != Nill) {
@@ -27,10 +32,12 @@ void WishlistShow(UserList *userList) {
         }
 
         if (!isDuplicate) {
-            printf("%d %s\n", counter, Item(temp));
+            printf("|%-3d| %-24s|\n", counter, Item(temp));
             counter++;
         } 
 
         temp = Next(temp);  
     }
+    printf("+-----------------------------+\n");
+    // printf("===============================\n");
 }

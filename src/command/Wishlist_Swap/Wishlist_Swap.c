@@ -38,5 +38,5 @@ void WishlistSwap(UserList *userlist, int i, int j){
     Info(p1) = Info(p2);
     Info(p2) = temp;
 
-    printf("Berhasil menukar posisi %s dengan %s pada currentUser->wishlist!\n", Item(p1), Item(p2));
+    printf("Berhasil menukar posisi %s dengan %s pada wishlist!\n", Item(p1), Item(p2));
 }
