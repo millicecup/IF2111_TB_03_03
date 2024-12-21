@@ -14,7 +14,7 @@ void WishlistRemove(UserList *userlist) {
     assignString(item.name, currentInput.TabWord);
 
     
-    if (SearchX(currentUser->wishlist, item)) {
+    if (!SearchX(currentUser->wishlist, item)) {
         
         printf("Penghapusan barang WISHLIST gagal dilakukan, %s tidak ada di WISHLIST!\n", item.name);
         return;
