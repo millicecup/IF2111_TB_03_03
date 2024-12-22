@@ -4,33 +4,51 @@
 │   └── config.txt       # Konfigurasi awal
 ├── docs                  
 │   ├── Spesifikasi Tugas Besar 1 IF2111 2024/2025.pdf      # Dokumen spesifikasi
-│   └── IF2111_TB_03_03.pdf                                 # Laporan tugas besar
+|   ├── IF2111_TB_03_03.pdf                                 # Laporan tugas besar
+│   └── Struktur_Dokumen.txt                                # Struktur dokumen
 ├── src
-│   ├── ADT                  # Implementasi seluruh struktur data yang digunakan 
+│   ├── ADT                  # Implementasi seluruh struktur data yang digunakan
+│   │   ├── LinkedList
 │   │   ├── List
 │   │   ├── Mesin_Baris    
 │   │   ├── Mesin_Karakter      
-│   │   ├── Mesin_Kata    
-│   │   ├── User_Barang
+│   │   ├── Mesin_Kata 
 │   │   ├── queue 
+│   │   ├── SetMap
+│   │   ├── Stack
+│   │   ├── User_Barang 
 │   │   ├── boolean.h
-├   ├── command             # Implementasi seluruh command         
+├   ├── command             # Implementasi seluruh command   
+│   │   ├── animasi  
+│   │   ├── Cart_Add
+│   │   ├── Cart_Pay
+│   │   ├── Cart_Remove
+│   │   ├── Cart_Show
+│   │   ├── handler
 │   │   ├── Help
-│   │   ├── Logout    
+│   │   ├── History
+│   │   ├── load   
+│   │   ├── login 
+│   │   ├── Logout
+│   │   ├── profil
+│   │   ├── quit  
+│   │   ├── register 
+│   │   ├── save
 │   │   ├── Start      
 │   │   ├── Store_List    
 │   │   ├── Store_Remove 
 │   │   ├── Store_Request    
 │   │   ├── Store_Supply 
-│   │   ├── animasi    
-│   │   ├── handler
-│   │   ├── load    
-│   │   ├── login 
-│   │   ├── quit    
-│   │   ├── register 
-│   │   ├── save
+│   │   ├── Wishlist_Add
+│   │   ├── Wishlist_Clear
+│   │   ├── Wishlist_Remove
+│   │   ├── Wishlist_Remove_i
+│   │   ├── Wishlist_Show
+│   │   ├── Wishlist_Swap
 │   │   ├── work    
 │   │   ├── workchallenge
+|   |   |   ├── tebakangka
+|   |   |   └── wordl3
 │   │   ├── Makefile    
-└── └── └── main.c         # Memanggil semua command
-README.MD
+|   |   └── main.c         # Memanggil semua command
+└── README.MD
