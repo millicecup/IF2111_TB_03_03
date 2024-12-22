@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "../../ADT/User_Barang/menu.h"
 
-
+void printHelp(MenuState *current_menu);
 void help(MenuState *current_menu);
 void update_menu(MenuState *current_menu, MenuState menu_updated);
 

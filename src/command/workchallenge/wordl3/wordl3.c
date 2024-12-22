@@ -13,28 +13,28 @@
 #define WORD_LENGTH 5
 
 void displayResult(List *guess, char *word) {
-    boolean usedTarget[WORD_LENGTH] = {false}; // Tracks used letters in the target word
-    boolean usedGuess[WORD_LENGTH] = {false};  // Tracks used letters in the guess
+    boolean usedTarget[WORD_LENGTH] = {false}; 
+    boolean usedGuess[WORD_LENGTH] = {false};  
 
-    // First Pass: Mark exact matches
+    //  exact matches
     for (int i = 0; i < WORD_LENGTH; i++) {
         char guessChar = GetList(*guess, i);
         char targetChar = word[i];
 
         if (compareStringsManual(&guessChar, &targetChar)) {
-            usedTarget[i] = true; // Mark exact match as used
-            usedGuess[i] = true;  // Mark guess letter as used
+            usedTarget[i] = true; 
+            usedGuess[i] = true; 
         }
     }
 
-    // Second Pass: Mark misplaced matches
+    // misplaced matches
     for (int i = 0; i < WORD_LENGTH; i++) {
-        if (!usedGuess[i]) { // Only process unused guess letters
+        if (!usedGuess[i]) { 
             char guessChar = GetList(*guess, i);
             for (int j = 0; j < WORD_LENGTH; j++) {
                 if (!usedTarget[j] && compareStringsManual(&guessChar, &word[j])) {
-                    usedTarget[j] = true; // Mark this target letter as used
-                    usedGuess[i] = true;  // Mark this guess letter as used
+                    usedTarget[j] = true; 
+                    usedGuess[i] = true;  
                     break;
                 }
             }
@@ -46,13 +46,13 @@ void displayResult(List *guess, char *word) {
         char guessChar = GetList(*guess, i);
 
         if (compareStringsManual(&guessChar, &word[i])) {
-            // Exact match: Correct letter and position
+            // Posisi dan huruf benar
             printf("%c ", guessChar);
         } else if (usedGuess[i]) {
-            // Correct letter but wrong position
+            // Huruf benar, posisi salah
             printf("%c* ", guessChar);
         } else {
-            // Incorrect letter
+            // Huruf salah
             printf("%c%% ", guessChar);
         }
     }
@@ -76,7 +76,7 @@ boolean isValidInput(Word *input, int requiredLength) {
 
 void wordl3(UserList *userList) {
     User *currentUser = &userList->users[userList->currentUserIndex];
-    // Deduct coins to play the game
+    // Mengurangi koin
     if (currentUser->money < 500) {
         printf("Uang Anda tidak cukup untuk memainkan permainan ini.\n");
         return;
@@ -89,7 +89,7 @@ void wordl3(UserList *userList) {
     printf("Apabila huruf yang ditebak benar, tapi posisinya salah, maka akan ditandai dengan huruf tersebut diikuti dengan tanda '*'.\n");
     printf("Apabila huruf yang ditebak salah, maka akan ditandai dengan huruf tersebut diikuti dengan tanda '%%'.\n");
 
-    // Target word setup
+    // Target word
     char *wordBank[] = {
         "APPLE", "GRAPE", "PEACH", "MANGO", "LEMON",
         "BANJO", "CHILI", "DONUT", "FERAL", "GUAVA",

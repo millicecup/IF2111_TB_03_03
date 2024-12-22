@@ -11,11 +11,12 @@ void WishlistShow(UserList *userList) {
         return;
     }
     
-    printf("Berikut adalah isi wishlist-mu:\n");
+    //printf("Berikut adalah isi wishlist-mu:\n");
     //printf("===============================\n");
-    printf("+-----------------------------+\n");
-    printf("|No | Nama                    |\n");
-    printf("+-----------------------------+\n");
+    printf(">> WISHLIST\n");
+    printf("+------------------------------+\n");
+    printf("| No | Nama                    |\n");
+    printf("+------------------------------+\n");
     //printf("===============================\n");
 
     address checker;
@@ -32,12 +33,12 @@ void WishlistShow(UserList *userList) {
         }
 
         if (!isDuplicate) {
-            printf("|%-3d| %-24s|\n", counter, Item(temp));
+            printf("| %-3d| %-24s|\n", counter, Item(temp));
             counter++;
         } 
 
         temp = Next(temp);  
     }
-    printf("+-----------------------------+\n");
+    printf("+------------------------------+\n");
     // printf("===============================\n");
 }

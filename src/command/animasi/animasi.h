@@ -10,6 +10,8 @@ void printImage(FILE *fascii);
 
 void animasiQuit();
 
+void animasiProfile();
+
 void animasiMainMenu();
 
 void animasiStore();

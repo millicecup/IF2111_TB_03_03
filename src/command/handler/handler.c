@@ -366,9 +366,19 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
                 }
             } while (true);
         } else if (isWordEqualToString(&currentWord, "PROFILE")) {
-            clear = true;
+            system("cls || clear");
             profile(userList);
-            GetInput();
+            do {
+                GetInput();
+                chartoWord(&currentWord, currentInput.TabWord);
+
+                if (isWordEqualToString(&currentWord, "back")) {
+                    handleInsideMenu(userList, barangList, request, cart, wishlist, history, currentMenu);
+                    break;
+                } else {
+                    printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
+                }
+            } while (true);
         } else if (isWordEqualToString(&currentWord, "HELP")) {
             clear = true;
             help(currentMenu);
@@ -390,6 +400,7 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
             }
         } else {
             printf("Invalid command. Please try again.\n");
+            tunggu(2);
         }
     }
 }
@@ -397,10 +408,11 @@ void handleInsideMenu(UserList *userList, BarangList *barangList, Queue *request
 // Fungsi untuk handle login menu
 void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request, Keranjang *cart, Wishlist *wishlist, History *history, MenuState *currentMenu) { 
     //printf("DEBUG: Entering handleLoginMenu.\n");
-
+    tunggu(2);
+    system("cls || clear");
+    
     update_menu(currentMenu, menuforlogin);
     boolean isInLoginMenu = true;
-    // system("cls || clear");
     //animasiLogin();
 
     while (isInLoginMenu) {
@@ -433,10 +445,12 @@ void handleLoginMenu(UserList *userList, BarangList *barangList, Queue *request,
             handleMainMenu(userList, barangList, &isInLoginMenu, request, cart, wishlist, history, currentMenu);
         } else if (isWordEqualToString(&currentWord, "QUIT")) {
             quit(&isInLoginMenu, *userList);
+            printf("Exiting PURRMART... Goodbye!\n");
+            tunggu(2);
+            animasiQuit();
             if (!isInLoginMenu) {
                 exit(0);
             }
-            printf("Exiting PURRMART. Goodbye!\n");
             // exit(0);
         } 
         else {
@@ -488,6 +502,9 @@ void handleMainMenu(UserList *userList, BarangList *barangList, boolean *running
             if(running==false){
                 exit(0);
             }
+            printf("Exiting PURRMART... Goodbye!\n");
+            tunggu(2);
+            animasiQuit();
         } else {
             printf("Invalid command. Please try again.\n");
         }

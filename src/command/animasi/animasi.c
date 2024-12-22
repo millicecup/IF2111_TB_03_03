@@ -1,6 +1,8 @@
 #include "animasi.h"
+#include "../work/work.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void printImage(FILE *fascii)
 {
@@ -82,17 +84,55 @@ void animasiLogin()
 
 void animasiQuit()
 {
+    char *filename;
     FILE *fascii;
     system("cls || clear");
+    for (int i = 0; i <4; i++)
+    {
+        if (i == 0)
+        {
+            filename = "animasi/quit1.txt";
+        }
+        else if (i == 1)
+        {
+            filename = "animasi/quit2.txt";
+        }
+        else if (i == 2)
+        {
+            filename = "animasi/quit3.txt";
+        }
+        else if (i == 3)
+        {
+            filename = "animasi/quit4.txt";
+        }
+
+        fascii = NULL;
+        fascii = fopen(filename,"r");
+        if(fascii  == NULL)
+        {
+            printf("error opening file\n");
+        } 
+        else 
+        {
+            system("cls || clear");
+            printImage(fascii);
+            fclose(fascii);
+        } 
+        tunggu(1);
+    }
+}
+
+void animasiProfile()
+{
+    FILE *fascii;
     fascii = NULL;
-    fascii = fopen("animasi/perrystop.txt","r");
+    fascii = fopen("animasi/profile.txt","r");
     if(fascii  == NULL)
     {
         printf("error opening file\n");
     } 
     else 
     {
-        system("cls || clear");
         printImage(fascii);
         fclose(fascii);
     } 

@@ -26,6 +26,9 @@ void DisplayStore (BarangList store)
 
     if(!IsEmpty(store))
     {
+        printf("+---------------------------------------------------+\n");
+        printf("| No | Nama                          | Harga        |\n");
+        printf("+---------------------------------------------------+\n");
         for(int i = 0; i < Length(store) ; i++)
         {
             if(IsUnique(store, i))
@@ -33,10 +36,11 @@ void DisplayStore (BarangList store)
                 // printf("- ");
                 // TulisWordNoNL(toKata(store.items[i].name));
                 // printf(" - Harga: %d\n", store.items[i].price);
-                printf("- %s - Harga: %d\n", store.items[i].name, store.items[i].price);
-                
+                //printf("- %s - Harga: %d\n", store.items[i].name, store.items[i].price);
+                printf("| %-3d| %-30s| %-13d|\n", i+1, store.items[i].name, store.items[i].price);
             }
         }
+        printf("+---------------------------------------------------+\n");
     }
     else
     {

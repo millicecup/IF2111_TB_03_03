@@ -9,7 +9,8 @@ void cartShow(Keranjang k) {
     }
 
     // Menampilkan isi keranjang
-    printf("Berikut adalah isi keranjangmu.\n");
+    //printf("Berikut adalah isi keranjangmu.\n");
+    printf(">> CART\n");
     DisplayBasket(k);
 
     // Menghitung total cost

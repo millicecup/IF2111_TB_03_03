@@ -21,7 +21,7 @@ void login(UserList *userArray) {
 
 
     // Get username from the user
-    printf("Enter Username: ");
+    printf("\nEnter Username: ");
     GetInput();
     chartoWord(&username, currentInput.TabWord);
 
