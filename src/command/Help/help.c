@@ -38,7 +38,7 @@ void printHelp(MenuState *current_menu) {
         printf("10. LOGOUT -> Untuk keluar dari sesi\n");
     } else if (*current_menu == menustore) {
         printf("=====[ Menu Help PURRMART ]=====\n");
-        printf("Ketik 'back;' untuk keluar dari menu help\n");
+        printf("Ketik 'back' untuk keluar dari menu help\n");
         printf("1. STORE LIST -> Untuk melihat barang-barang di toko\n");
         printf("2. STORE REQUEST -> Untuk meminta penambahan barang\n");
         printf("3. STORE SUPPLY -> Untuk menambahkan barang dari permintaan\n");

@@ -12,7 +12,7 @@
 
 // Function to load default configuration and populate UserList and BarangList
 int start(UserList *userList, BarangList *barangList) {
-    FILE *pita = fopen("../../root/mingyu.txt", "r");
+    FILE *pita = fopen("../../root/config.txt", "r");
     if (pita == NULL) {
         printf("Error: Unable to open file %s.\n", pita);
         return 1;
@@ -101,6 +101,6 @@ int start(UserList *userList, BarangList *barangList) {
     }
 
     fclose(pita);
-    printf("Config file mingyu.txt successfully loaded.\n");
+    printf("Config file config.txt successfully loaded.\n");
     return 0;
 }

@@ -9,6 +9,8 @@ void WishlistAdd(UserList *userList, BarangList *menu) {
     STARTINPUT(stdin);
 
     assignString(item.name, currentInput.TabWord);
+    int idx = SearchArrayDin(*menu, toKata(item.name));
+    myStrcpy(item.name, menu->items[idx].name); 
 
     if (!isMemberList(*menu, toKata(item.name))) {
         printf("Tidak ada barang dengan nama %s!\n", item.name);
