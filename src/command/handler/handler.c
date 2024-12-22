@@ -66,7 +66,7 @@ void handleStoreMenu(UserList *userList, BarangList *barangList, Queue *request,
                 chartoWord(&currentWord, currentInput.TabWord);
 
                 if (isWordEqualToString(&currentWord, "back")) {
-                    handleStoreMenu(userList, barangList, request, currentMenu);
+                    //handleStoreMenu(userList, barangList, request, currentMenu);
                     break;
                 } else {
                     printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
@@ -176,7 +176,7 @@ void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keran
                 chartoWord(&currentWord, currentInput.TabWord);
 
                 if (isWordEqualToString(&currentWord, "back")) {
-                    handleCartMenu(userList, barangList, keranjang, history, currentMenu);
+                    //handleCartMenu(userList, barangList, keranjang, history, currentMenu);
                     break;
                 } else {
                     printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
@@ -191,7 +191,7 @@ void handleCartMenu(UserList *userList, BarangList *barangList, Keranjang *keran
                 chartoWord(&currentWord, currentInput.TabWord);
 
                 if (isWordEqualToString(&currentWord, "back")) {
-                    handleCartMenu(userList, barangList, keranjang, history, currentMenu);
+                    //handleCartMenu(userList, barangList, keranjang, history, currentMenu);
                     break;
                 } else {
                     printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");
@@ -232,6 +232,7 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
                 
                 if (currentWord.Length == 0) {
                     WishlistRemove(userList);
+                    tunggu(2);
                     // printf("All items have been removed from the wishlist.\n");
                 } else {
                     int idx = WordToInt(&currentWord);
@@ -270,7 +271,7 @@ void handleWishlistMenu(UserList *userList, BarangList *barangList, Wishlist *wi
                 chartoWord(&currentWord, currentInput.TabWord);
 
                 if (isWordEqualToString(&currentWord, "back")) {
-                    handleWishlistMenu(userList, barangList, wishlist, currentMenu);
+                    //handleWishlistMenu(userList, barangList, wishlist, currentMenu);
                     break;
                 } else {
                     printf("Perintah tidak valid! Ketik 'back' untuk keluar.\n");

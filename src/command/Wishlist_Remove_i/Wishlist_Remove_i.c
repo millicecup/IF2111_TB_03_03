@@ -34,7 +34,7 @@ void WishlistRemoveI(UserList *userlist, int idx) {
         DelAfter(&currentUser->wishlist, &curr, prev);
     }
 
-    printf("Berhasil menghapus barang posisi ke-%d dari userlist->users->wishlist!\n", idx);
+    printf("Berhasil menghapus barang posisi ke-%d dari wishlist!\n", idx);
     Dealokasi(&curr); 
 }
 
